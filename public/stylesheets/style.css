@@ -29,10 +29,14 @@ button:focus
 }
 
 #home-title {
-	font-size: 10vw;
+	top: 10%;
+	position:absolute;
+	font-size: 14vw;
 	color: white;
 	font-family: 'Vibur', cursive;
 	text-shadow: 0 0 2vw white;
+	left: 0;
+	right: 0;
 }
 
 #home
@@ -50,25 +54,20 @@ button:focus
 	text-align: center;
 	text-decoration: none;
 	display: inline-block;
-
-
 	transition-duration: 0.4s;
 	cursor: pointer;
-
 }
 
 .button-home
 {
-	vertical-align: middle;
-	background-color: #2f2f2f;
-	background-color: rgba(42, 42, 42, 0);
+	background-color: #2f2f2f; /* fallback if below unsupported */
+	background-color: rgba(42, 42, 42, 0); /* to make its background transparent */
 	border: 0.5vw solid white;
-	border-radius: 1.5vw;
+	border-radius: 1.5vw; /* make button cornes more round */
 	color: white;
 	font-size: 3vw;
-	text-shadow: 0.2vw 0.2vw 2vw white;
-	white-space:nowrap;
-	overflow:hidden;
+	text-shadow: 0.2vw 0.2vw 2vw white; /* to shine */
+	white-space:nowrap; overflow:hidden; /* button text on one line */
 }
 
 .button-home:hover
@@ -84,19 +83,19 @@ button:focus
 
 }
 
-
+/* lines on left and right side of button */
 #home-line-left {
 	width: 40%;
 	top: 50%;
 	height: 0.5vw;
 	background-color: white;
 	position: absolute;
+	left: 0%;
 }
 
 #home-line-right {
 	width: 40%;
 	top: 50%;
-	float:right;
 	height: 0.5vw;
 	background-color: white;
 	position: absolute;
