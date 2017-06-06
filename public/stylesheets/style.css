@@ -1,8 +1,104 @@
+html {
+    height: 100%;
+}
+
+
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+
+	font-family: 'Raleway', cursive;
+	height: 100%;
+    margin: 0;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#f7b4b4+0,ff723a+100 */
+	background: #f7b4b4; /* Old browsers */
+	background: -moz-linear-gradient(45deg, #f7b4b4 0%, #ff723a 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(45deg, #f7b4b4 0%,#ff723a 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(45deg, #f7b4b4 0%,#ff723a 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f7b4b4', endColorstr='#ff723a',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
 }
 
 a {
   color: #00B7FF;
+}
+
+button:focus
+{
+	outline:0;
+}
+
+#home-title {
+	font-size: 10vw;
+	color: white;
+	font-family: 'Vibur', cursive;
+	text-shadow: 0 0 2vw white;
+}
+
+#home
+{
+	text-align: center;
+}
+
+.button
+{
+	width: 20%;
+	background-color: white;
+	border: none;
+	color: black;
+	padding: 2vw 2vw 2vw 2vw;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+
+
+	transition-duration: 0.4s;
+	cursor: pointer;
+
+}
+
+.button-home
+{
+	vertical-align: middle;
+	background-color: #2f2f2f;
+	background-color: rgba(42, 42, 42, 0);
+	border: 0.5vw solid white;
+	border-radius: 1.5vw;
+	color: white;
+	font-size: 3vw;
+	text-shadow: 0.2vw 0.2vw 2vw white;
+	white-space:nowrap;
+	overflow:hidden;
+}
+
+.button-home:hover
+{
+	background-color: white;
+	color: #FB9479;
+}
+
+.centered {
+	width: 100%;
+	top: 50%;
+	position:absolute;
+
+}
+
+
+#home-line-left {
+	width: 40%;
+	top: 50%;
+	height: 0.5vw;
+	background-color: white;
+	position: absolute;
+}
+
+#home-line-right {
+	width: 40%;
+	top: 50%;
+	float:right;
+	height: 0.5vw;
+	background-color: white;
+	position: absolute;
+	right: 0%;
 }
