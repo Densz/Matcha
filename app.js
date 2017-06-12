@@ -9,7 +9,10 @@ var expressLayouts = require('express-ejs-layouts');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
-var signIn = require('./routes/signIn')
+var signIn = require('./routes/signIn');
+var signUp = require('./routes/signUp');
+var home = require('./routes/home');
+
 
 var app = express();
 
@@ -29,6 +32,8 @@ app.use(expressLayouts);
 app.use('/', index);
 app.use('/users', users);
 app.use('/signIn', signIn);
+app.use('/signUp', signUp);
+app.use('/home', home);
 
 
 // catch 404 and forward to error handler
