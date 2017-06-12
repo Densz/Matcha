@@ -9,6 +9,7 @@ var expressLayouts = require('express-ejs-layouts');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
+var signIn = require('./routes/signIn')
 
 var app = express();
 
