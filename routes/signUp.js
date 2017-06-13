@@ -1,5 +1,18 @@
 var express = require('express')
 var router = express.Router()
+var mongoose = require('mongoose')
+mongoose.connect('localhost:27017/matcha')
+var Schema = mongoose.Schema;
+
+var userDataSchema = new Schema({
+	firstName: {type: String, required: true},
+	lastName: {type: String, required: true},
+	login: {type: String, required: true},
+	email: {type: String, required: true},
+	password: {type: String, required: true},
+}, {collection: 'users'})
+
+var Users = mongoose.model('Users', userDataSchema);
 
 router.get('/', function(req, res, next) {
 	res.render('signUp', { 
@@ -11,9 +24,9 @@ router.get('/', function(req, res, next) {
 })
 
 router.post('/submit', function(req, res, next) {
-	//Check validity
 	req.check('email', 'Invalid email address').isEmail();
-	req.check('password', 'Password is invalid').isLength({min: 4}).equals(req.body.confirmPassword);
+	req.check('password', 'Password minimum length').isLength({min: 4});
+	req.check('password', 'Password / Password confirmation are not the same').equals(req.body.confirmPassword);
 
 	var errors = req.validationErrors();
 	if (errors) {
@@ -21,6 +34,16 @@ router.post('/submit', function(req, res, next) {
 		req.session.success = false;
 		res.redirect('/signup');
 	} else {
+		var userInfo = {
+			firstName: req.body.firstName,
+			lastName: req.body.lastName,
+			login: req.body.login,
+			email: req.body.email,
+			password: req.body.password 
+		}
+		var data = new Users(userInfo);
+		data.save();
+		console.log('---- Data has been saved ----');
 		req.session.success = true;
 		res.redirect('/home');
 	}
