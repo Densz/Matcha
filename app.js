@@ -1,3 +1,6 @@
+//   /usr/local/mongodb/bin/mongod --dbpath ~/http/MyWebSite/matcha/mongodb
+//   /usr/local/mongodb/bin/mongo
+
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -14,6 +17,7 @@ var users = require('./routes/users');
 var signIn = require('./routes/signIn');
 var signUp = require('./routes/signUp');
 var home = require('./routes/home');
+var signOut = require('./routes/signOut')
 
 var app = express();
 
@@ -37,7 +41,7 @@ app.use('/users', users);
 app.use('/signIn', signIn);
 app.use('/signUp', signUp);
 app.use('/home', home);
-
+app.use('/signOut', signOut);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -43,8 +43,8 @@ router.post('/submit', function(req, res, next) {
 		}
 		var data = new Users(userInfo);
 		data.save();
-		console.log('---- Data has been saved ----');
 		req.session.success = true;
+		req.session.login = req.body.login;
 		res.redirect('/home');
 	}
 })
