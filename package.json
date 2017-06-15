@@ -6,6 +6,7 @@
     "start": "nodemon ./bin/www"
   },
   "dependencies": {
+    "assert": "^1.4.1",
     "body-parser": "~1.17.1",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.3",
@@ -13,8 +14,7 @@
     "express": "~4.15.2",
     "express-ejs-layouts": "^2.3.0",
     "express-session": "^1.15.3",
-    "express-validator": "^3.2.0",
-    "mongoose": "^4.10.6",
+    "mongodb": "^2.2.28",
     "morgan": "~1.8.1",
     "nodemon": "^1.11.0",
     "serve-favicon": "~2.4.2"
