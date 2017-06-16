@@ -7,44 +7,29 @@ var url = 'mongodb://localhost:27017/matcha';
 var Promise = require('promise');
 var resultArray = [];
 
-var getData = new Promise(function(resolve, reject) {
-	mongo.connect(url, function(err, db) {
-		assert.equal(null, err);
-		var cursor = db.collection('users').find();
-		cursor.forEach(function(doc, err) {
-			assert.equal(null, err);
-			resultArray.push(doc);
-		}, function() {
-			db.close();
-		});
-		resolve(resultArray);
-	});
-});
-
-module.exports = getData;
-
-
-/*
-module.exports = {
-	getData: function(collection, conditions = {}) 
-	{
-		mongo.connect(url, function(err, db)
-		{
-			assert.equal(null, err);
-			var cursor = db.collection(collection).find(conditions);
-			cursor.forEach(function(doc, err)
-			{
-				assert.equal(null, err);
+var getData = function (table) {
+	return new Promise(function(resolve, reject) {
+		mongo.connect(url, function(err, db) {
+			if (assert.equal(null, err))
+				reject("Error from database connection");
+			var cursor = db.collection(table).find();
+			cursor.forEach(function(doc, err) {
+				if (assert.equal(null, err))
+					reject("Error from get data");
 				resultArray.push(doc);
-			}, 
-			function() 
-			{
+			}, function() {
 				db.close();
-			})
-		})
-		var resultJson = JSON.stringify(resultArray);
-		resultArray = [];
-		return (resultJson);
-	}
-}*/
+				(resultArray.length) ? resolve(resultArray) : resolve("No data");
+			});
+		});
+	});
+};
 
+var HelloWorld = () => {
+	return ("Hi !");
+}
+
+module.exports = { 
+	'getData' : getData, 
+	'HelloWorld' : HelloWorld
+};
