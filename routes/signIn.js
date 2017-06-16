@@ -4,25 +4,9 @@ var mongo = require('mongodb').MongoClient;
 var assert = require('assert');
 var model = require('../core/models/database');
 
-var ret = model.getData('users').then((val) => {
-	console.log("callback :", val);
-}).catch((err) => {
-	console.error(err);
-});
-
-var hello = model.HelloWorld();
-console.log(hello);
-
-var url = 'mongodb://localhost:27017/matcha';
-
 router.get('/', (req, res, next) => {
 	let errors = req.session.errors;
 	req.session.errors = null;
-	/*model.getData.then(function(val){
-		console.log(val);
-	}).catch(function(){
-		console.log("merde");
-	})*/;
 	res.render('signIn', {
 		title: 'Matcha - Sign In',
 		errors: errors
@@ -30,6 +14,13 @@ router.get('/', (req, res, next) => {
 })
 
 router.post('/submit', function(req, res, next){
+	model.getData('users', {login: req.body.login, password: req.body.password}).then((val) => {
+		req.session.success === true;
+		res.redirect('/home');
+	}).catch((err) => {
+		req.session.errors = err;
+		res.redirect('/signIn');
+	});
 });
 
 module.exports = router;

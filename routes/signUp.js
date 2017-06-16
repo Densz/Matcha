@@ -3,7 +3,6 @@ var router = express.Router()
 
 router.get('/', function(req, res, next) {
 	var errors = req.session.errors
-	req.session.errors = null
 	res.render('signUp', { 
 		title: 'Matcha - Sign Up',
 		success: req.session.success,
