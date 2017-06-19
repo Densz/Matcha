@@ -6,7 +6,7 @@ router.get('/', function(req, res, next) {
   req.session.destroy();
   res.render('signIn', {
   	errors: 'You have been disconnected'
-  })
+  });
 });
 
 module.exports = router;

@@ -2,18 +2,17 @@ var mongo = require('mongodb').MongoClient;
 var objectId = require('mongodb').ObjectID;
 var assert = require('assert');
 var url = 'mongodb://localhost:27017/matcha';
-var resultArray = [];
 
 var getData = function(collection, condition) {
 	return new Promise(function(resolve, reject) {
-		mongo.connect(url, function(err, db) {
+        let resultArray = [];
+        mongo.connect(url, function(err, db) {
 			if (assert.equal(null, err))
 				reject("Error from database connection");
 			var cursor = db.collection(collection).find(condition);
 			cursor.forEach(function(doc, err) {
 				if (assert.equal(null, err))
 					reject("Error from get data");
-				console.log("getData:" , doc);
 				resultArray.push(doc);
 			}, function() {
 				db.close();
