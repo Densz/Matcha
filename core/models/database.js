@@ -55,5 +55,6 @@ var HelloWorld = new Hello('Salut depuis database');
  */
 module.exports = { 
 	'getData' : getData,
+	'insertData' : insertData,
 	'HelloWorld' : HelloWorld
 };

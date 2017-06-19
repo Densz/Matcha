@@ -4,7 +4,9 @@
 
 <div class="container">
 <% if (errors) { %>
-	<div class="alert alert-danger">&nbsp;<%- errors %></div>
+	<% for(var i=0; i < errors.length; i++) { %>
+		<div class="alert alert-danger">&nbsp;<%- errors[i]['msg'] %></div>
+	<% } %>
 <% } %>
 <h1>Sign up</h1>
 	<form action="/signup/submit" method="POST">
