@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var model = require('../core/models/database');
+var passwordHash = require('password-hash');
 
 router.get('/', function(req, res, next){
 	/*
@@ -16,13 +17,17 @@ router.get('/', function(req, res, next){
 });
 
 router.post('/submit', function(req, res, next){
-	model.getData('users', {login: req.body.login, password: req.body.password}).
+	model.getData('users', {login: req.body.login.toLowerCase()}).
 		then(function(val){
-		req.session.success = true;
-		res.redirect('/home');
+			if (passwordHash.verify(req.body.password, val[0]['password']) === true) {
+                req.session.success = false;
+                res.redirect('/home');
+			} else {
+                req.session.errors = 'Login does not exist';
+            }
 	}).catch(function(err){
 		req.session.success = false;
-		req.session.errors = 'Authentication failed';
+		req.session.errors = 'Login does not exist';
 		res.redirect('/signIn');
 	});
 });

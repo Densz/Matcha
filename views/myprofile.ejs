@@ -1,0 +1,30 @@
+<% include template/header.ejs %>
+
+<div class="container photo_container">
+    <div class="div_photo"><img src="/images/medium_kneth.jpg" class="photo"></div>
+    <div class="space"></div>
+    <div class="div_name"><p>Kneth</p><p>Master</p></div>
+</div>
+<div class="container profile_container">
+    <h2>My Profile</h2>
+    <form action="/signup/submit" method="POST">
+        <p><label>Sex</label><br></p>
+        <p><label>Orientation</label><br><input type="text" name="email" class="form-row"></p>
+        <p><label>Bio</label><br><input type="text" name="bio" class="form-row"></p>
+        <p><input type="submit" name="profile" class="btn btn-primary"></p>
+    </form>
+</div>
+<div class="container profile_container">
+    <h2>Interests</h2>
+    <form action="/signup/submit_interests" method="POST">
+        <p><label>Add your interests</label><br><input type="text" name="interests" class="form-row"></p>
+        <p><input type="submit" name="interests" class="btn btn-primary"></p>
+    </form>
+</div>
+<div class="container profile_container">
+    <h2>Location</h2>
+    <form action="/signup/submit_interests" method="POST">
+        <p><label>Add your interests</label><br><input type="text" name="interests" class="form-row"></p>
+        <p><input type="submit" name="interests" class="btn btn-primary"></p>
+    </form>
+</div>
