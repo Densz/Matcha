@@ -17,17 +17,19 @@ router.get('/', function(req, res, next){
 });
 
 router.post('/submit', function(req, res, next){
+    req.session.errors = [];
 	model.getData('users', {login: req.body.login.toLowerCase()}).
 		then(function(val){
 			if (passwordHash.verify(req.body.password, val[0]['password']) === true) {
                 req.session.success = false;
                 res.redirect('/home');
 			} else {
-                req.session.errors = 'Login does not exist';
+                req.session.errors.push({msg: 'Incorrect password'});
+                res.redirect('/signIn');
             }
 	}).catch(function(err){
 		req.session.success = false;
-		req.session.errors = 'Login does not exist';
+		req.session.errors.push({msg: 'Login does not exist'});
 		res.redirect('/signIn');
 	});
 });

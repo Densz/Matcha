@@ -134,6 +134,13 @@ button:focus
     background-color: #FFF;
 }
 
+.container_login {
+	margin: 0 auto;
+	padding: 30px;
+	background-color: #FFF;
+	max-width: 300px;
+}
+
 .profile_container {
 	margin-top: 20px;
 }
@@ -276,12 +283,13 @@ button:focus
  */
 
 .swipe-box {
-	width: 600px;
+	width: 660px;
 	height: 570px;
 	display: block;
 	background-color: white;
 	margin: 50px auto;
 	text-align: center;
+	padding: 0;
 }
 
 .match-img {

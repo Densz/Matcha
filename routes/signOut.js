@@ -5,7 +5,7 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
   req.session.destroy();
   res.render('signIn', {
-  	errors: 'You have been disconnected'
+  	errors: [{msg: 'You have been disconnected'}]
   });
 });
 

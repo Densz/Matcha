@@ -2,9 +2,11 @@
 	<img src="./images/logo.png" class="logo-form">
 </div>
 
-<div class="container">
-<% if (errors) {%>
-	<div class="alert alert-danger">&nbsp;<%- errors %></div>
+<div class="container_login">
+<% if (errors) { %>
+    <% for(var i=0; i < errors.length; i++) { %>
+	<div class="alert alert-danger">&nbsp;<%- errors[i]['msg'] %></div>
+    <% } %>
 <% } %>
 <h1>Sign in</h1>
 	<form action="/signin/submit" method="POST">
