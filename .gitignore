@@ -3,3 +3,4 @@ journal
 diagnostic.data
 mongodb
 .idea
+.DS_Store

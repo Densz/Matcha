@@ -16,7 +16,7 @@ var signIn = require('./routes/signIn');
 var signUp = require('./routes/signUp');
 var home = require('./routes/home');
 var signOut = require('./routes/signOut');
-var myprofile = require('./routes/myprofile');
+var myprofile = require('./routes/home');
 
 var app = express();
 
