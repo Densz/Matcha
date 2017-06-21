@@ -9,8 +9,8 @@
                 <div class="edit_photo"><p>+</p></div>
             </div>
             <br>
-            <p style="font-size: 20px; margin: 0 0 0 0;"><b>Kneth</b></p>
-            <p style="font-size: 20px; margin: 0 0 0 0;"><b>Master</b></p><br>
+            <p style="font-size: 20px; margin: 0 0 0 0;"><b><%-firstName%></b></p>
+            <p style="font-size: 20px; margin: 0 0 0 0;"><b><%-lastName%></b></p><br>
             <span> Master en CSS </span>
         </div>
 
@@ -33,13 +33,15 @@
                         <input type="radio" name="orientation" value="male"> Male<br>
                         <input type="radio" name="orientation" value="bisexual"> Bisexual
                 </p>
-                <p><label>Bio</label><br><input type="text" name="bio" class="form-row"></p>
+                <p><label>Bio</label><br><input type="text" name="bio" class="form-row">
+                <input type="submit" name="bioSubmit"></p>
             </form>
         </div>
         <div class="container profile_container">
             <h2>Interests</h2>
             <form action="/signup/submit_interests" method="POST">
-                <p><label>Add your interests</label><br><input type="text" name="interests" class="form-row"></p>
+                <p><label>Add your interests</label><br><input type="text" name="interests" class="form-row">
+                <input type="submit" name="bioSubmit"></p>
                 <span class="hashtag">#mallocmaster</span><span class="hashtag">#Frontmaster</span>
             </form>
         </div>

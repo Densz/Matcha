@@ -3,6 +3,7 @@ var router = express.Router();
 var model = require('../core/models/database');
 var infoUser;
 
+
 router.get('/', function(req, res, next){
     if (req.session.login === undefined){
         res.render('signin',{
