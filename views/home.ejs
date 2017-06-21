@@ -43,46 +43,14 @@
                 <span class="hashtag">#mallocmaster</span><span class="hashtag">#Frontmaster</span>
             </form>
         </div>
-<!--        <div class="container profile_container">
-            <h2>Location</h2>
-            <form action="/signup/submit_interests" method="POST">
-                <p>
-                    <label>Address</label><br>
-                    <input type="text" name="address" class="form-row">
-                </p>
-                <p>
-                    <label>Zip code</label><br>
-                    <input type="text" name="zip code" class="form-row">
-                </p>
-                <p>
-                    <label>City</label><br>
-                    <input type="text" name="city" class="form-row">
-                </p>
-            </form>
-        </div>-->
-        <div class="container profile_container">
-            <h2>Filter</h2>
-            <form action="/signup/submit_interests" method="POST">
-                <p>
-                    <label>Age</label><br>
-                    <div class="range-age-values" id="skip-value-lower"></div>
-                    <div class="range-age-values" id="skip-value-upper"></div>
-                    <div id="range_age"></div>
-                </p>
-                <p>
-                    <label>Score</label><br>
-                    <div class="range-age-values" id="skip-value-lower-score"></div>
-                    <div class="range-age-values" id="skip-value-upper-score"></div>
-                    <div id="range_score"></div>
-                </p>
-            </form>
-        </div>
+
+
     </div>
 
     <!--
             SWIPE BOX
     -->
-    <div class="right_column">
+    <div class="middle_column">
         <div class="container swipe-box">
             <p>Lorem Ipsum</p>
             <img class="match-img" src="https://dummyimage.com/400x400/000000/fff.jpg"><br>
@@ -109,7 +77,47 @@
             </div>
         </div>
     </div>
+    <div class="right-column">
+        <div class="container filter_container">
+            <h2>Filter</h2>
+            <form action="/signup/submit_interests" method="POST">
+                <p>
+                    <label>Age</label><br>
+                <div class="range-age-values" id="skip-value-lower"></div>
+                <div class="range-age-values" id="skip-value-upper"></div>
+                <div id="range_age"></div>
+                </p>
+                <p>
+                    <label>Score</label><br>
+                <div class="range-age-values" id="skip-value-lower-score"></div>
+                <div class="range-age-values" id="skip-value-upper-score"></div>
+                <div id="range_score"></div>
+                </p>
+            </form>
+        </div>
+        <div class="container profile_container">
+            <h2>Location</h2>
+            <form action="/signup/submit_interests" method="POST">
+                <p>
+                    <label>Address</label><br>
+                    <input type="text" name="address" class="form-row">
+                </p>
+                <p>
+                    <label>Zip code</label><br>
+                    <input type="text" name="zip code" class="form-row">
+                </p>
+                <p>
+                    <label>City</label><br>
+                    <input type="text" name="city" class="form-row">
+                </p>
+            </form>
+        </div>
+    </div>
 </div>
+
+
+
+
 <script src="/js/nouislider.js"></script>
 <script>
     var skipSlider = document.getElementById('range_age');

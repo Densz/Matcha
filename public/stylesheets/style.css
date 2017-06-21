@@ -161,6 +161,10 @@ button:focus
 	text-align: center;
 }
 
+.filter_container {
+	margin-top: 50px;
+}
+
 .div_name {
 	text-align: left;
 	font-size: 20px;
@@ -277,7 +281,7 @@ button:focus
 
 .home_container {
 	display: flex;
-	width: 1000px;
+	width: 1200px;
 	margin: 0 auto;
 }
 
@@ -286,16 +290,22 @@ button:focus
 	max-width: 300px;
 }
 
-.right_column {
+.middle_column {
 	flex: 5;
+	margin-left: 10px;
 }
 
+.right-column {
+	flex: 2;
+	margin-left: 10px;
+	max-width: 300px;
+}
 /**
  * SWIPE BOX
  */
 
 .swipe-box {
-	width: 660px;
+	width: 570px;
 	height: 570px;
 	display: block;
 	background-color: white;
@@ -312,7 +322,7 @@ button:focus
  * SWIPE BOX
  */
 .chat {
-	width: 600px;
+	width: 510px;
 	height: 455px;
 	display: block;
 	background-color: white;
@@ -393,7 +403,7 @@ span.hashtag {
 }
 
 #skip-value-upper {
-	margin: 0 0 0 115px;
+	margin: 0 0 0 67px;
 }
 
 #range_age {
@@ -405,7 +415,7 @@ span.hashtag {
 }
 
 #skip-value-upper-score {
-	margin: 0 0 0 115px;
+	margin: 0 0 0 67px;
 }
 
 #range_score {
