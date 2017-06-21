@@ -21,14 +21,14 @@ router.post('/submit', function(req, res, next){
 	model.getData('users', {login: req.body.login.toLowerCase()}).
 		then(function(val){
 			if (passwordHash.verify(req.body.password, val[0]['password']) === true) {
-                req.session.success = false;
+                req.session.login = val[0]['login'];
                 res.redirect('/home');
 			} else {
                 req.session.errors.push({msg: 'Incorrect password'});
                 res.redirect('/signIn');
             }
 	}).catch(function(err){
-		req.session.success = false;
+		req.session.login = undefined;
 		req.session.errors.push({msg: 'Login does not exist'});
 		res.redirect('/signIn');
 	});
