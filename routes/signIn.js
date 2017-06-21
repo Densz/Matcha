@@ -19,7 +19,7 @@ router.get('/', function(req, res, next){
 router.post('/submit', function(req, res, next){
     req.session.errors = [];
 	model.getData('users', {login: req.body.login.toLowerCase()}).
-		then(function(val){
+	then(function(val){
 			if (passwordHash.verify(req.body.password, val[0]['password']) === true) {
                 req.session.login = val[0]['login'];
                 res.redirect('/home');
