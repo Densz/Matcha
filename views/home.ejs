@@ -3,11 +3,20 @@
 <div class="home_container">
     <div class="left_column">
         <div class="container photo_container">
-            <img src="/images/medium_kneth.jpg" class="photo"><br>
-            <p style="font-size: 20px; margin: 0 0 0 0;"><b><%- firstName %></b></p>
-            <p style="font-size: 20px; margin: 0 0 0 0;"><b><%- lastName %></b></p><br>
+            <div class="score"><span style="font-size: 18px">3<br>-<br>10</span></div>
+            <div class="div_photo">
+                <img class="photo" src="/images/medium_kneth.jpg">
+                <div class="edit_photo"><p>+</p></div>
+            </div>
+            <br>
+            <p style="font-size: 20px; margin: 0 0 0 0;"><b>Kneth</b></p>
+            <p style="font-size: 20px; margin: 0 0 0 0;"><b>Master</b></p><br>
             <span> Master en CSS </span>
         </div>
+
+        <!--
+                FILTER
+        -->
         <div class="container profile_container">
             <h2>My Profile</h2>
             <form action="/signup/submit" method="POST">
@@ -25,17 +34,16 @@
                         <input type="radio" name="orientation" value="bisexual"> Bisexual
                 </p>
                 <p><label>Bio</label><br><input type="text" name="bio" class="form-row"></p>
-                <p><input type="submit" name="profile" class="btn btn-primary"></p>
             </form>
         </div>
         <div class="container profile_container">
             <h2>Interests</h2>
             <form action="/signup/submit_interests" method="POST">
                 <p><label>Add your interests</label><br><input type="text" name="interests" class="form-row"></p>
-                <p><input type="submit" name="interests" class="btn btn-primary"></p>
+                <span class="hashtag">#mallocmaster</span><span class="hashtag">#Frontmaster</span>
             </form>
         </div>
-        <div class="container profile_container">
+<!--        <div class="container profile_container">
             <h2>Location</h2>
             <form action="/signup/submit_interests" method="POST">
                 <p>
@@ -50,13 +58,35 @@
                     <label>City</label><br>
                     <input type="text" name="city" class="form-row">
                 </p>
-                <p><input type="submit" name="interests" class="btn btn-primary"></p>
+            </form>
+        </div>-->
+        <div class="container profile_container">
+            <h2>Filter</h2>
+            <form action="/signup/submit_interests" method="POST">
+                <p>
+                    <label>Age</label><br>
+                    <div class="range-age-values" id="skip-value-lower"></div>
+                    <div class="range-age-values" id="skip-value-upper"></div>
+                    <div id="range_age"></div>
+                </p>
+                <p>
+                    <label>Score</label><br>
+                    <div class="range-age-values" id="skip-value-lower-score"></div>
+                    <div class="range-age-values" id="skip-value-upper-score"></div>
+                    <div id="range_score"></div>
+                </p>
             </form>
         </div>
     </div>
+
+    <!--
+            SWIPE BOX
+    -->
     <div class="right_column">
         <div class="container swipe-box">
+            <p>Lorem Ipsum</p>
             <img class="match-img" src="https://dummyimage.com/400x400/000000/fff.jpg"><br>
+            <div class="score target"><span style="font-size: 18px">3<br>-<br>10</span></div>
             <button><img class="like" src="/images/sign-error.png"></button>
             <button><img class="dislike" src="/images/sign-check.png"></button>
         </div>
@@ -67,6 +97,126 @@
                 <div class="column"></div>
                 <div class="chat_info"><p>Lisa Tran | 18 ans | En quête d'affection<br>Hello BB</p></div>
             </div>
+            <div class="list_chat">
+                <div class="chat_image"><img src="/images/medium_ltran.jpg" class="chat_people"></div>
+                <div class="column"></div>
+                <div class="chat_info"><p>Lisa Tran | 18 ans | En quête d'affection<br>Hello BB</p></div>
+            </div>
+            <div class="list_chat">
+                <div class="chat_image"><img src="/images/medium_ltran.jpg" class="chat_people"></div>
+                <div class="column"></div>
+                <div class="chat_info"><p>Lisa Tran | 18 ans | En quête d'affection<br>Hello BB</p></div>
+            </div>
         </div>
     </div>
 </div>
+<script src="/js/nouislider.js"></script>
+<script>
+    var skipSlider = document.getElementById('range_age');
+
+    noUiSlider.create(skipSlider, {
+        range: {
+            'min':	18,
+            '2%':	19,
+            '3%':	20,
+            '5%':	21,
+            '6%':	22,
+            '8%':	23,
+            '10%':	24,
+            '11%':	25,
+            '13%':	26,
+            '15%':	27,
+            '16%':	28,
+            '18%':	29,
+            '19%':	30,
+            '21%':	31,
+            '23%':	32,
+            '24%':	33,
+            '26%':	34,
+            '27%':	35,
+            '29%':	36,
+            '31%':	37,
+            '32%':	38,
+            '34%':	39,
+            '35%':	40,
+            '37%':	41,
+            '39%':	42,
+            '40%':	43,
+            '42%':	44,
+            '44%':	45,
+            '45%':	46,
+            '47%':	47,
+            '48%':	48,
+            '50%':	49,
+            '52%':	50,
+            '53%':	51,
+            '55%':	52,
+            '56%':	53,
+            '58%':	54,
+            '60%':	55,
+            '61%':	56,
+            '63%':	57,
+            '65%':	58,
+            '66%':	59,
+            '68%':	60,
+            '69%':	61,
+            '71%':	62,
+            '73%':	63,
+            '74%':	64,
+            '76%':	65,
+            '77%':	66,
+            '79%':	67,
+            '81%':	68,
+            '82%':	69,
+            '84%':	70,
+            '85%':	71,
+            '87%':	72,
+            '89%':	73,
+            '90%':	74,
+            '92%':	75,
+            '94%':	76,
+            '95%':	77,
+            '97%':	78,
+            '98%':	79,
+            'max':	80
+        },
+        snap: true,
+        start: [18, 80]
+    });
+    var skipValues = [
+        document.getElementById('skip-value-lower'),
+        document.getElementById('skip-value-upper')
+    ];
+    skipSlider.noUiSlider.on('update', function( values, handle ) {
+        skipValues[handle].innerHTML = Math.round(values[handle]);
+    });
+
+
+    /* Score range */
+    var skipSliderScore = document.getElementById('range_score');
+
+    noUiSlider.create(skipSliderScore, {
+        range: {
+            'min':	0,
+            '10%':	1,
+            '20%':	2,
+            '30%':	3,
+            '40%':	4,
+            '50%':	5,
+            '60%':	6,
+            '70%':	7,
+            '80%':	8,
+            '90%':	9,
+            'max':	10
+        },
+        snap: true,
+        start: [0, 10]
+    });
+    var skipValuesScore = [
+        document.getElementById('skip-value-lower-score'),
+        document.getElementById('skip-value-upper-score')
+    ];
+    skipSliderScore.noUiSlider.on('update', function( values, handle ) {
+        skipValuesScore[handle].innerHTML = Math.round(values[handle]);
+    });
+</script>

@@ -145,6 +145,17 @@ button:focus
 	margin-top: 20px;
 }
 
+.score {
+	position: absolute;
+	width: 70px;
+	height: 70px;
+	border-radius: 50%;
+	color: white;
+	margin: -50px 0px 0 205px;
+	background: #ff3b0b;
+	padding: 5px;
+}
+
 .photo_container {
 	margin-top: 50px;
 	text-align: center;
@@ -272,6 +283,7 @@ button:focus
 
 .left_column {
 	flex: 2;
+	max-width: 300px;
 }
 
 .right_column {
@@ -293,7 +305,7 @@ button:focus
 }
 
 .match-img {
-	margin-top: 20px;
+	margin-top: -10px;
 }
 
 /**
@@ -301,7 +313,7 @@ button:focus
  */
 .chat {
 	width: 600px;
-	height: 500px;
+	height: 455px;
 	display: block;
 	background-color: white;
 	margin: -30px auto;
@@ -331,4 +343,71 @@ button:focus
 .chat_people {
 	border-radius: 50%;
 	width: 60px;
+}
+
+span.hashtag {
+	margin-right: 4px;
+	border: 1px solid red;
+	color: red;
+	font-weight: bold;
+	padding: 4px;
+	border-radius: 4px;
+}
+
+.edit_photo {
+	display: inherit;
+	border-radius: 50%;
+	width: 120px;
+	height: 120px;
+	position: absolute;
+	background: white;
+	margin: -124px 0 0 60px;
+	opacity: 0;
+	transition: .5s ease;
+}
+
+.edit_photo p {
+	font-size: 200px;
+	margin: -47% 0px 0px 20px;
+	position: absolute;
+}
+
+.div_photo img:hover + .edit_photo {
+	opacity: 0.5;
+}
+
+.edit_photo:hover {
+	opacity: 0.5;
+}
+
+.score.target {
+	margin: -420px 0 0 460px;
+}
+
+.range-age-values {
+	display: inline-block;
+}
+
+#skip-value-lower {
+	width: 100px;
+}
+
+#skip-value-upper {
+	margin: 0 0 0 115px;
+}
+
+#range_age {
+	margin: 10px;
+}
+
+#skip-value-lower-score {
+	width: 100px;
+}
+
+#skip-value-upper-score {
+	margin: 0 0 0 115px;
+}
+
+#range_score {
+	margin: 10px;
 }
