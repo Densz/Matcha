@@ -33,4 +33,8 @@ router.get('/', function(req, res) {
     });
 });
 
+router.post('/submit/bio', function(req, res, next) {
+	
+});
+
 module.exports = router;
