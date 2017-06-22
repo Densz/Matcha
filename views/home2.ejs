@@ -1,0 +1,233 @@
+<nav class="navbar navbar-default navbar-static-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Matcha</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="/home2">Home2</a></li>
+                <li><a href="/myprofile">My profile</a></li>
+                <li><a href="/home">Home</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/settings">Settings</a></li>
+                <li><a href="/signOut">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <div class="row">
+        <!-- LEFT COLUMN -->
+        <div class="col-sm-3">
+            <div class="box hl1">
+                <img class="profile_picture" src="/images/medium_kneth.jpg">
+                <p><b>Kneth Master</b></p>
+                <p>Petite Bio de merde pour cette sous merde</p>
+                <br>
+                <p><b>Popularity score</b></p>
+                <img class="profile_star" src="/images/star.png">
+                <img class="profile_star" src="/images/star.png">
+                <img class="profile_star" src="/images/star.png">
+            </div>
+
+            <div class="box hl3">
+                <h5>Interests</h5>
+                <p>Add your interest</p>
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search for...">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button">Add</button>
+                    </span>
+                </div>
+                <div class="hashtag-box">
+                    <span class="hashtag">#mallocmaster</span>
+                    <span class="hashtag">#Frontmaster</span>
+                </div>
+            </div>
+        </div>
+        <!-- MIDDLE COLUMN -->
+        <div class="col-sm-6">
+            <div class="box swipe-box">
+                <span><b>Lorem Ipsum</b></span><br>
+                <img class="profile_star" src="/images/star.png">
+                <img class="profile_star" src="/images/star.png">
+                <img class="profile_star" src="/images/star.png">
+                <img class="profile_star" src="/images/star.png">
+                <img class="profile_star" src="/images/star.png">
+                <img class="profile_star" src="/images/star.png">
+                <img class="profile_star" src="/images/star.png"><br><br>
+                <img class="match-img" src="https://dummyimage.com/400x400/000000/fff.jpg"><br><br>
+                <img class="like" src="/images/sign-error.png">
+                <img class="dislike" src="/images/sign-check.png">
+            </div>
+        </div>
+        <!-- RIGHT COLUMN -->
+        <div class="col-sm-3">
+            <div class="box hl2">
+                <h4>Orientation</h4>
+                <div class="center-orientation">
+                    <div class="btn-group" role="group" aria-label="...">
+                        <button type="button" class="btn btn-default">Men</button>
+                        <button type="button" class="btn btn-default">Bisexual</button>
+                        <button type="button" class="btn btn-default selected">Women</button>
+                    </div>
+                </div>
+                <br>
+            </div>
+            <div class="box hr1">
+                <h4>Filter</h4>
+                <form action="/signup/submit_interests" method="POST">
+                    <span><b>Age</b></span><br>
+                        <div class="range-age-values" id="skip-value-lower"></div>
+                        <div class="range-age-values" id="skip-value-upper"></div>
+                        <div id="range_age"></div><br>
+                    <span><b>Score</b></span><br>
+                        <div class="range-age-values" id="skip-value-lower-score"></div>
+                        <div class="range-age-values" id="skip-value-upper-score"></div>
+                        <div id="range_score"></div>
+                </form>
+                <br>
+            </div>
+            <div class="box hr2">
+                <h4>Location</h4>
+                <span><b>Address</b></span><br>
+                <div class="input-group">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button">Edit</button>
+                    </span>
+                    <input type="text" class="form-control" placeholder="Current location">
+                </div>
+                <br>
+            </div>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="box matched-people">
+                <div class="col-sm-3 people-chat">
+                </div>
+                <div class="col-sm-9">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/js/nouislider.js"></script>
+<script>
+    var skipSlider = document.getElementById('range_age');
+
+    noUiSlider.create(skipSlider, {
+        range: {
+            'min':	18,
+            '2%':	19,
+            '3%':	20,
+            '5%':	21,
+            '6%':	22,
+            '8%':	23,
+            '10%':	24,
+            '11%':	25,
+            '13%':	26,
+            '15%':	27,
+            '16%':	28,
+            '18%':	29,
+            '19%':	30,
+            '21%':	31,
+            '23%':	32,
+            '24%':	33,
+            '26%':	34,
+            '27%':	35,
+            '29%':	36,
+            '31%':	37,
+            '32%':	38,
+            '34%':	39,
+            '35%':	40,
+            '37%':	41,
+            '39%':	42,
+            '40%':	43,
+            '42%':	44,
+            '44%':	45,
+            '45%':	46,
+            '47%':	47,
+            '48%':	48,
+            '50%':	49,
+            '52%':	50,
+            '53%':	51,
+            '55%':	52,
+            '56%':	53,
+            '58%':	54,
+            '60%':	55,
+            '61%':	56,
+            '63%':	57,
+            '65%':	58,
+            '66%':	59,
+            '68%':	60,
+            '69%':	61,
+            '71%':	62,
+            '73%':	63,
+            '74%':	64,
+            '76%':	65,
+            '77%':	66,
+            '79%':	67,
+            '81%':	68,
+            '82%':	69,
+            '84%':	70,
+            '85%':	71,
+            '87%':	72,
+            '89%':	73,
+            '90%':	74,
+            '92%':	75,
+            '94%':	76,
+            '95%':	77,
+            '97%':	78,
+            '98%':	79,
+            'max':	80
+        },
+        snap: true,
+        start: [18, 80]
+    });
+    var skipValues = [
+        document.getElementById('skip-value-lower'),
+        document.getElementById('skip-value-upper')
+    ];
+    skipSlider.noUiSlider.on('update', function( values, handle ) {
+        skipValues[handle].innerHTML = Math.round(values[handle]);
+    });
+
+
+    /* Score range */
+    var skipSliderScore = document.getElementById('range_score');
+
+    noUiSlider.create(skipSliderScore, {
+        range: {
+            'min':	0,
+            '10%':	1,
+            '20%':	2,
+            '30%':	3,
+            '40%':	4,
+            '50%':	5,
+            '60%':	6,
+            '70%':	7,
+            '80%':	8,
+            '90%':	9,
+            'max':	10
+        },
+        snap: true,
+        start: [0, 10]
+    });
+    var skipValuesScore = [
+        document.getElementById('skip-value-lower-score'),
+        document.getElementById('skip-value-upper-score')
+    ];
+    skipSliderScore.noUiSlider.on('update', function( values, handle ) {
+        skipValuesScore[handle].innerHTML = Math.round(values[handle]);
+    });
+</script>

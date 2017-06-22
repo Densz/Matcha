@@ -1,0 +1,121 @@
+body {
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1.6;
+    background-color: #f5f8fa !important;
+}
+
+
+nav {
+    margin-bottom: 100px;
+}
+
+.box {
+    background-color: white;
+    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+
+/**
+ *  Left Column
+ */
+.hl1 {
+    height: 300px;
+    text-align: center;
+}
+
+.hl3 {
+    height: 243px;
+}
+.profile_picture {
+    border-radius: 50%;
+    width: 100px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.profile_star {
+    width: 10px;
+}
+
+.center-orientation {
+    text-align: center;
+}
+
+.btn.btn-default.selected {
+    background-color: #ff5a33;
+}
+
+span.hashtag {
+    margin-right: 4px;
+    border: 1px solid #ff5a33;
+    color: #ff5a33;
+    font-weight: bold;
+    padding: 4px;
+    border-radius: 4px;
+}
+
+.hashtag-box {
+    margin-top: 20px;
+}
+
+/**
+ *  Middle Column
+ */
+.swipe-box {
+    text-align: center;
+}
+
+.like {
+    width: 50px;
+}
+
+.dislike {
+    width: 50px;
+}
+
+.match-img {
+    max-width: 400px;
+    width: 90%;
+}
+
+/**
+ *  Right Column
+ */
+
+.hr1 {
+    padding: 10px;
+}
+
+.range-age-values {
+    width: 90px;
+    display: inline;
+}
+
+#skip-value-upper-score, #skip-value-upper {
+    position: absolute;
+    right: -35px;
+}
+
+#range_age, #range_score {
+    margin-top: 10px;
+    margin-left: 7%;
+    width: 85%;
+}
+
+/***
+        Matched People
+ */
+
+.matched-people {
+    height: 500px;
+}
+
+.people-chat {
+    height: 100%;
+    border-right: 1px solid rgba(0, 0, 0, 0.125);
+}
