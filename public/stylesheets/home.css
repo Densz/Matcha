@@ -51,16 +51,17 @@ nav {
 }
 
 span.hashtag {
-    margin-right: 4px;
     border: 1px solid #ff5a33;
     color: #ff5a33;
     font-weight: bold;
-    padding: 4px;
+    padding: 2px;
     border-radius: 4px;
+    display: inline-block;
+    margin-top: 1px;
 }
 
 .hashtag-box {
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 /**
@@ -107,15 +108,60 @@ span.hashtag {
     width: 85%;
 }
 
-/***
-        Matched People
+
+/**
+ *  Chat Box
  */
 
-.matched-people {
+.profile_picture_chat {
+    border-radius: 50%;
+    width: 40px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.chat-people {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+    height: 65px;
+}
+
+.last-box {
+    border-bottom: 0px solid rgba(0, 0, 0, 0.125) !important;
+}
+
+.chat-img {
+    display: inline-block;
+}
+
+.chat-description {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 5px;
+    width: 80%;
+}
+
+.hl-chat {
     height: 500px;
 }
 
-.people-chat {
-    height: 100%;
-    border-right: 1px solid rgba(0, 0, 0, 0.125);
+.message-box {
+    height: 430px;
+}
+
+.new-match {
+    color: orangered;
+}
+
+.msg-img-text {
+    margin-top: 4px;
+}
+
+.message-sent {
+    background-color: lightgrey;
+    border-radius: 5px;
+}
+
+.message-received {
+    background-color: rgba(254, 61, 0, 0.57);
+    border-radius: 5px;
 }
