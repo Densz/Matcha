@@ -15,12 +15,14 @@ var users = require('./routes/users');
 var signIn = require('./routes/signIn');
 var signUp = require('./routes/signUp');
 var home = require('./routes/home');
+var home2 = require('./routes/home2');
 var signOut = require('./routes/signOut');
 var myprofile = require('./routes/myprofile');
 
 var app = express();
 
 // view engine setup
+app.set('layout', 'layout');
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
@@ -39,6 +41,7 @@ app.use('/users', users);
 app.use('/signIn', signIn);
 app.use('/signUp', signUp);
 app.use('/home', home);
+app.use('/home2', home2);
 app.use('/myprofile', myprofile);
 app.use('/signOut', signOut);
 
