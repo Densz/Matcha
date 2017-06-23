@@ -1,18 +1,93 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-12">
-            <div class="box hl1">
-                <img class="profile_picture" src="/images/medium_kneth.jpg">
-                <p><b>Kneth Master</b></p>
-                <div class="form-group">
-                    <label for="comment">Bio</label>
-                    <textarea class="form-control" rows="3" id="comment">Petite Bio de merde pour cette sous merde</textarea>
-                </div>
+            <div class="box prohl1">
+                <img class="profile_picture" src="/images/medium_kneth.jpg"><br>
+                <img class="profile_star" src="/images/star.png">
+                <img class="profile_star" src="/images/star.png">
+                <img class="profile_star" src="/images/star.png">
+                <img class="profile_star" src="/images/star.png">
+                <img class="profile_star" src="/images/star.png">
+                <p><b>Kneth Master</b><button class="btn-link">edit</button></p>
+                <form method="post" action="#" class="editable_info">
+                    <label>First Name:</label><br><input type="text" class="form-control edit_pro" name="firstname" value="Kneth"><br>
+                    <label>Last Name:</label><br><input type="text" class="form-control edit_pro" name="lastname" value="Master"><br><br>
+                    <input type="submit" class="btn btn-primary btn-sm">
+                </form>
+                <label for="comment">Bio</label><button class="btn-link">edit</button>
+                <div class="">Bio pour cette sous merde Lorem Ipsum</div>
+                <form method="post" action="#" class="editable_info">
+                    <textarea class="form-control edit_pro" rows="4" name="bio">Bio pour cette sous merde Lorem</textarea><br>
+                    <input type="submit" class="btn btn-primary btn-sm">
+                </form>
                 <br>
-                <p><b>Popularity score</b></p>
-                <img class="profile_star" src="/images/star.png">
-                <img class="profile_star" src="/images/star.png">
-                <img class="profile_star" src="/images/star.png">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="box col-sm-12">
+                <h4>Views</h4>
+                <div class="chat-people">
+                    <div class="chat-img">
+                        <img src="/images/medium_ltran.jpg" class="profile_picture_chat">
+                    </div>
+                    <div class="chat-description">
+                        <span><b>Kneth Master</b></span><br>
+                    </div>
+                </div>
+                <div class="chat-people last-box">
+                    <div class="chat-img">
+                        <img src="/images/medium_ltran.jpg" class="profile_picture_chat">
+                    </div>
+                    <div class="chat-description">
+                        <span><b>Kneth Master</b></span><br>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="box col-sm-12">
+                <h4>Likes</h4>
+                <div class="chat-people">
+                    <div class="chat-img">
+                        <img src="/images/medium_ltran.jpg" class="profile_picture_chat">
+                    </div>
+                    <div class="chat-description">
+                        <span><b>Kneth Master</b></span><br>
+                    </div>
+                </div>
+                <div class="chat-people">
+                    <div class="chat-img">
+                        <img src="/images/medium_ltran.jpg" class="profile_picture_chat">
+                    </div>
+                    <div class="chat-description">
+                        <span><b>Kneth Master</b></span><br>
+                    </div>
+                </div>
+                <div class="chat-people">
+                    <div class="chat-img">
+                        <img src="/images/medium_ltran.jpg" class="profile_picture_chat">
+                    </div>
+                    <div class="chat-description">
+                        <span><b>Kneth Master</b></span><br>
+                    </div>
+                </div>
+                <div class="chat-people last-box">
+                    <div class="chat-img">
+                        <img src="/images/medium_ltran.jpg" class="profile_picture_chat">
+                    </div>
+                    <div class="chat-description">
+                        <span><b>Kneth Master</b></span><br>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="box col-sm-12">
+                <h4>Statistics</h4>
+                <div class="stats"><img src="/images/donuts.png"></div>
             </div>
         </div>
     </div>

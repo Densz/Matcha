@@ -47,7 +47,7 @@ nav {
 }
 
 .btn.btn-default.selected {
-    background-color: #ff5a33;
+    background-color: rgba(254, 61, 0, 0.27);
 }
 
 span.hashtag {
@@ -137,7 +137,6 @@ span.hashtag {
     display: inline-block;
     vertical-align: middle;
     margin-left: 5px;
-    width: 80%;
 }
 
 .hl-chat {
@@ -162,6 +161,6 @@ span.hashtag {
 }
 
 .message-received {
-    background-color: rgba(254, 61, 0, 0.57);
+    background-color: rgba(254, 61, 0, 0.27);
     border-radius: 5px;
 }
