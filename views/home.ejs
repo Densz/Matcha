@@ -1,127 +1,151 @@
-<% include template/header.ejs %>
-
-<div class="home_container">
-    <div class="left_column">
-        <div class="container photo_container">
-            <div class="score"><span style="font-size: 18px">3<br>-<br>10</span></div>
-            <div class="div_photo">
-                <img class="photo" src="/images/medium_kneth.jpg">
-                <div class="edit_photo"><p>+</p></div>
+<div class="container">
+    <div class="row">
+        <!-- LEFT COLUMN -->
+        <div class="col-sm-3">
+            <div class="box hl1">
+                <img class="profile_picture" src="/images/medium_kneth.jpg">
+                <p><b>Kneth Master</b></p>
+                <p>Petite Bio de merde pour cette sous merde</p>
+                <br>
+                <p><b>Popularity score</b></p>
+                <img class="profile_star" src="/images/star.png">
+                <img class="profile_star" src="/images/star.png">
+                <img class="profile_star" src="/images/star.png">
             </div>
-            <br>
-            <p style="font-size: 20px; margin: 0 0 0 0;"><b><%-firstName%></b></p>
-            <p style="font-size: 20px; margin: 0 0 0 0;"><b><%-lastName%></b></p><br>
-            <span> Master en CSS </span>
-        </div>
 
-        <!--
-                FILTER
-        -->
-        <div class="container profile_container">
-            <h2>My Profile</h2>
-            <form action="/signup/submit" method="POST">
-                <p>
-                    <label>Sex</label><br>
-                    <form>
-                        <input type="radio" name="sex" value="female" checked> Female<br>
-                        <input type="radio" name="sex" value="male"> Male
-                    </form>
-                </p>
-                <p>
-                    <label>Orientation</label><br>
-                        <input type="radio" name="orientation" value="female" checked> Female<br>
-                        <input type="radio" name="orientation" value="male"> Male<br>
-                        <input type="radio" name="orientation" value="bisexual"> Bisexual
-                </p>
-                <p><label>Bio</label><br><input type="text" name="bio" class="form-row">
-                <input type="submit" name="bioSubmit" class="btn bio-btn"></p>
-            </form>
+            <div class="box hl3">
+                <h4>Interests</h4>
+                <p><b>Add your interest</b></p>
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Hashtag">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button">Add</button>
+                    </span>
+                </div>
+                <div class="hashtag-box">
+                    <span class="hashtag">#mallocmaster</span>
+                    <span class="hashtag">#Frontmaster</span>
+                    <span class="hashtag">#fron</span>
+                    <span class="hashtag">#trontmaer</span>
+                </div>
+            </div>
         </div>
-        <div class="container profile_container">
-            <h2>Interests</h2>
-            <form action="/signup/submit_interests" method="POST">
-                <p><label>Add your interests</label><br><input type="text" name="interests" class="form-row">
-                <input type="submit" name="bioSubmit"></p>
-                <span class="hashtag">#mallocmaster</span><span class="hashtag">#Frontmaster</span>
-            </form>
+        <!-- MIDDLE COLUMN -->
+        <div class="col-sm-6">
+            <div class="box swipe-box">
+                <span><b>Lorem Ipsum</b></span><br>
+                <img class="profile_star" src="/images/star.png">
+                <img class="profile_star" src="/images/star.png">
+                <img class="profile_star" src="/images/star.png">
+                <img class="profile_star" src="/images/star.png">
+                <img class="profile_star" src="/images/star.png">
+                <img class="profile_star" src="/images/star.png">
+                <img class="profile_star" src="/images/star.png"><br><br>
+                <img class="match-img" src="/images/medium_spalmaro.jpg"><br><br>
+                <img class="like" src="/images/sign-error.png">
+                <img class="dislike" src="/images/sign-check.png">
+            </div>
         </div>
-
-
+        <!-- RIGHT COLUMN -->
+        <div class="col-sm-3">
+            <div class="box hr1">
+                <h4>Filter</h4>
+                <form action="/signup/submit_interests" method="POST">
+                    <span><b>Age</b></span><br>
+                        <div class="range-age-values" id="skip-value-lower"></div>
+                        <div class="range-age-values" id="skip-value-upper"></div>
+                        <div id="range_age"></div><br>
+                    <span><b>Score</b></span><br>
+                        <div class="range-age-values" id="skip-value-lower-score"></div>
+                        <div class="range-age-values" id="skip-value-upper-score"></div>
+                        <div id="range_score"></div>
+                </form>
+            </div>
+            <div class="box hl2">
+                <h4>Orientation</h4>
+                <div class="center-orientation">
+                    <div class="btn-group" role="group" aria-label="...">
+                        <button type="button" class="btn btn-default">Men</button>
+                        <button type="button" class="btn btn-default">Bisexual</button>
+                        <button type="button" class="btn btn-default selected">Women</button>
+                    </div>
+                </div>
+            </div>
+            <div class="box hr2">
+                <h4>Location</h4>
+                <span><b>Address</b></span><br>
+                <div class="input-group">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button">Edit</button>
+                    </span>
+                    <input type="text" class="form-control" placeholder="Current location">
+                </div>
+            </div>
+            <div class="box hr3">
+                <h4>By interest</h4>
+                <div class="input-group">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button">Search</button>
+                    </span>
+                    <input type="text" class="form-control" placeholder="#blabla">
+                </div>
+            </div>
+        </div>
     </div>
-
     <!--
-            SWIPE BOX
+        CHAT BOX
     -->
-    <div class="middle_column">
-        <div class="container swipe-box">
-            <p>Lorem Ipsum</p>
-            <img class="match-img" src="https://dummyimage.com/400x400/000000/fff.jpg"><br>
-            <div class="score target"><span style="font-size: 18px">3<br>-<br>10</span></div>
-            <button><img class="like" src="/images/sign-error.png"></button>
-            <button><img class="dislike" src="/images/sign-check.png"></button>
-        </div>
-        <div class="container chat">
-            <h2>You have matched these people</h2>
-            <div class="list_chat">
-                <div class="chat_image"><img src="/images/medium_ltran.jpg" class="chat_people"></div>
-                <div class="column"></div>
-                <div class="chat_info"><p>Lisa Tran | 18 ans | En quête d'affection<br>Hello BB</p></div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="col-sm-4 box hl-chat">
+                <div class="chat-people">
+                    <div class="chat-img">
+                        <img src="/images/medium_ltran.jpg" class="profile_picture_chat">
+                    </div>
+                    <div class="chat-description">
+                        <span><b>Kneth Master</b>&nbsp; <span class="new-match">New</span></span><br>
+                        <span>Petite Bio de merde pour cette sous merde</span>
+                    </div>
+                </div>
+                <div class="chat-people last-box">
+                    <div class="chat-img">
+                        <img src="/images/medium_ltran.jpg" class="profile_picture_chat">
+                    </div>
+                    <div class="chat-description">
+                        <span><b>Kneth Master</b></span><br>
+                        <span>Petite Bio de merde pour cette sous merde</span>
+                    </div>
+                </div>
             </div>
-            <div class="list_chat">
-                <div class="chat_image"><img src="/images/medium_ltran.jpg" class="chat_people"></div>
-                <div class="column"></div>
-                <div class="chat_info"><p>Lisa Tran | 18 ans | En quête d'affection<br>Hello BB</p></div>
+            <div class="col-sm-8 box hl-chat">
+                <div class="box message-box col-sm-12 col-xm-12 col-md-12">
+                    <div class="row msg-img-text">
+                        <div class="col-sm-1 col-xs-1 col-md-1"></div>
+                        <div class="col-sm-9 col-xs-9 col-md-9 message-sent" style="text-align: right;"><p>Lorem
+                                ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum</p></div>
+                        <div class="col-sm-2 col-xs-2 col-md-2"><img src="/images/medium_ltran.jpg"
+                                                            class="profile_picture_chat"></div>
+                    </div>
+                    <div class="row msg-img-text">
+                        <div class="col-sm-2 col-xs-2 col-md-2" style="text-align: right;"><img
+                                    src="/images/medium_agrumbac.jpg"
+                                                      class="profile_picture_chat"/></div>
+                        <div class="col-sm-9 col-xs-9 col-md-9 message-received"><p>Lorem ipsumLorem ipsumLorem ipsumLorem</p></div>
+                    </div>
+                </div>
+                <div class="input-message">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Message">
+                        <span class="input-group-btn">
+                        <button class="btn btn-default" type="button">Send</button>
+                    </span>
+                    </div>
+                </div>
             </div>
-            <div class="list_chat">
-                <div class="chat_image"><img src="/images/medium_ltran.jpg" class="chat_people"></div>
-                <div class="column"></div>
-                <div class="chat_info"><p>Lisa Tran | 18 ans | En quête d'affection<br>Hello BB</p></div>
-            </div>
-        </div>
-    </div>
-    <div class="right-column">
-        <div class="container filter_container">
-            <h2>Filter</h2>
-            <form action="/signup/submit_interests" method="POST">
-                <p>
-                    <label>Age</label><br>
-                <div class="range-age-values" id="skip-value-lower"></div>
-                <div class="range-age-values" id="skip-value-upper"></div>
-                <div id="range_age"></div>
-                </p>
-                <p>
-                    <label>Score</label><br>
-                <div class="range-age-values" id="skip-value-lower-score"></div>
-                <div class="range-age-values" id="skip-value-upper-score"></div>
-                <div id="range_score"></div>
-                </p>
-            </form>
-        </div>
-        <div class="container profile_container">
-            <h2>Location</h2>
-            <form action="/signup/submit_interests" method="POST">
-                <p>
-                    <label>Address</label><br>
-                    <input type="text" name="address" class="form-row">
-                </p>
-                <p>
-                    <label>Zip code</label><br>
-                    <input type="text" name="zip code" class="form-row">
-                </p>
-                <p>
-                    <label>City</label><br>
-                    <input type="text" name="city" class="form-row">
-                </p>
-            </form>
         </div>
     </div>
 </div>
-
-
-
-
 <script src="/js/nouislider.js"></script>
-<script src="../app/homeForm.js"></script>
 <script>
     var skipSlider = document.getElementById('range_age');
 
