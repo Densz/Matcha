@@ -31,11 +31,38 @@ nav {
 .hl3 {
     height: 243px;
 }
+
 .profile_picture {
     border-radius: 50%;
     width: 100px;
     margin-top: 5px;
     margin-bottom: 10px;
+    display: inline-block;
+    position: relative;
+}
+
+.upload-photo {
+    display: none;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    background-color: white;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 66px;
+    left: 50%;
+    opacity: 0.5;
+    font-size: 63px;
+    font-weight: 300;
+}
+
+.profile_picture:hover + .upload-photo {
+    display: inherit;
+}
+
+.upload-photo:hover {
+    display: inherit;
+    cursor: pointer;
 }
 
 .profile_star {
