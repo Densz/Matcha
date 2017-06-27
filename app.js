@@ -1,26 +1,22 @@
-//   /usr/local/mongodb/bin/mongod --dbpath ~/http/MyWebSite/matcha/mongodb
-//   /usr/local/mongodb/bin/mongo
-var express = require('express');
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
-var expressLayouts = require('express-ejs-layouts');
-var expressSession = require('express-session');
+const express = require('express');
+const path = require('path');
+const favicon = require('serve-favicon');
+const logger = require('morgan');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
+const expressLayouts = require('express-ejs-layouts');
+const expressSession = require('express-session');
+
+const users = require('./routes/users');
+const index = require('./routes/index');
+const signUp = require('./routes/signUp');
+const home = require('./routes/home');
+const signOut = require('./routes/signOut');
+const myprofile = require('./routes/myprofile');
+const settings = require('./routes/settings');
 
 
-var index = require('./routes/index');
-var users = require('./routes/users');
-var signIn = require('./routes/signIn');
-var signUp = require('./routes/signUp');
-var home = require('./routes/home');
-var signOut = require('./routes/signOut');
-var myprofile = require('./routes/myprofile');
-var settings = require('./routes/settings');
-
-
-var app = express();
+const app = express();
 
 // view engine setup
 app.set('layout', 'layout');
@@ -39,7 +35,6 @@ app.use(expressSession({secret: 'max', saveUninitialized: false, resave: false})
 app.use(expressLayouts);
 app.use('/', index);
 app.use('/users', users);
-app.use('/signIn', signIn);
 app.use('/signUp', signUp);
 app.use('/home', home);
 app.use('/myprofile', myprofile);
@@ -48,7 +43,7 @@ app.use('/settings', settings);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  var err = new Error('Not Found');
+  let err = new Error('Not Found');
   err.status = 404;
   next(err);
 });

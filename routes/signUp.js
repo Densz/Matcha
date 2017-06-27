@@ -1,7 +1,7 @@
-var express = require('express');
-var router = express.Router();
-var model = require('../core/models/database');
-var passwordHash = require('password-hash');
+const express = require('express');
+const router = express.Router();
+const model = require('../core/models/database');
+const passwordHash = require('password-hash');
 
 router.get('/', function(req, res, next){
 	let errors = req.session.errors;

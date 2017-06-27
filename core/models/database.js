@@ -1,9 +1,25 @@
-var mongo = require('mongodb').MongoClient;
-var objectId = require('mongodb').ObjectID;
-var assert = require('assert');
-var url = 'mongodb://localhost:27017/matcha';
+const mongo = require('mongodb').MongoClient;
+const objectId = require('mongodb').ObjectID;
+const assert = require('assert');
 
-var getData = function(collection, condition) {
+const url = 'mongodb://localhost:27017/matcha';
+
+const dbConnection = {
+	connection(){
+        return new Promise(function(res, rej){
+            mongo.connect(url, function(err, db){
+                if (err) {
+                    reject(err);
+                } else {
+                    this.db = db;
+                    resolve();
+                }
+            });
+        });
+    }
+};
+
+const getData = function(collection, condition) {
 	return new Promise(function(resolve, reject) {
         let resultArray = [];
         mongo.connect(url, function(err, db) {
@@ -22,7 +38,7 @@ var getData = function(collection, condition) {
 	});
 };
 
-var insertData = function(collection, item) {
+const insertData = function(collection, item) {
 	mongo.connect(url, function(err, db){
 		assert.equal(null, err);
 		db.collection(collection).insertOne(item, function(err, result){
@@ -33,7 +49,7 @@ var insertData = function(collection, item) {
 	});
 };
 
-var updateData = function (collection, field, item) {
+const updateData = function (collection, field, item) {
 	mongo.connect(url, function(err, db) {
 		assert.equal(null, err);
 		console.log('field = ' + field, 'item ' + item);
@@ -58,15 +74,16 @@ Hello.prototype.show = function(){
 	console.log(this.string);
 };
 
-var HelloWorld = new Hello('Salut depuis database');
+const HelloWorld = new Hello('Salut depuis database');
 
 /**
  * Export modules
  * @type {{getData: getData, HelloWorld: Hello}}
  */
-module.exports = { 
-	'getData' : getData,
-	'updateData' : updateData,
-	'insertData' : insertData,
-	'HelloWorld' : HelloWorld
+module.exports = {
+	'dbConnection': dbConnection,
+	'getData': getData,
+	'updateData': updateData,
+	'insertData': insertData,
+	'HelloWorld': HelloWorld
 };

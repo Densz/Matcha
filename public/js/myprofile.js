@@ -1,4 +1,4 @@
-var plusButton = document.querySelector('.upload-photo'),
+const plusButton = document.querySelector('.upload-photo'),
     transparentBackground = document.querySelector('.popup-upload-photo'),
     popupUpload  = document.querySelector('.popup-box'),
     nameEditButton = document.querySelectorAll('.btn-link'),
@@ -15,7 +15,7 @@ closePopup.addEventListener('click', function(){
 });
 
 nameEditButton[0].addEventListener('click', function() {
-    var nameEditForm = document.querySelectorAll('.editable_info');
+    let nameEditForm = document.querySelectorAll('.editable_info');
     nameEditForm[0].className += 'show_class';
 });
 
