@@ -19,6 +19,10 @@
     display: none;
 }
 
+.show_class {
+    display: inherit;
+}
+
 .stats {
     text-align: center;
 }

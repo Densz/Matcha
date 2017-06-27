@@ -1,9 +1,8 @@
-var plusButton = document.querySelector('.upload-photo');
-var transparentBackground = document.querySelector('.popup-upload-photo');
-var popupUpload  = document.querySelector('.popup-box');
-var closePopup = document.querySelector('.close-pop-up');
-
-console.log(plusButton);
+var plusButton = document.querySelector('.upload-photo'),
+    transparentBackground = document.querySelector('.popup-upload-photo'),
+    popupUpload  = document.querySelector('.popup-box'),
+    nameEditButton = document.querySelectorAll('.btn-link'),
+    closePopup = document.querySelector('.close-pop-up');
 
 plusButton.addEventListener('click', function(){
     transparentBackground.style.display = 'inherit';
@@ -14,3 +13,9 @@ closePopup.addEventListener('click', function(){
     transparentBackground.style.display = 'none';
     popupUpload.style.display = 'none';
 });
+
+nameEditButton[0].addEventListener('click', function() {
+    var nameEditForm = document.querySelectorAll('.editable_info');
+    nameEditForm[0].className += 'show_class';
+});
+

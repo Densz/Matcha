@@ -33,6 +33,17 @@ var insertData = function(collection, item) {
 	});
 };
 
+var updateData = function (collection, field, item) {
+	mongo.connect(url, function(err, db) {
+		assert.equal(null, err);
+		console.log('field = ' + field, 'item ' + item);
+		db.collection(collection).update(field, item, function(err, result) {
+			assert.equal(null, err);
+			console.log('Item updated');
+			db.close();
+		});
+	});
+};
 
 /**
  * Hello world function test
@@ -55,6 +66,7 @@ var HelloWorld = new Hello('Salut depuis database');
  */
 module.exports = { 
 	'getData' : getData,
+	'updateData' : updateData,
 	'insertData' : insertData,
 	'HelloWorld' : HelloWorld
 };
