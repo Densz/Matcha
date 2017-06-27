@@ -22,3 +22,62 @@
 .stats {
     text-align: center;
 }
+
+.popup-upload-photo {
+    display: none;
+    position:fixed;
+    padding:0;
+    margin:0;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    background: black;
+    opacity: 0.1;
+    z-index: 2;
+}
+
+.popup-box {
+    display: none;
+    position: fixed;
+    padding: 20px;
+    min-width: 840px;
+    width: 40%;
+    transform: translate(-50%, -50%);
+    top: 30%;
+    left: 50%;
+    background-color: white;
+    z-index: 3;
+}
+
+/**
+    DRAG AND DROP
+ */
+
+.close-pop-up {
+    position: fixed;
+    transform: translate(-50%, -50%);
+    left: 98%;
+    cursor: pointer;
+    width: 20px;
+}
+
+.upload-individual-photo {
+    display: inline-block;
+}
+
+.upload-drop-zone {
+    border-width: 2px;
+    margin-bottom: 20px;
+    color: #ccc;
+    border-style: dashed;
+    border-color: #ccc;
+    line-height: 30px;
+    text-align: center;
+    width: 150px;
+    margin-top: 10px;
+}
+.upload-drop-zone.drop {
+    color: #222;
+    border-color: #222;
+}
