@@ -14,3 +14,7 @@ Tinder made by 42 Students
 ### Things done
 * Sign In
 * Templates (HTML/CSS/Bootstrap)
+
+#### Details
+* Babel
+* Use of classes
