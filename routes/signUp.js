@@ -4,13 +4,17 @@ const model = require('../core/models/database');
 const passwordHash = require('password-hash');
 
 router.get('/', function(req, res, next){
-	let errors = req.session.errors;
-    req.session.errors = null;
-	res.render('signUp', { 
-		title: 'Matcha - Sign Up',
-		success: req.session.success,
-		errors: errors
-	});
+	if (req.session.login){
+	    res.redirect('/home');
+    } else {
+        let errors = req.session.errors;
+        req.session.errors = null;
+        res.render('signUp', {
+            title: 'Matcha - Sign Up',
+            success: req.session.success,
+            errors: errors
+        });
+    }
 });
 
 function validEmail(email) {

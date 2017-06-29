@@ -4,19 +4,16 @@ const assert = require('assert');
 
 const url = 'mongodb://localhost:27017/matcha';
 
-const dbConnection = {
-	connection(){
-        return new Promise(function(res, rej){
-            mongo.connect(url, function(err, db){
-                if (err) {
-                    reject(err);
-                } else {
-                    this.db = db;
-                    resolve();
-                }
-            });
+const connectToDatabase = function(){
+    return new Promise(function(res, rej){
+        mongo.connect(url, function(err, db){
+            if (err){
+                rej(err);
+            } else {
+                res(db);
+            }
         });
-    }
+    });
 };
 
 const getData = function(collection, condition) {
@@ -25,7 +22,7 @@ const getData = function(collection, condition) {
         mongo.connect(url, function(err, db) {
 			if (assert.equal(null, err))
 				reject("Error from database connection");
-			var cursor = db.collection(collection).find(condition);
+			let cursor = db.collection(collection).find(condition);
 			cursor.forEach(function(doc, err) {
 				if (assert.equal(null, err))
 					reject("Error from get data");
@@ -61,29 +58,9 @@ const updateData = function (collection, field, item) {
 	});
 };
 
-/**
- * Hello world function test
- * @param stringtest
- * @constructor
- */
-function Hello(stringtest){
-	this.string = stringtest;
-}
-
-Hello.prototype.show = function(){
-	console.log(this.string);
-};
-
-const HelloWorld = new Hello('Salut depuis database');
-
-/**
- * Export modules
- * @type {{getData: getData, HelloWorld: Hello}}
- */
 module.exports = {
-	'dbConnection': dbConnection,
+    'connectToDatabase': connectToDatabase,
 	'getData': getData,
 	'updateData': updateData,
-	'insertData': insertData,
-	'HelloWorld': HelloWorld
+	'insertData': insertData
 };
