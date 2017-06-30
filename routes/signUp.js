@@ -11,7 +11,6 @@ router.get('/', function(req, res, next){
         req.session.errors = null;
         res.render('signUp', {
             title: 'Matcha - Sign Up',
-            success: req.session.success,
             errors: errors
         });
     }
@@ -31,7 +30,6 @@ function validPassword(pwd) {
  * Check les conditions des inputs
  */
 router.post('/submit', function (req, res, next) {
-    console.log(req.body);
     req.session.errors = [];
     if (req.body.login.length < 5)
         req.session.errors.push({msg: 'Login minlength = 5'});
@@ -80,7 +78,6 @@ router.post('/submit', function(req, res, next) {
         dob: req.body.DOBMonth + '/' + req.body.DOBDay + '/' + req.body.DOBYear
 	};
     model.insertData('users', item);
-    req.session.success = true;
     req.session.login = req.body.login;
     res.redirect('/home');
 });

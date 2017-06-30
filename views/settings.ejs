@@ -1,15 +1,25 @@
 <div class="container">
+    <% if (errors) { %>
+        <% for(var i=0; i < errors.length; i++) { %>
+            <div class="alert alert-danger">&nbsp;<%- errors[i]['msg'] %></div>
+        <% } %>
+    <% } %>
+    <% if (success) { %>
+        <% for(var i=0; i < success.length; i++) { %>
+            <div class="alert alert-success">&nbsp;<%- success[i]['msg'] %></div>
+        <% } %>
+    <% } %>
     <div class="row">
         <div class="col-sm-4">
             <div class="col-sm-12 box">
                 <h4>Change email</h4><br>
-                <form action="#" method="post">
+                <form action="/settings/editEmail" method="post">
                     <label>Old email address</label><br>
-                    <input type="text" class="form-control" name="old-email">
+                    <input type="text" class="form-control" name="oldEmail" required="true">
                     <label>New email address</label><br>
-                    <input type="text" class="form-control" name="new-email">
+                    <input type="text" class="form-control" name="newEmail" required="true">
                     <label>Confirm new email address</label><br>
-                    <input type="text" class="form-control" name="confirm-new-email"><br>
+                    <input type="text" class="form-control" name="confirmNewEmail" required="true"><br>
                     <input type="submit" class="btn btn-primary btn-sm" value="SUBMIT">
                 </form>
             </div>
@@ -18,13 +28,13 @@
             <div class="col-sm-12 box">
                 <h4>Change password</h4>
                 <br>
-                <form action="#" method="post">
+                <form action="/settings/editPassword" method="post">
                     <label>Old password</label><br>
-                    <input type="password" class="form-control" name="old_password">
+                    <input type="password" class="form-control" name="oldPassword" required="true">
                     <label>New password</label><br>
-                    <input type="password" class="form-control" name="new_password">
+                    <input type="password" class="form-control" name="newPassword" required="true">
                     <label>Confirm new password</label><br>
-                    <input type="password" class="form-control" name="confirm_new_password"><br>
+                    <input type="password" class="form-control" name="confirmNewPassword" required="true"><br>
                     <input type="submit" class="btn btn-primary btn-sm" name="change-password" value="SUBMIT">
                 </form>
             </div>
@@ -33,7 +43,7 @@
             <div class="col-sm-12 box">
                 <h4>Change address</h4>
                 <br>
-                <form action="#" method="post">
+                <form action="/settings/editAddress" method="post">
                     <label>Current address:</label><br>
                     <span>76 Avenue Parmentier, 75011 Paris</span><br><br>
                     <label>Change address</label><br>
