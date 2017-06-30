@@ -49,23 +49,23 @@
                 <img class="profile_star" src="/images/star.png">
                 <img class="profile_star" src="/images/star.png">
                     <img class="profile_star" src="/images/star.png"></div>
-                <p><b>Kneth Master</b><button class="btn-link">edit</button></p>
-                <form method="post" action="/myprofile/editName" class="editable_info">
-                    <label>First Name:</label><br><input type="text" class="form-control edit_pro" name="firstname" value="Kneth"><br>
-                    <label>Last Name:</label><br><input type="text" class="form-control edit_pro" name="lastname" value="Master"><br><br>
-                    <input type="submit" class="btn btn-primary btn-sm">
+                <p><b><%= firstName %> <%= lastName %></b><button class="btn-link" id="edit-name">edit</button></p>
+                <form method="post" action="/myprofile/editName" class="editable_info" id="form-name">
+                    <label>First Name:</label><br><input type="text" class="form-control edit_pro" name="firstname" value="<%= firstName %>"><br>
+                    <label>Last Name:</label><br><input type="text" class="form-control edit_pro" name="lastname" value="<%= lastName %>"><br><br>
+                    <input type="submit" class="btn btn-primary btn-sm" value="Edit Name">
                 </form>
-                <label for="comment">Sex: &nbsp;</label>Female<button class="btn-link">edit</button>
-                <br>
-                <form method="post" action="#" class="editable_info">
-                    <textarea class="form-control edit_pro" rows="4" name="bio">Bio pour cette sous merde Lorem</textarea><br>
-                    <input type="submit" class="btn btn-primary btn-sm">
-                </form>
-                <label for="comment">Bio:</label><button class="btn-link">edit</button>
-                <div class="">Bio pour cette sous merde Lorem Ipsum</div>
-                <form method="post" action="#" class="editable_info">
-                    <textarea class="form-control edit_pro" rows="4" name="bio">Bio pour cette sous merde Lorem</textarea><br>
-                    <input type="submit" class="btn btn-primary btn-sm">
+                <!--<label for="comment">Sex: </label>Female<button class="btn-link" id="edit-sex">edit</button>-->
+                <!--<br>-->
+                <!--<form method="post" action="#" class="editable_info">-->
+                    <!--<textarea class="form-control edit_pro" rows="4" name="bio">Bio pour cette sous merde Lorem</textarea><br>-->
+                    <!--<input type="submit" class="btn btn-primary btn-sm">-->
+                <!--</form>-->
+                <label for="comment">Bio:</label><button class="btn-link" id="edit-bio">edit</button>
+                <div><%= bio %></div>
+                <form method="post" action="/myprofile/editBio" class="editable_info" id="form-bio">
+                    <textarea class="form-control edit_pro" rows="4" name="bio"><%= bio %></textarea><br>
+                    <input type="submit" class="btn btn-primary btn-sm" value="Edit Bio">
                 </form>
                 <br>
                 <button class="btn-link">Like !</button>

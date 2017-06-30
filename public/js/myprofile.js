@@ -1,7 +1,6 @@
 const plusButton = document.querySelector('.upload-photo'),
     transparentBackground = document.querySelector('.popup-upload-photo'),
     popupUpload  = document.querySelector('.popup-box'),
-    nameEditButton = document.querySelectorAll('.btn-link'),
     closePopup = document.querySelector('.close-pop-up');
 
 plusButton.addEventListener('click', function(){
@@ -14,8 +13,21 @@ closePopup.addEventListener('click', function(){
     popupUpload.style.display = 'none';
 });
 
-nameEditButton[0].addEventListener('click', function() {
-    let nameEditForm = document.querySelectorAll('.editable_info');
-    nameEditForm[0].className += 'show_class';
+const editName = document.querySelector('#edit-name'),
+    editBio = document.querySelector('#edit-bio'),
+    formName = document.querySelector('#form-name'),
+    formBio = document.querySelector('#form-bio');
+
+editName.addEventListener('click', function(){
+    if (formName.style.display === 'none' || formName.style.display === '')
+        formName.style.display = 'inherit';
+    else
+        formName.style.display = 'none';
 });
 
+editBio.addEventListener('click', function(){
+    if (formBio.style.display === 'none' || formBio.style.display === '')
+        formBio.style.display = 'inherit';
+    else
+        formBio.style.display = 'none';
+});
