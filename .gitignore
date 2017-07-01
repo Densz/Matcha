@@ -4,3 +4,4 @@ diagnostic.data
 mongodb
 .idea
 .DS_Store
+.vscode
