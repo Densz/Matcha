@@ -5,3 +5,4 @@ mongodb
 .idea
 .DS_Store
 .vscode
+.eslintrc.json
