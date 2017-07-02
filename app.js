@@ -1,20 +1,19 @@
-const express = require('express');
-const path = require('path');
-const favicon = require('serve-favicon');
-const logger = require('morgan');
-const cookieParser = require('cookie-parser');
-const bodyParser = require('body-parser');
-const expressLayouts = require('express-ejs-layouts');
-const expressSession = require('express-session');
+import express from 'express';
+import path from 'path';
+import favicon from 'serve-favicon';
+import logger from 'morgan';
+import cookieParser from 'cookie-parser';
+import bodyParser from 'body-parser';
+import expressLayouts from 'express-ejs-layouts';
+import expressSession from 'express-session';
 
-const users = require('./routes/users');
-const index = require('./routes/index');
-const signUp = require('./routes/signUp');
-const home = require('./routes/home');
-const signOut = require('./routes/signOut');
-const myprofile = require('./routes/myprofile');
-const settings = require('./routes/settings');
-
+import users from './routes/users';
+import index from './routes/index';
+import signUp from './routes/signUp';
+import home from './routes/home';
+import signOut from './routes/signOut';
+import myprofile from './routes/myprofile';
+import settings from './routes/settings';
 
 const app = express();
 
@@ -42,14 +41,14 @@ app.use('/signOut', signOut);
 app.use('/settings', settings);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use((req, res, next) => {
   let err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use((err, req, res, next) => {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
