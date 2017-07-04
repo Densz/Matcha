@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const model = require('../core/models/database');
 const passwordHash = require('password-hash');
+import geolib from 'geolib';
 
 router.get('/', function(req, res) {
     let alertMessage = req.session.success;

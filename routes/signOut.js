@@ -1,8 +1,7 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
+router.get('/', (req, res) => {
     req.session.destroy();
     res.render('index', {
         title: 'Matcha - Sign In',
