@@ -45,9 +45,9 @@
                 <br>
                 <form action="/settings/editAddress" method="post">
                     <label>Current address:</label><br>
-                    <span id='cur-address'></span><br><br>
+                    <span id='cur-address'><%= address %></span><br><br>
                     <label>Change address</label><br>
-                    <input type="text" class="form-control" name="new_address"><br>
+                    <input type="text" class="form-control" name="newAddress"><br>
                     <input type="submit" class="btn btn-primary btn-sm" name="change-address" value="SUBMIT">
                 </form>
             </div>

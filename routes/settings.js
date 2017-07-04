@@ -2,9 +2,13 @@ const express = require('express');
 const router = express.Router();
 const model = require('../core/models/database');
 const passwordHash = require('password-hash');
-import geolib from 'geolib';
+const geolib = require('geolib');
+const request = require('request');
 
-router.get('/', function (req, res) {
+router.get('/', async function (req, res) {
+    let db = await model.connectToDatabase();
+    let info = await db.collection('users').findOne({ login: req.session.login });
+
     let alertMessage = req.session.success;
     let errorMessage = req.session.errors;
 
@@ -13,6 +17,7 @@ router.get('/', function (req, res) {
     res.render('settings', {
         layout: 'layout_nav',
         title: 'Matcha - Settings',
+        address: info['address'],
         success: alertMessage,
         errors: errorMessage
     });
@@ -58,7 +63,29 @@ router.post('/editPassword', async function (req, res) {
 });
 
 router.post('/editAddress', async function (req, res) {
-    res.redirect('/settings');
+    req.session.errors = [];
+    req.session.success = [];
+    if (req.body.newAddress.length > 0) {
+        let addressFormated = req.body.newAddress.replace(' ', '+');
+        request('https://maps.googleapis.com/maps/api/geocode/json?address=' + addressFormated + '&key=AIzaSyCOQ8rVn9XxjPhDwVyeqp4wuCoMUl95uLs', function(error, response, body){
+            let addressDetails = JSON.parse(body);
+            if (addressDetails['status'] !== "ZERO_RESULTS") {
+                model.updateData('users', { login: req.session.login }, { $set: { 
+                    address: addressDetails['results'][0]['formatted_address'], 
+                    lat: addressDetails['results'][0]['geometry']['location']['lat'],
+                    lng: addressDetails['results'][0]['geometry']['location']['lng']
+                }} );
+                req.session.success.push({ msg: 'Address updated' });
+                res.redirect('/settings');
+            } else {
+                req.session.errors.push({ msg: 'Address not found, please enter zip code or city for more precision' });
+                res.redirect('/settings');
+            }
+        });
+    } else {
+        req.session.errors.push({ msg: 'No address entered' });
+        res.redirect('/settings');
+    }
 });
 
 module.exports = router;

@@ -2,7 +2,6 @@ var htmlAddress = document.querySelector('#cur-address');
 
 function success(pos) {
   var crd = pos.coords;
-  console.log(crd);
   var xhr = new XMLHttpRequest();
 
   xhr.open('GET', 'http://maps.googleapis.com/maps/api/geocode/json?latlng=' + crd.latitude + ',' + crd.longitude, true);
@@ -25,4 +24,5 @@ function error(err) {
   return null;
 };
 
-navigator.geolocation.getCurrentPosition(success, error);
+if (htmlAddress.innerHTML.length === 0)
+  navigator.geolocation.getCurrentPosition(success, error);
