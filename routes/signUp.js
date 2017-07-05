@@ -76,7 +76,11 @@ router.post('/submit', function(req, res, next) {
         password: passwordHash.generate(req.body.password),
         sex: req.body.sex,
         orientation: 'Bisexual',
-        dob: req.body.DOBMonth + '/' + req.body.DOBDay + '/' + req.body.DOBYear
+        dob: req.body.DOBMonth + '/' + req.body.DOBDay + '/' + req.body.DOBYear,
+        filter: {
+            age: [0, 80],
+            score: [0, 10]
+        }
 	};
     model.insertData('users', item);
     req.session.login = req.body.login;

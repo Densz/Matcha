@@ -22,6 +22,7 @@ router.get('/', async function (req, res) {
             sex: info['sex'],
             orientation: info['orientation'],
             hashtag: info['hashtag'],
+            filter: info['filter'],
             title: 'Matcha - Home'
         });
     }
@@ -49,7 +50,6 @@ router.post('/editOrientation', async function (req, res) {
 });
 
 router.post('/editAddress', async function (req, res) {
-    console.log("rentre ici ta mere");
     if (req.body.newAddress.length > 0) {
         let addressFormated = req.body.newAddress.replace(' ', '+');
         request('https://maps.googleapis.com/maps/api/geocode/json?address=' + addressFormated + '&key=AIzaSyCOQ8rVn9XxjPhDwVyeqp4wuCoMUl95uLs', function(error, response, body){
@@ -68,6 +68,18 @@ router.post('/editAddress', async function (req, res) {
     } else {
         res.redirect('/home');
     }
+});
+
+/**
+ * AJAX function
+ */
+router.post('/getFilter', async function (req, res){
+    model.updateData('users', { login: req.session.login }, { $set: {
+        filter: { 
+            age: [req.body.minAge, req.body.maxAge], 
+            score: [req.body.minScore, req.body.maxScore]
+        }
+    }})
 });
 
 module.exports = router;

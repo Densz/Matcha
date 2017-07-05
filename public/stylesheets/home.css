@@ -193,3 +193,8 @@ span.hashtag {
     background-color: rgba(254, 61, 0, 0.27);
     border-radius: 5px;
 }
+
+#filter-age-score {
+    margin-top: 10px;
+    right: 0px;
+}
