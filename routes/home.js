@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const model = require('../core/models/database');
 const request = require('request');
+const getAge = require('get-age');
 
 router.get('/', async function (req, res) {
     req.session.errors = [];
@@ -12,6 +13,7 @@ router.get('/', async function (req, res) {
         req.session.errors.push({ msg: 'No access right' });
         res.redirect('/');
     } else {
+        console.log(getAge(info['dob'], ' years old'));
         res.render('home', {
             layout: 'layout_nav',
             firstName: info['firstName'],
@@ -24,6 +26,7 @@ router.get('/', async function (req, res) {
             hashtag: info['hashtag'],
             filter: info['filter'],
             hashtagFilter: info['hashtagFilter'],
+            dob: getAge(info['dob']),
             title: 'Matcha - Home'
         });
     }
