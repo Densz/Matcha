@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const model = require('../core/models/database');
 const passwordHash = require('password-hash');
+const getAge = require('get-age');
 
 router.get('/', function(req, res, next){
 	if (req.session.login){
@@ -77,6 +78,7 @@ router.post('/submit', function(req, res, next) {
         sex: req.body.sex,
         orientation: 'Bisexual',
         dob: req.body.DOBYear + '-' + req.body.DOBMonth + '-' + req.body.DOBDay,
+        age: getAge(req.body.DOBYear + '-' + req.body.DOBMonth + '-' + req.body.DOBDay),
         filter: {
             age: [0, 80],
             score: [0, 10]
