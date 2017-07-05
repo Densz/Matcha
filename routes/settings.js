@@ -89,12 +89,16 @@ router.post('/editAddress', async function (req, res) {
     }
 });
 
+/**
+ * AJAX
+ */
 router.post('/getAddress', async function (req, res) {
     model.updateData('users', { login: req.session.login }, { $set: {
         tmpAddress: req.body.tmpAddress, 
         tmpLat: req.body.tmpLat,
         tmpLng: req.body.tmpLng
     }});
+    res.redirect('/settings');
 });
 
 module.exports = router;

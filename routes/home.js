@@ -6,14 +6,16 @@ const getAge = require('get-age');
 
 router.get('/', async function (req, res) {
     req.session.errors = [];
-    let db = await model.connectToDatabase();
-    let info = await db.collection('users').findOne({ login: req.session.login });
-
+    
     if (req.session.login === undefined) {
         req.session.errors.push({ msg: 'No access right' });
         res.redirect('/');
     } else {
-        console.log(getAge(info['dob'], ' years old'));
+        let db = await model.connectToDatabase();
+        let info = await db.collection('users').findOne({ login: req.session.login });
+        model.updateData('users', { login: req.session.login }, { $set: {
+            age: getAge(info['dob'])
+        }});
         res.render('home', {
             layout: 'layout_nav',
             firstName: info['firstName'],

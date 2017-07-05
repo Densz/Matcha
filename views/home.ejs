@@ -38,17 +38,54 @@
         <!-- MIDDLE COLUMN -->
         <div class="col-sm-6">
             <div class="box swipe-box">
-                <span><b>Lorem Ipsum</b></span><br>
-                <img class="profile_star" src="/images/star.png">
-                <img class="profile_star" src="/images/star.png">
-                <img class="profile_star" src="/images/star.png">
-                <img class="profile_star" src="/images/star.png">
-                <img class="profile_star" src="/images/star.png">
-                <img class="profile_star" src="/images/star.png">
-                <img class="profile_star" src="/images/star.png"><br><br>
-                <img class="match-img" src="/images/medium_spalmaro.jpg"><br><br>
-                <img class="like" src="/images/sign-error.png">
-                <img class="dislike" src="/images/sign-check.png">
+                <ul style="list-style-type: none; padding: 0;" id="peopleList">
+                    <li class="people-box">
+                        <span><b>My Booo</b></span><br>
+                        <img class="profile_star" src="/images/star.png">
+                        <img class="profile_star" src="/images/star.png">
+                        <img class="profile_star" src="/images/star.png">
+                        <img class="profile_star" src="/images/star.png">
+                        <img class="profile_star" src="/images/star.png">
+                        <img class="profile_star" src="/images/star.png">
+                        <img class="profile_star" src="/images/star.png"><br><br>
+                        <img class="match-img" src="/images/huong.jpg"><br><br>
+                    </li>
+                    <li class="people-box" style="display: none;">
+                        <span><b>Stanya Palmaro</b></span><br>
+                        <img class="profile_star" src="/images/star.png">
+                        <img class="profile_star" src="/images/star.png">
+                        <img class="profile_star" src="/images/star.png">
+                        <img class="profile_star" src="/images/star.png">
+                        <img class="profile_star" src="/images/star.png">
+                        <img class="profile_star" src="/images/star.png">
+                        <img class="profile_star" src="/images/star.png"><br><br>
+                        <img class="match-img" src="/images/medium_spalmaro.jpg"><br><br>
+                    </li>
+                    <li class="people-box" style="display: none;">
+                        <span><b>Kneth Master</b></span><br>
+                        <img class="profile_star" src="/images/star.png">
+                        <img class="profile_star" src="/images/star.png">
+                        <img class="profile_star" src="/images/star.png">
+                        <img class="profile_star" src="/images/star.png">
+                        <img class="profile_star" src="/images/star.png"><br><br>
+                        <img class="match-img" src="/images/medium_kneth.jpg"><br><br>
+                    </li>
+                    <li class="people-box" style="display: none;">
+                        <span><b>Lisa Tran</b></span><br>
+                        <img class="profile_star" src="/images/star.png">
+                        <img class="profile_star" src="/images/star.png">
+                        <img class="profile_star" src="/images/star.png">
+                        <img class="profile_star" src="/images/star.png"><br><br>
+                        <img class="match-img" src="/images/medium_ltran.jpg"><br><br>
+                    </li>
+                    <li class="people-box" style="display: none;" id="no-more">
+                        <span><b>No more matches</b></span><br>
+                        <br><br><br>
+                        <img class="match-img" src="/images/cross.png"><br><br>
+                    </li>
+                </ul>
+                <img class="dislike" src="/images/sign-error.png">
+                <img class="like" src="/images/sign-check.png">
             </div>
         </div>
         <!-- RIGHT COLUMN -->
@@ -157,6 +194,7 @@
     </div>
 </div>
 <script src="/js/home.js"></script>
+<script src="/js/home_swipe.js"></script>
 <script src="/js/nouislider.js"></script>
 <script>
     function url(){
