@@ -29,7 +29,7 @@
                 <div class="hashtag-box">
                 <% if (hashtag) { %>
                     <% for (var i = 0; i < hashtag.length; i++) { %>
-                        <span class="hashtag"><%= hashtag[i] %></span>
+                        <span class="hashtag">#<%= hashtag[i] %></span>
                     <% } %>
                 <% } %>
                 </div>
@@ -68,13 +68,15 @@
             </div>
             <div class="box hl2">
                 <h4>Orientation</h4>
-                <div class="center-orientation">
-                    <div class="btn-group" role="group" aria-label="...">
-                        <button type="button" class="btn btn-default">Men</button>
-                        <button type="button" class="btn btn-default">Bisexual</button>
-                        <button type="button" class="btn btn-default selected">Women</button>
+                <form action="/home/editOrientation" method="post">
+                    <div class="center-orientation">
+                        <div class="btn-group" role="group" aria-label="...">
+                            <input type="submit" name="orientation" class="btn btn-default<%= orientation==='Men' ? ' selected': '' %> " value="Men">
+                            <input type="submit" name="orientation" class="btn btn-default<%= orientation==='Bisexual' ? ' selected': '' %>" value="Bisexual">
+                            <input type="submit" name="orientation" class="btn btn-default<%= orientation==='Women' ? ' selected': '' %>" value="Women">
+                        </div>
                     </div>
-                </div>
+                </form>
             </div>
             <div class="box hr2">
                 <h4>Location</h4>

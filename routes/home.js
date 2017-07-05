@@ -19,6 +19,7 @@ router.get('/', async function (req, res) {
             tmpAddress: info['tmpAddress'],
             bio: info['bio'],
             sex: info['sex'],
+            orientation: info['orientation'],
             hashtag: info['hashtag'],
             title: 'Matcha - Home'
         });
@@ -31,11 +32,18 @@ router.post('/addHashtag', async function (req, res) {
         let userInfo = await db.collection('users').findOne({ login: req.session.login });
 
         let arrayHashtag = userInfo['hashtag'];
-        arrayHashtag.push([req.body.hashtag]);
+        if (!arrayHashtag)
+            arrayHashtag = [];
+        arrayHashtag.push(req.body.hashtag);
         model.updateData('users', { login: req.session.login }, { $set: 
             { hashtag: arrayHashtag }
         });
     }
+    res.redirect('/home');
+});
+
+router.post('/editOrientation', async function (req, res) {
+    model.updateData('users', { login: req.session.login }, { $set: { orientation: req.body.orientation }});
     res.redirect('/home');
 });
 

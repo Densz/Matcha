@@ -75,6 +75,7 @@ router.post('/submit', function(req, res, next) {
         email: req.body.email.toLowerCase(),
         password: passwordHash.generate(req.body.password),
         sex: req.body.sex,
+        orientation: 'Bisexual',
         dob: req.body.DOBMonth + '/' + req.body.DOBDay + '/' + req.body.DOBYear
 	};
     model.insertData('users', item);

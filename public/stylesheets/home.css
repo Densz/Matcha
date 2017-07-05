@@ -89,6 +89,8 @@ span.hashtag {
 
 .hashtag-box {
     margin-top: 10px;
+    height: 111px;
+    overflow: auto;
 }
 
 /**
