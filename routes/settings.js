@@ -18,6 +18,7 @@ router.get('/', async function (req, res) {
         layout: 'layout_nav',
         title: 'Matcha - Settings',
         address: info['address'],
+        tmpAddress: info['tmpAddress'],
         success: alertMessage,
         errors: errorMessage
     });
@@ -86,6 +87,14 @@ router.post('/editAddress', async function (req, res) {
         req.session.errors.push({ msg: 'No address entered' });
         res.redirect('/settings');
     }
+});
+
+router.post('/getAddress', async function (req, res) {
+    model.updateData('users', { login: req.session.login }, { $set: {
+        tmpAddress: req.body.tmpAddress, 
+        tmpLat: req.body.tmpLat,
+        tmpLng: req.body.tmpLng
+    }});
 });
 
 module.exports = router;

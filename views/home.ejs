@@ -6,7 +6,6 @@
                 <div>
                     <img class="profile_picture" src="/images/medium_kneth.jpg">
                 </div>
-
                 <p><b><%= firstName %> <%= lastName %></b></p>
                 <p><%= bio %></p>
                 <br>
@@ -19,17 +18,20 @@
             <div class="box hl3">
                 <h4>Interests</h4>
                 <p><b>Add your interest</b></p>
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Hashtag">
-                    <span class="input-group-btn">
-                        <button class="btn btn-default" type="button">Add</button>
-                    </span>
-                </div>
+                <form method="post" action="/home/addHashtag">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Hashtag" name="hashtag" required="true">
+                        <span class="input-group-btn">
+                            <input type="submit" class="btn btn-default" value="Add">
+                        </span>
+                    </div>
+                </form>
                 <div class="hashtag-box">
-                    <span class="hashtag">#mallocmaster</span>
-                    <span class="hashtag">#Frontmaster</span>
-                    <span class="hashtag">#fron</span>
-                    <span class="hashtag">#trontmaer</span>
+                <% if (hashtag) { %>
+                    <% for (var i = 0; i < hashtag.length; i++) { %>
+                        <span class="hashtag"><%= hashtag[i] %></span>
+                    <% } %>
+                <% } %>
                 </div>
             </div>
         </div>
@@ -79,9 +81,13 @@
                 <span><b>Address</b></span><br>
                 <div class="input-group">
                     <span class="input-group-btn">
-                        <button class="btn btn-default" type="button">Edit</button>
+                        <input type="submit" class="btn btn-default" value="Update">
                     </span>
-                    <input type="text" class="form-control" placeholder="Current location">
+                    <% if (address) { %>
+                        <input type="text" class="form-control" id="location" placeholder="<%= address %>">
+                    <% } else { %>
+                        <input type="text" class="form-control" id="location" placeholder="<%= tmpAdress %>">
+                    <% } %>
                 </div>
             </div>
             <div class="box hr3">
@@ -148,6 +154,7 @@
         </div>
     </div>
 </div>
+<script src="/js/home.js"></script>
 <script src="/js/nouislider.js"></script>
 <script>
     var skipSlider = document.getElementById('range_age');
