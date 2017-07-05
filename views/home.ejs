@@ -80,23 +80,26 @@
             <div class="box hr2">
                 <h4>Location</h4>
                 <span><b>Address</b></span><br>
+                <span><%= address ? address : tmpAddress %></span><br><br>
                 <form method="post" action="/home/editAddress">
                 <div class="input-group">
                     <span class="input-group-btn">
                         <input type="submit" class="btn btn-default" value="Update">
                     </span>
-                    <input type="text" name="newAddress" class="form-control" id="location" placeholder="<%= address ? address : tmpAddress %>">
+                    <input type="text" name="newAddress" class="form-control" id="location" placeholder="<%= address ? address : tmpAddress %>" required="true">
                 </div>
                 </form>
             </div>
             <div class="box hr3">
                 <h4>By interest</h4>
+                <form method="post" action="/home/hashtagFilter">
                 <div class="input-group">
                     <span class="input-group-btn">
-                        <button class="btn btn-default" type="button">Search</button>
+                        <input type="submit" class="btn btn-default" value="Search">
                     </span>
-                    <input type="text" class="form-control" placeholder="#blabla">
+                    <input type="text" name="hashtagFilter" class="form-control" value="<%= hashtagFilter ? hashtagFilter : '' %>" placeholder="Enter #">
                 </div>
+                </form>
             </div>
         </div>
     </div>

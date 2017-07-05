@@ -23,6 +23,7 @@ router.get('/', async function (req, res) {
             orientation: info['orientation'],
             hashtag: info['hashtag'],
             filter: info['filter'],
+            hashtagFilter: info['hashtagFilter'],
             title: 'Matcha - Home'
         });
     }
@@ -69,6 +70,14 @@ router.post('/editAddress', async function (req, res) {
         res.redirect('/home');
     }
 });
+
+router.post('/hashtagFilter', async function (req, res) {
+    model.updateData('users', { login: req.session.login }, { $set: {
+        hashtagFilter: req.body.hashtagFilter
+    }});
+    res.redirect('/home');
+});
+
 
 /**
  * AJAX function
