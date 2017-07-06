@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "run": "babel-node ./bin/www --presets es2015,stage-2",
-    "start": "nodemon index.js --exec babel-node --presets es2015,stage-2"
+    "start": "nodemon ./bin/www --exec babel-node --presets es2015,stage-2"
   },
   "dependencies": {
     "assert": "^1.4.1",
