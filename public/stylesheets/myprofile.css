@@ -79,9 +79,40 @@
     line-height: 30px;
     text-align: center;
     width: 150px;
-    margin-top: 10px;
+    /*margin-top: 10px;*/
 }
 .upload-drop-zone.drop {
     color: #222;
     border-color: #222;
+}
+
+#upload-input {
+    display: none;
+}
+
+/*.upload-btn {*/
+    /*color: #000000;*/
+    /*background-color: #FFFFFF;*/
+    /*border: none;*/
+/*}*/
+
+/*.upload-btn:hover,*/
+/*.upload-btn:focus,*/
+/*.upload-btn:active,*/
+/*.upload-btn.active {*/
+    /*color: #ffffff;*/
+    /*background-color: #FA8900;*/
+    /*border: none;*/
+/*}*/
+
+.btn {
+    width: 100%;
+}
+
+.progress {
+    margin-bottom: 10px;
+}
+
+.img-thumbnail {
+    margin-bottom: 10px;
 }

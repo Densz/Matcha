@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const model = require('../core/models/database');
+const formidable = require('formidable');
+const fs = require('fs');
 
 router.get('/', async (req, res, next) => {
     let db = await model.connectToDatabase();
@@ -32,13 +34,33 @@ router.post('/editName', (req, res, next) => {
     res.redirect('/myprofile');
 });
 
-router.post('/editBio', (req, res, next) => {
+router.post('/editBio', (req, res) => {
     let field = { login: req.session.login },
         item = { $set: { bio: req.body.bio } };
     req.session.success = [];
     req.session.success.push({ msg: "Your Bio has been updated" });
     model.updateData('users', field, item);
     res.redirect('/myprofile');
+});
+
+router.post('/upload', (req, res) => {
+    let form = new formidable.IncomingForm();
+
+    form.uploadDir = path.join(__dirname, '../public/uploads');
+
+    form.on('file', (field, file) => {
+        fs.rename(file.path, path.join(form.uploadDir, file.name));
+    });
+
+    form.on('error', (err) => {
+        console.log('An error has occured: \n' + err);
+    });
+
+    form.on('end', () => {
+        res.end('success');
+
+        form.parse(req);
+    })
 });
 
 module.exports = router;
