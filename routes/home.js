@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const model = require('../core/models/database');
+const match = require('../core/controllers/match.js');
 const request = require('request');
 const getAge = require('get-age');
 
@@ -16,6 +17,10 @@ router.get('/', async function (req, res) {
         model.updateData('users', { login: req.session.login }, { $set: {
             age: getAge(info['dob'])
         }});
+        /**
+         * Algo du swipe ! Ca commence Allez !
+         */
+        let people = await match.filterBySex(info);
         res.render('home', {
             layout: 'layout_nav',
             firstName: info['firstName'],
@@ -29,6 +34,7 @@ router.get('/', async function (req, res) {
             filter: info['filter'],
             hashtagFilter: info['hashtagFilter'],
             dob: getAge(info['dob']),
+            people: people,
             title: 'Matcha - Home'
         });
     }

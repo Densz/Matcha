@@ -39,10 +39,12 @@
         <div class="col-sm-6">
             <div class="box swipe-box">
                 <ul style="list-style-type: none; padding: 0;" id="peopleList">
-                    <li class="people-box">
-                        <span><b>My Booo</b> (24 ans)</span><br>
-                        <span>Homme</span><br>
-                        <span><b>Address:</b> 76 avenue Parmentier, 75011 Paris</span><br>
+                <% if (people) { %>
+                    <% for (i=0; i < people.length; i++) { %>
+                        <li class="people-box" style="display:<%= i === 0 ? 'inherit' : 'none' %>">
+                        <span><b><%= people[i]['firstName'] %> <%= people[i]['lastName'] %></b> (<%= people[i]['age'] %> ans)</span><br>
+                        <span><%= people[i]['sex'] %></span><br>
+                        <span><b>Address:</b> <%= people[i]['address'] %></span><br>
                         <img class="profile_star" src="/images/star.png">
                         <img class="profile_star" src="/images/star.png">
                         <img class="profile_star" src="/images/star.png">
@@ -50,37 +52,13 @@
                         <img class="profile_star" src="/images/star.png">
                         <img class="profile_star" src="/images/star.png">
                         <img class="profile_star" src="/images/star.png"><br><br>
-                        <img class="match-img" src="/images/huong.jpg"><br><br>
-                        <span class="hashtag">geek</span>&nbsp;<span class="hashtag">intello</span>                        
+                        <img class="match-img" src="/images/<%= people[i]['sex'] === 'female' ? 'woman' : 'man' %>.jpg"><br><br>
+                        <% for (y=0; y < people[i]['hashtag'].length; y++) { %>
+                            <span class="hashtag"><%= people[i]['hashtag'][y] %></span>
+                        <% } %>
                     </li>
-                    <li class="people-box" style="display: none;">
-                        <span><b>Stanya Palmaro</b></span><br>
-                        <img class="profile_star" src="/images/star.png">
-                        <img class="profile_star" src="/images/star.png">
-                        <img class="profile_star" src="/images/star.png">
-                        <img class="profile_star" src="/images/star.png">
-                        <img class="profile_star" src="/images/star.png">
-                        <img class="profile_star" src="/images/star.png">
-                        <img class="profile_star" src="/images/star.png"><br><br>
-                        <img class="match-img" src="/images/medium_spalmaro.jpg"><br><br>
-                    </li>
-                    <li class="people-box" style="display: none;">
-                        <span><b>Kneth Master</b></span><br>
-                        <img class="profile_star" src="/images/star.png">
-                        <img class="profile_star" src="/images/star.png">
-                        <img class="profile_star" src="/images/star.png">
-                        <img class="profile_star" src="/images/star.png">
-                        <img class="profile_star" src="/images/star.png"><br><br>
-                        <img class="match-img" src="/images/medium_kneth.jpg"><br><br>
-                    </li>
-                    <li class="people-box" style="display: none;">
-                        <span><b>Lisa Tran</b></span><br>
-                        <img class="profile_star" src="/images/star.png">
-                        <img class="profile_star" src="/images/star.png">
-                        <img class="profile_star" src="/images/star.png">
-                        <img class="profile_star" src="/images/star.png"><br><br>
-                        <img class="match-img" src="/images/medium_ltran.jpg"><br><br>
-                    </li>
+                    <% } %>
+                <% } %>
                     <li class="people-box" style="display: none;" id="no-more">
                         <span><b>No more matches</b></span><br>
                         <br><br><br>
