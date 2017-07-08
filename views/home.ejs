@@ -40,7 +40,9 @@
             <div class="box swipe-box">
                 <ul style="list-style-type: none; padding: 0;" id="peopleList">
                     <li class="people-box">
-                        <span><b>My Booo</b></span><br>
+                        <span><b>My Booo</b> (24 ans)</span><br>
+                        <span>Homme</span><br>
+                        <span><b>Address:</b> 76 avenue Parmentier, 75011 Paris</span><br>
                         <img class="profile_star" src="/images/star.png">
                         <img class="profile_star" src="/images/star.png">
                         <img class="profile_star" src="/images/star.png">
@@ -49,6 +51,7 @@
                         <img class="profile_star" src="/images/star.png">
                         <img class="profile_star" src="/images/star.png"><br><br>
                         <img class="match-img" src="/images/huong.jpg"><br><br>
+                        <span class="hashtag">geek</span>&nbsp;<span class="hashtag">intello</span>                        
                     </li>
                     <li class="people-box" style="display: none;">
                         <span><b>Stanya Palmaro</b></span><br>
@@ -273,7 +276,7 @@
             'max':	80
         },
         snap: true,
-        start: [<%= filter['age'][0] %>, <%= filter['age'][1] %>]
+        start: [<%= filter ? filter['age'][0] : 18 %>, <%= filter ? filter['age'][1] : 80  %>]
     });
     var skipValues = [
         document.getElementById('skip-value-lower'),
@@ -301,7 +304,7 @@
             'max':	10
         },
         snap: true,
-        start: [<%= filter['score'][0] %>, <%= filter['score'][1] %>]
+        start: [<%= filter ? filter['score'][0]: 0 %>, <%= filter ? filter['score'][1] : 10 %>]
     });
     var skipValuesScore = [
         document.getElementById('skip-value-lower-score'),
