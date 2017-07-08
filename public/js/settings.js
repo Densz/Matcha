@@ -46,7 +46,6 @@ function error(err) {
 function insertTmpAddress(address, lat, lng) {
   var xhr = new XMLHttpRequest();
 
-  console.log(url());
   xhr.open('POST', url() + '/settings/getAddress', true);
   xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
   xhr.send('tmpAddress=' + address + '&tmpLat=' + lat + '&tmpLng=' + lng);

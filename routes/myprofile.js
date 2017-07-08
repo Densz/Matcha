@@ -46,7 +46,8 @@ router.post('/editBio', (req, res) => {
 router.post('/upload', (req, res) => {
     let form = new formidable.IncomingForm();
 
-    form.uploadDir = path.join(__dirname, '../public/uploads');
+    form.uploadDir = '/upload';
+    console.log('form ->>>> ' + form);
 
     form.on('file', (field, file) => {
         fs.rename(file.path, path.join(form.uploadDir, file.name));
@@ -57,6 +58,7 @@ router.post('/upload', (req, res) => {
     });
 
     form.on('end', () => {
+        console.log('success !!');
         res.end('success');
 
         form.parse(req);

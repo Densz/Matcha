@@ -3,6 +3,12 @@ const plusButton = document.querySelector('.upload-photo'),
     popupUpload  = document.querySelector('.popup-box'),
     closePopup = document.querySelector('.close-pop-up');
 
+function url(){
+    var url =  window.location.href;
+    url = url.split("/");
+    return(url[0] + '//' + url[2] + '');
+}
+
 plusButton.addEventListener('click', () => {
     transparentBackground.style.display = 'inherit';
     popupUpload.style.display = 'inherit';
@@ -38,16 +44,23 @@ $('.upload-btn').on('click', () => {
     $('.progress-bar').width('0%');
 });
 
-$('#upload-input').on('change', function() {
+$('#upload-input').on('change', async function() {
     let files = $(this).get(0).files;
+
     if (files.length === 1) {
         console.log('A file had been selected');
         let formData = new FormData();
-        formData.append('upload', files[0], files[0].name);
-        console.log('Data added to the formData');
 
+        for (let i = 0; i < files.length; i++) {
+            let file = files[i];
+
+            console.log('definetily in the for !');
+            await formData.append('bonjour', 'salut !!');
+            console.log(formData);
+        }
+        console.log('Data added to the formData');
         $.ajax({
-            url: '/upload',
+            url: '/myprofile/upload',
             type: 'POST',
             data: formData,
             processData: false,
