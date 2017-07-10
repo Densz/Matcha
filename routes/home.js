@@ -20,7 +20,13 @@ router.get('/', async function (req, res) {
         /**
          * Algo du swipe ! Ca commence Allez !
          */
-        let people = await match.filterBySex(info);
+        let peopleArray = await match.filterBySex(info, req);
+        //Not working yet
+        //peopleArray = await match.filterByFilters(info, peopleArray);
+
+        /**
+         * Render
+         */
         res.render('home', {
             layout: 'layout_nav',
             firstName: info['firstName'],
@@ -34,7 +40,7 @@ router.get('/', async function (req, res) {
             filter: info['filter'],
             hashtagFilter: info['hashtagFilter'],
             dob: getAge(info['dob']),
-            people: people,
+            people: peopleArray,
             title: 'Matcha - Home'
         });
     }
