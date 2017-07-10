@@ -20,9 +20,7 @@ router.get('/', async function (req, res) {
         /**
          * Algo du swipe ! Ca commence Allez !
          */
-        let peopleArray = await match.filterBySex(info, req);
-        //Not working yet
-        //peopleArray = await match.filterByFilters(info, peopleArray);
+        let peopleArray = await match.filter(info, req);
 
         /**
          * Render
@@ -102,8 +100,10 @@ router.post('/hashtagFilter', async function (req, res) {
 router.post('/getFilter', async function (req, res){
     model.updateData('users', { login: req.session.login }, { $set: {
         filter: { 
-            age: [req.body.minAge, req.body.maxAge], 
-            score: [req.body.minScore, req.body.maxScore]
+            minAge: req.body.minAge, 
+            maxAge: req.body.maxAge,
+            minScore: req.body.minScore,
+            maxScore: req.body.maxScore
         }
     }})
 });

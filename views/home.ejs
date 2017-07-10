@@ -41,7 +41,7 @@
                 <ul style="list-style-type: none; padding: 0;" id="peopleList">
                 <% if (people) { %>
                     <% for (i=0; i < people.length; i++) { %>
-                        <li class="people-box" style="display:<%= i === 0 ? 'inherit' : 'none' %>">
+                        <li class="people-box" style="display:<%= i === 0 ? 'inline' : 'none' %>">
                         <span><b><%= people[i]['firstName'] %> <%= people[i]['lastName'] %></b> (<%= people[i]['age'] %> ans)</span><br>
                         <span><%= people[i]['sex'] %></span><br>
                         <span><b>Address:</b> <%= people[i]['address'] %></span><br>
@@ -59,14 +59,14 @@
                     </li>
                     <% } %>
                 <% } %>
-                    <li class="people-box" style="display: none;" id="no-more">
+                    <li class="people-box" style="display: <%= people ? 'none' : 'inline' %>;" id="no-more">
                         <span><b>No more matches</b></span><br>
                         <br><br><br>
                         <img class="match-img" src="/images/cross.png"><br><br>
                     </li>
                 </ul>
-                <img class="dislike" src="/images/sign-error.png">
-                <img class="like" src="/images/sign-check.png">
+                <img class="dislike" src="/images/sign-error.png" style="display: <%= people ? 'inline' : 'none' %>;">
+                <img class="like" src="/images/sign-check.png" style="display: <%= people ? 'inline' : 'none' %>;">
             </div>
         </div>
         <!-- RIGHT COLUMN -->
@@ -254,7 +254,7 @@
             'max':	80
         },
         snap: true,
-        start: [<%= filter ? filter['age'][0] : 18 %>, <%= filter ? filter['age'][1] : 80  %>]
+        start: [<%= filter ? filter['minAge'] : 18 %>, <%= filter ? filter['maxAge'] : 80 %>]
     });
     var skipValues = [
         document.getElementById('skip-value-lower'),
@@ -282,7 +282,7 @@
             'max':	10
         },
         snap: true,
-        start: [<%= filter ? filter['score'][0]: 0 %>, <%= filter ? filter['score'][1] : 10 %>]
+        start: [<%= filter ? filter['minScore']: 0 %>, <%= filter ? filter['maxScore'] : 10 %>]
     });
     var skipValuesScore = [
         document.getElementById('skip-value-lower-score'),

@@ -21,15 +21,15 @@ const getData = function(collection, condition) {
         let resultArray = [];
         mongo.connect(url, function(err, db) {
 			if (assert.equal(null, err))
-				reject("Error from database connection");
+				resolve("Error from database connection");
 			let cursor = db.collection(collection).find(condition);
 			cursor.forEach(function(doc, err) {
 				if (assert.equal(null, err))
-					reject("Error from get data");
+					resolve("Error from get data");
 				resultArray.push(doc);
 			}, function() {
 				db.close();
-				(resultArray.length) ? resolve(resultArray) : reject("No data");
+				(resultArray.length) ? resolve(resultArray) : resolve("No data");
 			});
 		});
 	});

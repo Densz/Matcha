@@ -1,326 +1,542 @@
 {
-    "address" : "76 Avenue Parmentier, 75011 Paris, France", "age" : 24, "bio" : "Shooting Start That you move so fast that you can't keep up ! but you say !\r\n", "dob" : "1992-09-21", "email"
- : "zheng.denis@gmail.com", "filter" : { "age" : [  "26.00",  "72.00" ], "score" : [  "1.00",  "5.00" ] }, "firstName" : "Denis", "hashtag" : [         "testeet",      "test",         [       "ok" ],         [       "susu" ],       [       "geek" ],   [
-        "allez la famille" ],   "susu",         "c'est bizarre quand meme",     "wqdqwdq",      "qwdq",         "qwdqwdqwdqdwqd",       "qwdqwdqwd" ], "hashtagFilter" : "", "lastName" : "Zeeeennn", "lat" : 48.8640713, "lng" : 2.3756215,
-    "login" : "densz", "orientation" : "Women", "password" : "sha1$12faf935$1$5937d1fb7242e2b3f19c84061ef3c48501b2e564", "sex" : "male", "tmpAddress" : "Cité du Figuier, 75011 Paris, France", "tmpLat" : "48.8656", "tmpLng" : "2.3789894" 
+    "address": "76 Avenue Parmentier, 75011 Paris, France",
+    "age": 24,
+    "bio": "Shooting Start That you move so fast that you can't keep up ! but you say !\r\n",
+    "dob": "1992-09-21",
+    "email": "zheng.denis@gmail.com",
+    "filter": {
+        "minAge": "26.00",
+        "maxAge": "72.00",
+        "minScore": "1.00",
+        "maxScore": "5.00"
+    },
+    "firstName": "Denis",
+    "hashtag": [
+        "testeet",
+        "test",
+        "c'est bizarre quand meme"
+    ],
+    "hashtagFilter": "",
+    "lastName": "Zeeeennn",
+    "lat": 48.8640713,
+    "lng": 2.3756215,
+    "login": "densz",
+    "orientation": "Women",
+    "password": "sha1$12faf935$1$5937d1fb7242e2b3f19c84061ef3c48501b2e564",
+    "sex": "male",
+    "tmpAddress": "Cité du Figuier, 75011 Paris, France",
+    "tmpLat": "48.8656",
+    "tmpLng": "2.3789894"
 }
 {
-    "firstName" : "Alexandre",
-    "lastName" : "Barrière",
-    "login" : "abarrière",
-    "sex" : "male",
-    "orientation" : "Women",
-    "address" : "39 Rue Adrien Cramail, 92500 Rueil-Malmaison",
-    "lat" : 48.881757,
-    "lng" : 2.1696348,
-    "age" : 25,
-    "bio" : "Lorem Ipsum",
-    "dob" : "1992-02-28",
-    "email" : "AlexandreBarriere@jourrapide.com",
-    "hashtag" : ["geek", "bavard", "sociable", "aventurier"],
-    "password" : "sha1$12faf935$1$5937d1fb7242e2b3f19c84061ef3c48501b2e564"
+    "firstName": "Alexandre",
+    "lastName": "Barrière",
+    "login": "abarrière",
+    "sex": "male",
+    "orientation": "Women",
+    "address": "39 Rue Adrien Cramail, 92500 Rueil-Malmaison",
+    "lat": 48.881757,
+    "lng": 2.1696348,
+    "age": 25,
+    "bio": "Lorem Ipsum",
+    "dob": "1992-02-28",
+    "email": "AlexandreBarriere@jourrapide.com",
+    "filter": {
+        "minAge": "18.00",
+        "maxAge": "80.00",
+        "minScore": "0.00",
+        "maxScore": "10.00"
+    },
+    "hashtag": [
+        "geek",
+        "bavard",
+        "sociable",
+        "aventurier"
+    ],
+    "password": "sha1$12faf935$1$5937d1fb7242e2b3f19c84061ef3c48501b2e564"
 }
 {
-    "firstName" : "Campbell",
-    "lastName" : "Duranseau",
-    "login" : "cduranseau",
-    "sex" : "male",
-    "orientation" : "Women",
-    "address" : "38 Boulevard de Bercy, 75012 Paris",
-    "lat" : 48.8400917,
-    "lng" : 2.3783575,
-    "age" : 37,
-    "bio" : "Lorem Ipsum",
-    "dob" : "1980-01-12",
-    "email" : "CampbellDuranseau@jourrapide.com",
-    "hashtag" : ["intello", "bavard", "aventurier"],
-    "password" : "sha1$12faf935$1$5937d1fb7242e2b3f19c84061ef3c48501b2e564"
+    "firstName": "Campbell",
+    "lastName": "Duranseau",
+    "login": "cduranseau",
+    "sex": "male",
+    "orientation": "Women",
+    "address": "38 Boulevard de Bercy, 75012 Paris",
+    "lat": 48.8400917,
+    "lng": 2.3783575,
+    "age": 37,
+    "bio": "Lorem Ipsum",
+    "dob": "1980-01-12",
+    "email": "CampbellDuranseau@jourrapide.com",
+    "filter": {
+        "minAge": "18.00",
+        "maxAge": "80.00",
+        "minScore": "0.00",
+        "maxScore": "10.00"
+    },
+    "hashtag": [
+        "intello",
+        "bavard",
+        "aventurier"
+    ],
+    "password": "sha1$12faf935$1$5937d1fb7242e2b3f19c84061ef3c48501b2e564"
 }
 {
-    "firstName" : "Neville",
-    "lastName" : "Sciverit",
-    "login" : "nsciverit",
-    "sex" : "male",
-    "orientation" : "Women",
-    "address" : "15 Boulevard Poissonnière, 75002 Paris",
-    "lat" : 48.870925,
-    "lng" : 2.343296,
-    "age" : 35,
-    "bio" : "Lorem Ipsum",
-    "dob" : "1982-04-06",
-    "email" : "NevilleSciverit@teleworm.us",
-    "hashtag" : ["sociable", "aventurier"],
-    "password" : "sha1$12faf935$1$5937d1fb7242e2b3f19c84061ef3c48501b2e564"
+    "firstName": "Neville",
+    "lastName": "Sciverit",
+    "login": "nsciverit",
+    "sex": "male",
+    "orientation": "Women",
+    "address": "15 Boulevard Poissonnière, 75002 Paris",
+    "lat": 48.870925,
+    "lng": 2.343296,
+    "age": 35,
+    "bio": "Lorem Ipsum",
+    "dob": "1982-04-06",
+    "email": "NevilleSciverit@teleworm.us",
+    "filter": {
+        "minAge": "18.00",
+        "maxAge": "80.00",
+        "minScore": "0.00",
+        "maxScore": "10.00"
+    },
+    "hashtag": [
+        "sociable",
+        "aventurier"
+    ],
+    "password": "sha1$12faf935$1$5937d1fb7242e2b3f19c84061ef3c48501b2e564"
 }
 {
-    "firstName" : "Dominic",
-    "lastName" : "Lemaître",
-    "login" : "cuthich",
-    "sex" : "male",
-    "orientation" : "Women",
-    "address" : "Chemin de Saint-Mathurin, 45300 Pithiviers",
-    "lat" : 48.179488,
-    "lng" : 2.241741,
-    "age" : 64,
-    "bio" : "Lorem Ipsum",
-    "dob" : "1953-03-23",
-    "email" : "DominicLemaitre@dayrep.com",
-    "hashtag" : ["geek", "aventurier"],
-    "password" : "sha1$12faf935$1$5937d1fb7242e2b3f19c84061ef3c48501b2e564"
+    "firstName": "Dominic",
+    "lastName": "Lemaître",
+    "login": "cuthich",
+    "sex": "male",
+    "orientation": "Women",
+    "address": "Chemin de Saint-Mathurin, 45300 Pithiviers",
+    "lat": 48.179488,
+    "lng": 2.241741,
+    "age": 64,
+    "bio": "Lorem Ipsum",
+    "dob": "1953-03-23",
+    "email": "DominicLemaitre@dayrep.com",
+    "filter": {
+        "minAge": "18.00",
+        "maxAge": "80.00",
+        "minScore": "0.00",
+        "maxScore": "10.00"
+    },
+    "hashtag": [
+        "geek",
+        "aventurier"
+    ],
+    "password": "sha1$12faf935$1$5937d1fb7242e2b3f19c84061ef3c48501b2e564"
 }
 {
-    "firstName" : "Marlon",
-    "lastName" : "Vadeboncoeur",
-    "login" : "mvadeboncoeur",
-    "sex" : "male",
-    "orientation" : "Women",
-    "address" : "5 Rue Robert, 13007 Marseille",
-    "lat" : 43.291093,
-    "lng" : 5.3652794,
-    "age" : 46,
-    "bio" : "Lorem Ipsum",
-    "dob" : "1970-10-27",
-    "email" : "PaienCyr@dayrep.com",
-    "hashtag" : ["bavard", "aventurier"],
-    "password" : "sha1$12faf935$1$5937d1fb7242e2b3f19c84061ef3c48501b2e564"
+    "firstName": "Marlon",
+    "lastName": "Vadeboncoeur",
+    "login": "mvadeboncoeur",
+    "sex": "male",
+    "orientation": "Women",
+    "address": "5 Rue Robert, 13007 Marseille",
+    "lat": 43.291093,
+    "lng": 5.3652794,
+    "age": 46,
+    "bio": "Lorem Ipsum",
+    "dob": "1970-10-27",
+    "email": "PaienCyr@dayrep.com",
+    "filter": {
+        "minAge": "18.00",
+        "maxAge": "80.00",
+        "minScore": "0.00",
+        "maxScore": "10.00"
+    },
+    "hashtag": [
+        "bavard",
+        "aventurier"
+    ],
+    "password": "sha1$12faf935$1$5937d1fb7242e2b3f19c84061ef3c48501b2e564"
 }
 {
-    "firstName" : "Royden",
-    "lastName" : "Bussière",
-    "login" : "rbussiere",
-    "sex" : "male",
-    "orientation" : "Women",
-    "address" : "18 Passage Saint-Pierre Amelot, 75011 Paris",
-    "lat" : 48.8628827,
-    "lng" : 2.3690156,
-    "age" : 29,
-    "bio" : "Lorem Ipsum",
-    "dob" : "1988-03-11",
-    "email" : "davetBerube@teleworm.us",
-    "hashtag" : ["aventurier"],
-    "password" : "sha1$12faf935$1$5937d1fb7242e2b3f19c84061ef3c48501b2e564"
+    "firstName": "Royden",
+    "lastName": "Bussière",
+    "login": "rbussiere",
+    "sex": "male",
+    "orientation": "Women",
+    "address": "18 Passage Saint-Pierre Amelot, 75011 Paris",
+    "lat": 48.8628827,
+    "lng": 2.3690156,
+    "age": 29,
+    "bio": "Lorem Ipsum",
+    "dob": "1988-03-11",
+    "email": "davetBerube@teleworm.us",
+    "filter": {
+        "minAge": "18.00",
+        "maxAge": "80.00",
+        "minScore": "0.00",
+        "maxScore": "10.00"
+    },
+    "hashtag": [
+        "aventurier"
+    ],
+    "password": "sha1$12faf935$1$5937d1fb7242e2b3f19c84061ef3c48501b2e564"
 }
 {
-    "firstName" : "Davet",
-    "lastName" : "Bérubé",
-    "login" : "dberube",
-    "sex" : "male",
-    "orientation" : "Women",
-    "address" : "96 Boulevard Bessières, 75017 Paris",
-    "lat" : 48.8960719,
-    "lng" : 2.3179498,
-    "age" : 29,
-    "bio" : "Lorem Ipsum",
-    "dob" : "1988-03-11",
-    "email" : "DavetBerubaae@teleworm.us",
-    "hashtag" : ["intello", "sociable", "aventurier"],
-    "password" : "sha1$12faf935$1$5937d1fb7242e2b3f19c84061ef3c48501b2e564"
+    "firstName": "Davet",
+    "lastName": "Bérubé",
+    "login": "dberube",
+    "sex": "male",
+    "orientation": "Women",
+    "address": "96 Boulevard Bessières, 75017 Paris",
+    "lat": 48.8960719,
+    "lng": 2.3179498,
+    "age": 29,
+    "bio": "Lorem Ipsum",
+    "dob": "1988-03-11",
+    "email": "DavetBerubaae@teleworm.us",
+    "filter": {
+        "minAge": "18.00",
+        "maxAge": "80.00",
+        "minScore": "0.00",
+        "maxScore": "10.00"
+    },
+    "hashtag": [
+        "intello",
+        "sociable",
+        "aventurier"
+    ],
+    "password": "sha1$12faf935$1$5937d1fb7242e2b3f19c84061ef3c48501b2e564"
 }
 {
-    "firstName" : "Luc",
-    "lastName" : "Labrecque",
-    "login" : "llabrecque",
-    "sex" : "male",
-    "orientation" : "Men",
-    "address" : "6 Rue du Général Henrion Bertier, 92200 Neuilly-sur-Seine",
-    "lat" : 48.8836525,
-    "lng" : 2.2565428,
-    "age" : 33,
-    "bio" : "Lorem Ipsum",
-    "dob" : "1983-07-18",
-    "email" : "LucLabrecque@dayrep.com",
-    "hashtag" : ["geek"],
-    "password" : "sha1$12faf935$1$5937d1fb7242e2b3f19c84061ef3c48501b2e564"
+    "firstName": "Luc",
+    "lastName": "Labrecque",
+    "login": "llabrecque",
+    "sex": "male",
+    "orientation": "Men",
+    "address": "6 Rue du Général Henrion Bertier, 92200 Neuilly-sur-Seine",
+    "lat": 48.8836525,
+    "lng": 2.2565428,
+    "age": 33,
+    "bio": "Lorem Ipsum",
+    "dob": "1983-07-18",
+    "email": "LucLabrecque@dayrep.com",
+    "filter": {
+        "minAge": "18.00",
+        "maxAge": "80.00",
+        "minScore": "0.00",
+        "maxScore": "10.00"
+    },
+    "hashtag": [
+        "geek"
+    ],
+    "password": "sha1$12faf935$1$5937d1fb7242e2b3f19c84061ef3c48501b2e564"
 }
 {
-    "firstName" : "Eric",
-    "lastName" : "Durand",
-    "login" : "edurand",
-    "sex" : "male",
-    "orientation" : "Women",
-    "address" : "3bis Rue du Limousin, 95100 Argenteuil",
-    "lat" : 48.9637375,
-    "lng" : 2.2368649,
-    "age" : 33,
-    "bio" : "Lorem Ipsum",
-    "dob" : "1984-06-1984",
-    "email" : "EricDurand@dayrep.com",
-    "hashtag" : ["geek", "bavard", "aventurier"],
-    "password" : "sha1$12faf935$1$5937d1fb7242e2b3f19c84061ef3c48501b2e564"
+    "firstName": "Eric",
+    "lastName": "Durand",
+    "login": "edurand",
+    "sex": "male",
+    "orientation": "Women",
+    "address": "3bis Rue du Limousin, 95100 Argenteuil",
+    "lat": 48.9637375,
+    "lng": 2.2368649,
+    "age": 33,
+    "bio": "Lorem Ipsum",
+    "dob": "1984-06-1984",
+    "email": "EricDurand@dayrep.com",
+    "filter": {
+        "minAge": "18.00",
+        "maxAge": "80.00",
+        "minScore": "0.00",
+        "maxScore": "10.00"
+    },
+    "hashtag": [
+        "geek",
+        "bavard",
+        "aventurier"
+    ],
+    "password": "sha1$12faf935$1$5937d1fb7242e2b3f19c84061ef3c48501b2e564"
 }
 {
-    "firstName" : "Tearlach",
-    "lastName" : "St-Jean",
-    "login" : "stjean",
-    "sex" : "male",
-    "orientation" : "Women",
-    "address" : "6 Rue Valette, 93100 Montreuil",
-    "lat" : 48.8551725,
-    "lng" : 2.4191181,
-    "age" : 21,
-    "bio" : "Lorem Ipsum",
-    "dob" : "1996-06-11",
-    "email" : "TearlachSt-Jean@dayrep.com",
-    "hashtag" : ["geek", "intello", "bavard", "sociable", "aventurier"],
-    "password" : "sha1$12faf935$1$5937d1fb7242e2b3f19c84061ef3c48501b2e564"
+    "firstName": "Tearlach",
+    "lastName": "St-Jean",
+    "login": "stjean",
+    "sex": "male",
+    "orientation": "Women",
+    "address": "6 Rue Valette, 93100 Montreuil",
+    "lat": 48.8551725,
+    "lng": 2.4191181,
+    "age": 21,
+    "bio": "Lorem Ipsum",
+    "dob": "1996-06-11",
+    "email": "TearlachSt-Jean@dayrep.com",
+    "filter": {
+        "minAge": "18.00",
+        "maxAge": "80.00",
+        "minScore": "0.00",
+        "maxScore": "10.00"
+    },
+    "hashtag": [
+        "geek",
+        "intello",
+        "bavard",
+        "sociable",
+        "aventurier"
+    ],
+    "password": "sha1$12faf935$1$5937d1fb7242e2b3f19c84061ef3c48501b2e564"
 }
 {
-    "firstName" : "Alexandri",
-    "lastName" : "Barrière",
-    "login" : "alexiière",
-    "sex" : "female",
-    "orientation" : "Men",
-    "address" : "39 Rue Adrien Cramail, 92500 Rueil-Malmaison",
-    "lat" : 48.881757,
-    "lng" : 2.1696348,
-    "age" : 25,
-    "bio" : "Lorem Ipsum",
-    "dob" : "1992-02-28",
-    "email" : "alexiière@jourrapide.com",
-    "hashtag" : ["geek", "bavard", "sociable", "aventurier"],
-    "password" : "sha1$12faf935$1$5937d1fb7242e2b3f19c84061ef3c48501b2e564"
+    "firstName": "Alexandri",
+    "lastName": "Barrière",
+    "login": "alexiière",
+    "sex": "female",
+    "orientation": "Men",
+    "address": "39 Rue Adrien Cramail, 92500 Rueil-Malmaison",
+    "lat": 48.881757,
+    "lng": 2.1696348,
+    "age": 25,
+    "bio": "Lorem Ipsum",
+    "dob": "1992-02-28",
+    "email": "alexiière@jourrapide.com",
+    "filter": {
+        "minAge": "18.00",
+        "maxAge": "80.00",
+        "minScore": "0.00",
+        "maxScore": "10.00"
+    },
+    "hashtag": [
+        "geek",
+        "bavard",
+        "sociable",
+        "aventurier"
+    ],
+    "password": "sha1$12faf935$1$5937d1fb7242e2b3f19c84061ef3c48501b2e564"
 }
 {
-    "firstName" : "Campbelli",
-    "lastName" : "Duran",
-    "login" : "campedurie",
-    "sex" : "female",
-    "orientation" : "Men",
-    "address" : "38 Boulevard de Bercy, 75012 Paris",
-    "lat" : 48.8400917,
-    "lng" : 2.3783575,
-    "age" : 37,
-    "bio" : "Lorem Ipsum",
-    "dob" : "1980-01-12",
-    "email" : "Campbellieanseau@jourrapide.com",
-    "hashtag" : ["intello", "bavard", "aventurier"],
-    "password" : "sha1$12faf935$1$5937d1fb7242e2b3f19c84061ef3c48501b2e564"
+    "firstName": "Campbelli",
+    "lastName": "Duran",
+    "login": "campedurie",
+    "sex": "female",
+    "orientation": "Men",
+    "address": "38 Boulevard de Bercy, 75012 Paris",
+    "lat": 48.8400917,
+    "lng": 2.3783575,
+    "age": 37,
+    "bio": "Lorem Ipsum",
+    "dob": "1980-01-12",
+    "email": "Campbellieanseau@jourrapide.com",
+    "filter": {
+        "minAge": "18.00",
+        "maxAge": "80.00",
+        "minScore": "0.00",
+        "maxScore": "10.00"
+    },
+    "hashtag": [
+        "intello",
+        "bavard",
+        "aventurier"
+    ],
+    "password": "sha1$12faf935$1$5937d1fb7242e2b3f19c84061ef3c48501b2e564"
 }
 {
-    "firstName" : "Nevilla",
-    "lastName" : "Sciverit",
-    "login" : "nelliesciverit",
-    "sex" : "female",
-    "orientation" : "Men",
-    "address" : "15 Boulevard Poissonnière, 75002 Paris",
-    "lat" : 48.870925,
-    "lng" : 2.343296,
-    "age" : 35,
-    "bio" : "Lorem Ipsum",
-    "dob" : "1982-04-06",
-    "email" : "NevillaSciverit@teleworm.us",
-    "hashtag" : ["sociable", "aventurier"],
-    "password" : "sha1$12faf935$1$5937d1fb7242e2b3f19c84061ef3c48501b2e564"
+    "firstName": "Nevilla",
+    "lastName": "Sciverit",
+    "login": "nelliesciverit",
+    "sex": "female",
+    "orientation": "Men",
+    "address": "15 Boulevard Poissonnière, 75002 Paris",
+    "lat": 48.870925,
+    "lng": 2.343296,
+    "age": 35,
+    "bio": "Lorem Ipsum",
+    "dob": "1982-04-06",
+    "email": "NevillaSciverit@teleworm.us",
+    "filter": {
+        "minAge": "18.00",
+        "maxAge": "80.00",
+        "minScore": "0.00",
+        "maxScore": "10.00"
+    },
+    "hashtag": [
+        "sociable",
+        "aventurier"
+    ],
+    "password": "sha1$12faf935$1$5937d1fb7242e2b3f19c84061ef3c48501b2e564"
 }
 {
-    "firstName" : "Dominica",
-    "lastName" : "Lemaître",
-    "login" : "cauthich",
-    "sex" : "female",
-    "orientation" : "Men",
-    "address" : "Chemin de Saint-Mathurin, 45300 Pithiviers",
-    "lat" : 48.179488,
-    "lng" : 2.241741,
-    "age" : 64,
-    "bio" : "Lorem Ipsum",
-    "dob" : "1953-03-23",
-    "email" : "DominicaLemaitre@dayrep.com",
-    "hashtag" : ["geek", "aventurier"],
-    "password" : "sha1$12faf935$1$5937d1fb7242e2b3f19c84061ef3c48501b2e564"
+    "firstName": "Dominica",
+    "lastName": "Lemaître",
+    "login": "cauthich",
+    "sex": "female",
+    "orientation": "Men",
+    "address": "Chemin de Saint-Mathurin, 45300 Pithiviers",
+    "lat": 48.179488,
+    "lng": 2.241741,
+    "age": 64,
+    "bio": "Lorem Ipsum",
+    "dob": "1953-03-23",
+    "email": "DominicaLemaitre@dayrep.com",
+    "filter": {
+        "minAge": "18.00",
+        "maxAge": "80.00",
+        "minScore": "0.00",
+        "maxScore": "10.00"
+    },
+    "hashtag": [
+        "geek",
+        "aventurier"
+    ],
+    "password": "sha1$12faf935$1$5937d1fb7242e2b3f19c84061ef3c48501b2e564"
 }
 {
-    "firstName" : "Marlona",
-    "lastName" : "Vadeboncoeur",
-    "login" : "mvadeboncoeur",
-    "sex" : "female",
-    "orientation" : "Men",
-    "address" : "5 Rue Robert, 13007 Marseille",
-    "lat" : 43.291093,
-    "lng" : 5.3652794,
-    "age" : 46,
-    "bio" : "Lorem Ipsum",
-    "dob" : "1970-10-27",
-    "email" : "PaienaaCyr@dayrep.com",
-    "hashtag" : ["bavard", "aventurier"],
-    "password" : "sha1$12faf935$1$5937d1fb7242e2b3f19c84061ef3c48501b2e564"
+    "firstName": "Marlona",
+    "lastName": "Vadeboncoeur",
+    "login": "mvadeboncoeur",
+    "sex": "female",
+    "orientation": "Men",
+    "address": "5 Rue Robert, 13007 Marseille",
+    "lat": 43.291093,
+    "lng": 5.3652794,
+    "age": 46,
+    "bio": "Lorem Ipsum",
+    "dob": "1970-10-27",
+    "email": "PaienaaCyr@dayrep.com",
+    "filter": {
+        "minAge": "18.00",
+        "maxAge": "80.00",
+        "minScore": "0.00",
+        "maxScore": "10.00"
+    },
+    "hashtag": [
+        "bavard",
+        "aventurier"
+    ],
+    "password": "sha1$12faf935$1$5937d1fb7242e2b3f19c84061ef3c48501b2e564"
 }
 {
-    "firstName" : "Roydena",
-    "lastName" : "Bussière",
-    "login" : "raabussiere",
-    "sex" : "female",
-    "orientation" : "Men",
-    "address" : "18 Passage Saint-Pierre Amelot, 75011 Paris",
-    "lat" : 48.8628827,
-    "lng" : 2.3690156,
-    "age" : 29,
-    "bio" : "Lorem Ipsum",
-    "dob" : "1988-03-11",
-    "email" : "daveaatBerube@teleworm.us",
-    "hashtag" : ["aventurier"],
-    "password" : "sha1$12faf935$1$5937d1fb7242e2b3f19c84061ef3c48501b2e564"
+    "firstName": "Roydena",
+    "lastName": "Bussière",
+    "login": "raabussiere",
+    "sex": "female",
+    "orientation": "Men",
+    "address": "18 Passage Saint-Pierre Amelot, 75011 Paris",
+    "lat": 48.8628827,
+    "lng": 2.3690156,
+    "age": 29,
+    "bio": "Lorem Ipsum",
+    "dob": "1988-03-11",
+    "email": "daveaatBerube@teleworm.us",
+    "filter": {
+        "minAge": "18.00",
+        "maxAge": "80.00",
+        "minScore": "0.00",
+        "maxScore": "10.00"
+    },
+    "hashtag": [
+        "aventurier"
+    ],
+    "password": "sha1$12faf935$1$5937d1fb7242e2b3f19c84061ef3c48501b2e564"
 }
 {
-    "firstName" : "Daveta",
-    "lastName" : "Bérubé",
-    "login" : "dberube",
-    "sex" : "female",
-    "orientation" : "Men",
-    "address" : "96 Boulevard Bessières, 75017 Paris",
-    "lat" : 48.8960719,
-    "lng" : 2.3179498,
-    "age" : 29,
-    "bio" : "Lorem Ipsum",
-    "dob" : "1988-03-11",
-    "email" : "Davetq2Berube@teleworm.us",
-    "hashtag" : ["intello", "sociable", "aventurier"],
-    "password" : "sha1$12faf935$1$5937d1fb7242e2b3f19c84061ef3c48501b2e564"
+    "firstName": "Daveta",
+    "lastName": "Bérubé",
+    "login": "dberube",
+    "sex": "female",
+    "orientation": "Men",
+    "address": "96 Boulevard Bessières, 75017 Paris",
+    "lat": 48.8960719,
+    "lng": 2.3179498,
+    "age": 29,
+    "bio": "Lorem Ipsum",
+    "dob": "1988-03-11",
+    "email": "Davetq2Berube@teleworm.us",
+    "filter": {
+        "minAge": "18.00",
+        "maxAge": "80.00",
+        "minScore": "0.00",
+        "maxScore": "10.00"
+    },
+    "hashtag": [
+        "intello",
+        "sociable",
+        "aventurier"
+    ],
+    "password": "sha1$12faf935$1$5937d1fb7242e2b3f19c84061ef3c48501b2e564"
 }
 {
-    "firstName" : "Lucy",
-    "lastName" : "Labrecque",
-    "login" : "llabrecque",
-    "sex" : "female",
-    "orientation" : "Women",
-    "address" : "6 Rue du Général Henrion Bertier, 92200 Neuilly-sur-Seine",
-    "lat" : 48.8836525,
-    "lng" : 2.2565428,
-    "age" : 33,
-    "bio" : "Lorem Ipsum",
-    "dob" : "1983-07-18",
-    "email" : "LucLaaasasbrecque@dayrep.com",
-    "hashtag" : ["geek"],
-    "password" : "sha1$12faf935$1$5937d1fb7242e2b3f19c84061ef3c48501b2e564"
+    "firstName": "Lucy",
+    "lastName": "Labrecque",
+    "login": "llabrecque",
+    "sex": "female",
+    "orientation": "Women",
+    "address": "6 Rue du Général Henrion Bertier, 92200 Neuilly-sur-Seine",
+    "lat": 48.8836525,
+    "lng": 2.2565428,
+    "age": 33,
+    "bio": "Lorem Ipsum",
+    "dob": "1983-07-18",
+    "email": "LucLaaasasbrecque@dayrep.com",
+    "filter": {
+        "minAge": "18.00",
+        "maxAge": "80.00",
+        "minScore": "0.00",
+        "maxScore": "10.00"
+    },
+    "hashtag": [
+        "geek"
+    ],
+    "password": "sha1$12faf935$1$5937d1fb7242e2b3f19c84061ef3c48501b2e564"
 }
 {
-    "firstName" : "Erika",
-    "lastName" : "Durand",
-    "login" : "erikadurand",
-    "sex" : "female",
-    "orientation" : "Men",
-    "address" : "3bis Rue du Limousin, 95100 Argenteuil",
-    "lat" : 48.9637375,
-    "lng" : 2.2368649,
-    "age" : 33,
-    "bio" : "Lorem Ipsum",
-    "dob" : "1984-06-1984",
-    "email" : "ErikaDurand@dayrep.com",
-    "hashtag" : ["geek", "bavard", "aventurier"],
-    "password" : "sha1$12faf935$1$5937d1fb7242e2b3f19c84061ef3c48501b2e564"
+    "firstName": "Erika",
+    "lastName": "Durand",
+    "login": "erikadurand",
+    "sex": "female",
+    "orientation": "Men",
+    "address": "3bis Rue du Limousin, 95100 Argenteuil",
+    "lat": 48.9637375,
+    "lng": 2.2368649,
+    "age": 33,
+    "bio": "Lorem Ipsum",
+    "dob": "1984-06-1984",
+    "email": "ErikaDurand@dayrep.com",
+    "filter": {
+        "minAge": "18.00",
+        "maxAge": "80.00",
+        "minScore": "0.00",
+        "maxScore": "10.00"
+    },
+    "hashtag": [
+        "geek",
+        "bavard",
+        "aventurier"
+    ],
+    "password": "sha1$12faf935$1$5937d1fb7242e2b3f19c84061ef3c48501b2e564"
 }
 {
-    "firstName" : "Tearlacha",
-    "lastName" : "St-Jean",
-    "login" : "saatjean",
-    "sex" : "female",
-    "orientation" : "Men",
-    "address" : "6 Rue Valette, 93100 Montreuil",
-    "lat" : 48.8551725,
-    "lng" : 2.4191181,
-    "age" : 21,
-    "bio" : "Lorem Ipsum",
-    "dob" : "1996-06-11",
-    "email" : "TearlachSt-Jean@dayrep.com",
-    "hashtag" : ["geek", "intello", "bavard", "sociable", "aventurier"],
-    "password" : "sha1$12faf935$1$5937d1fb7242e2b3f19c84061ef3c48501b2e564"
+    "firstName": "Tearlacha",
+    "lastName": "St-Jean",
+    "login": "saatjean",
+    "sex": "female",
+    "orientation": "Men",
+    "address": "6 Rue Valette, 93100 Montreuil",
+    "lat": 48.8551725,
+    "lng": 2.4191181,
+    "age": 21,
+    "bio": "Lorem Ipsum",
+    "dob": "1996-06-11",
+    "email": "TearlachSt-Jean@dayrep.com",
+    "filter": {
+        "minAge": "18.00",
+        "maxAge": "80.00",
+        "minScore": "0.00",
+        "maxScore": "10.00"
+    },
+    "hashtag": [
+        "geek",
+        "intello",
+        "bavard",
+        "sociable",
+        "aventurier"
+    ],
+    "password": "sha1$12faf935$1$5937d1fb7242e2b3f19c84061ef3c48501b2e564"
 }

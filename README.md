@@ -16,25 +16,8 @@ Tinder made by 42 Students
 * Location
 
 #### Details
-* Need to add filters [age] and [score] for everybody in the databse users -- for presentation
 * Babel
 * Use of classes
 
 #### Commands
-* mongoimport --db matcha --collection users --drop --file ~/.../users.json --jsonArray
-router.get('/', function(req, res, next){
-    let errors = req.session.errors;
-
-    if (req.session.login) {
-        res.redirect('/home');
-    } else {
-        // A MODIFIER AUTOREDIRECT TO HOMEPAGE
-        req.session.login = 'densz'
-        res.redirect('/settings');
-        // req.session.errors = null;
-        // res.render('index', {
-        //     title: 'Matcha - Sign In',
-        //     errors: errors
-        // });
-    }
-});
+* mongoimport --db matcha --collection users --drop --file /mnt/c/42/matcha/public/dump/users.json --jsonArray

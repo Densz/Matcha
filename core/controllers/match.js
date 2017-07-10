@@ -1,34 +1,22 @@
 const model = require('../models/database.js');
 
-const filterBySex = async function (info, req) {
+const filter = async function (info, req) {
     if (info['orientation'] === 'Women') {
-        let array = await model.getData('users', {sex: 'female', login: {$ne: req.session.login}});
-        return array;    
-    } else if (info['orientation'] === 'Men') {
-        let array = await model.getData('users', {sex: 'male', login: {$ne: req.session.login}});
-        return array;
-    } else {
-        let array = await model.getData('users', {login: {$ne: req.session.login}});
-        return array;
-    }
+        let array = await model.getData('users', {
+            sex: info['orientation'] === 'Women' ? 'female' : info['orientation'] === 'Men' ? 'male' : { $regex: ".*male" },
+            login: { $ne: req.session.login },
+            $and: [ { age: { $gte: parseInt(info['filter']['minAge']) } }, { age: { $lte: parseInt(info['filter']['maxAge']) } } ]
+        });
+        if (Array.isArray(array)) {
+            return array;
+        } else {
+            //If there is no data found from the premise model.getData
+            //Array will contain an error
+            console.log(array); 
+            return undefined;
+        }
 };
 
-const filterByFilters = async function (info, peopleArray) {
-    let i = 0;
-    let newPeopleArray = [];
-    console.log(peopleArray.length);
-    while (i < peopleArray.length) {
-        if (info['filter']['age'][0] > peopleArray[i]['age'] || info['filter']['age'][1] < peopleArray[i]['age'])
-        {
-            peopleArray = peopleArray.slice(i);
-            i--;
-        }
-        i++;
-    }
-    return peopleArray;
-}
-
 module.exports = {
-    'filterBySex': filterBySex,
-    'filterByFilters': filterByFilters
+    'filter': filter
 }
