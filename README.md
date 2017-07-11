@@ -1,5 +1,5 @@
 # Matcha
-Tinder made by 42 Students
+Tinder-like app made by 42 Students
 
 ### Need to do
 * Reset password (need to check if we have to do it)
