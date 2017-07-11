@@ -97,6 +97,7 @@ router.post('/getAddress', async function (req, res) {
         tmpAddress: req.body.tmpAddress, 
         tmpLat: req.body.tmpLat,
         tmpLng: req.body.tmpLng
+        //location: [ req.body.tmpLng, req.body.tmpLat ]
     }});
     res.redirect('/settings');
 });

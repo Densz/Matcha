@@ -38,6 +38,7 @@ router.get('/', async function (req, res) {
             filter: info['filter'],
             hashtagFilter: info['hashtagFilter'],
             dob: getAge(info['dob']),
+            popularityScore: info['popularityScore'],
             people: peopleArray,
             title: 'Matcha - Home'
         });
@@ -74,15 +75,18 @@ router.post('/editAddress', async function (req, res) {
                 model.updateData('users', { login: req.session.login }, { $set: { 
                     address: addressDetails['results'][0]['formatted_address'], 
                     lat: addressDetails['results'][0]['geometry']['location']['lat'],
-                    lng: addressDetails['results'][0]['geometry']['location']['lng']
+                    lng: addressDetails['results'][0]['geometry']['location']['lng'],
+                    location: [ addressDetails['results'][0]['geometry']['location']['lng'], addressDetails['results'][0]['geometry']['location']['lat'] ]
                 }} );
                 res.redirect('/home');
             } else {
-                res.redirect('/home');
+                req.session.errors.push({ msg: 'Address not found, please enter zip code or city for more precision' });
+                res.redirect('/settings');
             }
         });
     } else {
-        res.redirect('/home');
+        req.session.errors.push({ msg: 'No address entered' });   
+        res.redirect('/settings');
     }
 });
 

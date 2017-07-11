@@ -10,11 +10,10 @@
                 <p><%= bio %></p>
                 <br>
                 <p><b>Popularity score</b></p>
-                <img class="profile_star" src="/images/star.png">
-                <img class="profile_star" src="/images/star.png">
-                <img class="profile_star" src="/images/star.png">
+                <% for (stars=0; stars < popularityScore; stars++) { %>
+                    <img class="profile_star" src="/images/star.png">
+                <% } %>
             </div>
-
             <div class="box hl3">
                 <h4>Interests</h4>
                 <p><b>Add your interest</b></p>
@@ -45,13 +44,9 @@
                         <span><b><%= people[i]['firstName'] %> <%= people[i]['lastName'] %></b> (<%= people[i]['age'] %> ans)</span><br>
                         <span><%= people[i]['sex'] %></span><br>
                         <span><b>Address:</b> <%= people[i]['address'] %></span><br>
-                        <img class="profile_star" src="/images/star.png">
-                        <img class="profile_star" src="/images/star.png">
-                        <img class="profile_star" src="/images/star.png">
-                        <img class="profile_star" src="/images/star.png">
-                        <img class="profile_star" src="/images/star.png">
-                        <img class="profile_star" src="/images/star.png">
-                        <img class="profile_star" src="/images/star.png"><br><br>
+                        <% for (stars=0; stars < people[i]['popularityScore']; stars++) { %>
+                            <img class="profile_star" src="/images/star.png">
+                        <% } %><br><br>
                         <img class="match-img" src="/images/<%= people[i]['sex'] === 'female' ? 'woman' : 'man' %>.jpg"><br><br>
                         <% for (y=0; y < people[i]['hashtag'].length; y++) { %>
                             <span class="hashtag"><%= people[i]['hashtag'][y] %></span>

@@ -19,5 +19,7 @@ Tinder made by 42 Students
 * Babel
 * Use of classes
 
-#### Commands
+#### Commands to import Users - Database
 * mongoimport --db matcha --collection users --drop --file /mnt/c/42/matcha/public/dump/users.json --jsonArray
+* db.users.createIndex({location: "2dsphere"});
+* db.users.getIndexes()
