@@ -97,8 +97,20 @@ router.post('/getAddress', async function (req, res) {
         tmpAddress: req.body.tmpAddress, 
         tmpLat: req.body.tmpLat,
         tmpLng: req.body.tmpLng
-        //location: [ req.body.tmpLng, req.body.tmpLat ]
     }});
+    let db = await model.connectToDatabase();
+    let user = await db.collection('users').findOne({ login: req.session.login });
+    if (!user['lat'] && !user['lng']) {
+        model.updateData('users', { login: req.session.login }, { $set: { 
+            location: {
+                type: "Point",
+                coordinates: [
+                    parseFloat(req.body.tmpLng),
+                    parseFloat(req.body.tmpLat)
+                ]
+            }
+        }} );
+    }
     res.redirect('/settings');
 });
 

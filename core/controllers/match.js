@@ -8,10 +8,10 @@ const filter = async function (info, req) {
             $nearSphere: {
                 $geometry: {
                     type: "Point",
-                    coordinates: [2.3756215, 48.8640713]
+                    coordinates: [info['location']['coordinates'][0], info['location']['coordinates'][1]]
                 },
                 $minDistance: 0,
-                $maxDistance: 10000
+                $maxDistance: 5000
             } 
         },
         $and: [ 
@@ -22,7 +22,6 @@ const filter = async function (info, req) {
             ],
     });
     if (Array.isArray(array)) {
-        console.log('array db:', array);
         return array;
     } else {
         //If there is no data found from the premise model.getData

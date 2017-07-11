@@ -17,14 +17,8 @@ router.get('/', async function (req, res) {
         model.updateData('users', { login: req.session.login }, { $set: {
             age: getAge(info['dob'])
         }});
-        /**
-         * Algo du swipe ! Ca commence Allez !
-         */
+        //Matchs en fonction des filtres
         let peopleArray = await match.filter(info, req);
-
-        /**
-         * Render
-         */
         res.render('home', {
             layout: 'layout_nav',
             firstName: info['firstName'],
@@ -76,7 +70,13 @@ router.post('/editAddress', async function (req, res) {
                     address: addressDetails['results'][0]['formatted_address'], 
                     lat: addressDetails['results'][0]['geometry']['location']['lat'],
                     lng: addressDetails['results'][0]['geometry']['location']['lng'],
-                    location: [ addressDetails['results'][0]['geometry']['location']['lng'], addressDetails['results'][0]['geometry']['location']['lat'] ]
+                    location: {
+                        type: "Point",
+                        coordinates: [
+                            parseFloat(addressDetails['results'][0]['geometry']['location']['lng']),
+                            parseFloat(addressDetails['results'][0]['geometry']['location']['lat'])
+                        ]
+                    }
                 }} );
                 res.redirect('/home');
             } else {
