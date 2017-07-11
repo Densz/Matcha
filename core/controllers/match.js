@@ -24,8 +24,6 @@ const filter = async function (info, req) {
     if (Array.isArray(array)) {
         return array;
     } else {
-        //If there is no data found from the premise model.getData
-        //Array will contain an error
         console.log('Error message ==> ', array); 
         return undefined;
     }
