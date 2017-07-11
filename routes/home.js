@@ -18,7 +18,9 @@ router.get('/', async function (req, res) {
             age: getAge(info['dob'])
         }});
         //Matchs en fonction des filtres
-        let peopleArray = await match.filter(info, req);
+        let matches = await match.filter(info, req);
+        let peopleArray = await match.filterByInterests(info, matches);
+        console.log("type of People Array: ", peopleArray);
         res.render('home', {
             layout: 'layout_nav',
             firstName: info['firstName'],

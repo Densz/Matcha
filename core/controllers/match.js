@@ -11,7 +11,7 @@ const filter = async function (info, req) {
                     coordinates: [info['location']['coordinates'][0], info['location']['coordinates'][1]]
                 },
                 $minDistance: 0,
-                $maxDistance: 5000
+                $maxDistance: 1000000
             } 
         },
         $and: [ 
@@ -29,6 +29,36 @@ const filter = async function (info, req) {
     }
 };
 
+const countMatches = function(user1, user2){
+    let matches = 0;
+    let i;
+    for (i = 0; i < user1.length; i++) {
+        if (user2.indexOf(user1[i]) != -1)
+            matches++;
+    }
+    return matches;
+}
+
+const filterByInterests = async function (userProfile, matches) {
+    let i = 0;
+    let newMatches = [];
+    let hashtagFilter = userProfile['hashtagFilter'].length > 0 ? [ userProfile['hashtagFilter'] ] : userProfile['hashtag'];
+    
+    while (matches[i]) {
+        let commonInterests = countMatches(matches[i]['hashtag'], hashtagFilter);
+        if (commonInterests > 0) {
+            newMatches.push(matches[i]);
+        }
+        i++;
+    }
+    if (newMatches.length === 0) {
+        return undefined;
+    } else {
+        return newMatches;
+    }
+};
+
 module.exports = {
-    'filter': filter
+    'filter': filter,
+    'filterByInterests': filterByInterests
 };
