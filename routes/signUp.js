@@ -81,13 +81,16 @@ router.post('/submit', function(req, res, next) {
         age: getAge(req.body.DOBYear + '-' + req.body.DOBMonth + '-' + req.body.DOBDay),
         hashtagFilter: "",
         filter: {
-            age: [0, 80],
-            score: [0, 10]
-        }
+            minAge: "18.00",
+            maxAge: "80.00",
+            minScore: "0.00",
+            maxScore : "10.00"
+        },
+        popularityScore: 10
 	};
     model.insertData('users', item);
     req.session.login = req.body.login;
-    res.redirect('/home');
+    res.redirect('/getposition');
 });
 
 module.exports = router;

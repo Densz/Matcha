@@ -5,16 +5,15 @@ const getViewers = async function(userOnline){
     let finalViewers = [];
     let db = await model.connectToDatabase();
     let i = 0;
-
-    while (viewers[i]) {
-        let tmp = await db.collection('users').findOne({ login: viewers[i]['userOnline'] }, { login: 1, firstName: 1, lastName: 1, sex: 1 });
-        finalViewers.push(tmp);
-        i++;
-    }
-    if (finalViewers.length === 0) {
-        return undefined;
-    } else {
+    if(Array.isArray(viewers)){
+        while (viewers[i]) {
+            let tmp = await db.collection('users').findOne({ login: viewers[i]['userOnline'] }, { login: 1, firstName: 1, lastName: 1, sex: 1 });
+            finalViewers.push(tmp);
+            i++;
+        }
         return finalViewers;
+    } else {
+        return undefined;
     }
 };
 
@@ -24,15 +23,15 @@ const getLikes = async function(userOnline) {
     let db = await model.connectToDatabase();
     let i = 0;
 
-    while (viewers[i]) {
-        let tmp = await db.collection('users').findOne({ login: viewers[i]['userOnline'] }, { login: 1, firstName: 1, lastName: 1, sex: 1 });
-        finalViewers.push(tmp);
-        i++;
-    }
-    if (finalViewers.length === 0) {
-        return undefined;
-    } else {
+    if(Array.isArray(viewers)){
+        while (viewers[i]) {
+            let tmp = await db.collection('users').findOne({ login: viewers[i]['userOnline'] }, { login: 1, firstName: 1, lastName: 1, sex: 1 });
+            finalViewers.push(tmp);
+            i++;
+        }
         return finalViewers;
+    } else {
+        return undefined;
     }
 }
 

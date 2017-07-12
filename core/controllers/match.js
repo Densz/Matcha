@@ -66,6 +66,9 @@ const filterByInterests = async function (userOnline, matches) {
     let newMatches = [];
     let hashtagFilter = userOnline['hashtagFilter'].length > 0 ? [ userOnline['hashtagFilter'] ] : userOnline['hashtag'];
     
+    if (hashtagFilter === undefined) {
+        return undefined;
+    }
     if (matches) {
         while (matches[i]) {
             let commonInterests = countMatches(matches[i]['hashtag'], hashtagFilter);

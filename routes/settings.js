@@ -100,7 +100,8 @@ router.post('/getAddress', async function (req, res) {
     }});
     let db = await model.connectToDatabase();
     let user = await db.collection('users').findOne({ login: req.session.login });
-    if (!user['lat'] && !user['lng']) {
+    console.log(user);
+    if (user['lat'] === undefined) {
         model.updateData('users', { login: req.session.login }, { $set: { 
             location: {
                 type: "Point",
@@ -111,7 +112,7 @@ router.post('/getAddress', async function (req, res) {
             }
         }} );
     }
-    res.redirect('/settings');
+    res.send("Okay");
 });
 
 module.exports = router;

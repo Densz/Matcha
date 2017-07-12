@@ -14,6 +14,7 @@ import home from './routes/home';
 import signOut from './routes/signOut';
 import myprofile from './routes/myprofile';
 import settings from './routes/settings';
+import getposition from './routes/getposition';
 
 const app = express();
 
@@ -39,6 +40,7 @@ app.use('/home', home);
 app.use('/myprofile', myprofile);
 app.use('/signOut', signOut);
 app.use('/settings', settings);
+app.use('/getposition', getposition);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

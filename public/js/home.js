@@ -26,9 +26,6 @@ function success(pos) {
          * For the moment only on the settings page, but need to locate the guy also in Homepage
          */
         var htmlLocation = document.querySelector('#location');
-        if (htmlLocation.placeholder === 'Current location') {
-            htmlLocation.placeholder = address['results'][0]['formatted_address'] + ' - detected';
-        }
         /**
          * -- END --
          */
@@ -50,6 +47,13 @@ function insertTmpAddress(address, lat, lng) {
   xhr.open('POST', url() + '/settings/getAddress', true);
   xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
   xhr.send('tmpAddress=' + address + '&tmpLat=' + lat + '&tmpLng=' + lng);
+  xhr.onload = function() {
+    if (xhr.readyState === xhr.DONE) {
+      if (xhr.status === 200 || xhr.status === 0) {
+        window.location.href = url() + '/home';
+      }
+    }
+  }
 };
 
 navigator.geolocation.getCurrentPosition(success, error);
