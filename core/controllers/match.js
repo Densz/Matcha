@@ -1,24 +1,24 @@
 const model = require('../models/database.js');
 
-const filter = async function (info, req) {
+const filter = async function (userOnline, req) {
     let array = await model.getData('users', {
-        sex: info['orientation'] === 'Women' ? 'female' : info['orientation'] === 'Men' ? 'male' : { $regex: ".*male" },
+        sex: userOnline['orientation'] === 'Women' ? 'female' : userOnline['orientation'] === 'Men' ? 'male' : { $regex: ".*male" },
         login: { $ne: req.session.login },
         location: {
             $nearSphere: {
                 $geometry: {
                     type: "Point",
-                    coordinates: [info['location']['coordinates'][0], info['location']['coordinates'][1]]
+                    coordinates: [userOnline['location']['coordinates'][0], userOnline['location']['coordinates'][1]]
                 },
                 $minDistance: 0,
                 $maxDistance: 1000000
             } 
         },
         $and: [ 
-                { age: { $gte: parseInt(info['filter']['minAge']) } }, 
-                { age: { $lte: parseInt(info['filter']['maxAge']) } }, 
-                { popularityScore: { $gte: parseInt(info['filter']['minScore']) } }, 
-                { popularityScore: { $lte: parseInt(info['filter']['maxScore']) } }
+                { age: { $gte: parseInt(userOnline['filter']['minAge']) } }, 
+                { age: { $lte: parseInt(userOnline['filter']['maxAge']) } }, 
+                { popularityScore: { $gte: parseInt(userOnline['filter']['minScore']) } }, 
+                { popularityScore: { $lte: parseInt(userOnline['filter']['maxScore']) } }
             ],
     });
     if (Array.isArray(array)) {
@@ -27,6 +27,23 @@ const filter = async function (info, req) {
         console.log('Error message ==> ', array); 
         return undefined;
     }
+};
+
+const filterByViews = async function (userOnline, matches) {
+    let newMatches = [];
+    let i = 0;
+    let db = await model.connectToDatabase();
+
+    while (matches[i]) {
+        let view = await db.collection('views').findOne({ 
+            userOnline: userOnline['login'],
+            userSeen: matches[i]['login']
+        });
+        if (view === null)
+            newMatches.push(matches[i]);
+        i++;
+    }
+    return newMatches;
 };
 
 const countMatches = function(user1, user2){
@@ -39,10 +56,10 @@ const countMatches = function(user1, user2){
     return matches;
 }
 
-const filterByInterests = async function (userProfile, matches) {
+const filterByInterests = async function (userOnline, matches) {
     let i = 0;
     let newMatches = [];
-    let hashtagFilter = userProfile['hashtagFilter'].length > 0 ? [ userProfile['hashtagFilter'] ] : userProfile['hashtag'];
+    let hashtagFilter = userOnline['hashtagFilter'].length > 0 ? [ userOnline['hashtagFilter'] ] : userOnline['hashtag'];
     
     while (matches[i]) {
         let commonInterests = countMatches(matches[i]['hashtag'], hashtagFilter);
@@ -60,5 +77,6 @@ const filterByInterests = async function (userProfile, matches) {
 
 module.exports = {
     'filter': filter,
-    'filterByInterests': filterByInterests
+    'filterByInterests': filterByInterests,
+    'filterByViews': filterByViews
 };

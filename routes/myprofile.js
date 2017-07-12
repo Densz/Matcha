@@ -6,15 +6,15 @@ const fs = require('fs');
 
 router.get('/', async (req, res, next) => {
     let db = await model.connectToDatabase();
-    let info = await db.collection('users').findOne({ login: req.session.login });
+    let userOnline = await db.collection('users').findOne({ login: req.session.login });
 
     let alertMessage = req.session.success;
     req.session.success = [];
     res.render('myprofile', {
         layout: 'layout_nav',
-        firstName: info['firstName'],
-        lastName: info['lastName'],
-        bio: info['bio'],
+        firstName: userOnline['firstName'],
+        lastName: userOnline['lastName'],
+        bio: userOnline['bio'],
         title: 'Matcha - My profile',
         success: alertMessage
     });

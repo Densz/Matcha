@@ -12,30 +12,34 @@ router.get('/', async function (req, res) {
         req.session.errors.push({ msg: 'No access right' });
         res.redirect('/');
     } else {
+        //Update age each time the guy is connected in the homepage
         let db = await model.connectToDatabase();
-        let info = await db.collection('users').findOne({ login: req.session.login });
+        let userOnline = await db.collection('users').findOne({ login: req.session.login });
         model.updateData('users', { login: req.session.login }, { $set: {
-            age: getAge(info['dob'])
+            age: getAge(userOnline['dob'])
         }});
+
         //Matchs en fonction des filtres
-        let matches = await match.filter(info, req);
-        let peopleArray = await match.filterByInterests(info, matches);
-        console.log("type of People Array: ", peopleArray);
+        let allMatches = await match.filter(userOnline, req);
+        let matchesFiltered = await match.filterByViews(userOnline, allMatches);
+        let finalMatches = await match.filterByInterests(userOnline, matchesFiltered);
+
+        //render result
         res.render('home', {
             layout: 'layout_nav',
-            firstName: info['firstName'],
-            lastName: info['lastName'],
-            address: info['address'],
-            tmpAddress: info['tmpAddress'],
-            bio: info['bio'],
-            sex: info['sex'],
-            orientation: info['orientation'],
-            hashtag: info['hashtag'],
-            filter: info['filter'],
-            hashtagFilter: info['hashtagFilter'],
-            dob: getAge(info['dob']),
-            popularityScore: info['popularityScore'],
-            people: peopleArray,
+            firstName: userOnline['firstName'],
+            lastName: userOnline['lastName'],
+            address: userOnline['address'],
+            tmpAddress: userOnline['tmpAddress'],
+            bio: userOnline['bio'],
+            sex: userOnline['sex'],
+            orientation: userOnline['orientation'],
+            hashtag: userOnline['hashtag'],
+            filter: userOnline['filter'],
+            hashtagFilter: userOnline['hashtagFilter'],
+            dob: getAge(userOnline['dob']),
+            popularityScore: userOnline['popularityScore'],
+            people: finalMatches,
             title: 'Matcha - Home'
         });
     }
