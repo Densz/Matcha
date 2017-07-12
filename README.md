@@ -5,15 +5,14 @@ Tinder-like app made by 42 Students
 * Reset password (need to check if we have to do it)
 * Upload photos
 * Like
-* Match / Swipe
 * Chat (socket.io)
 * Notifications
 
 ### Things done
-* Sign In
 * Templates (HTML/CSS/Bootstrap)
-* Sign up
+* Sign up / Sign In
 * Location
+* Match / Swipe
 
 #### Details
 * Babel

@@ -41,6 +41,7 @@
                 <% if (people) { %>
                     <% for (i=0; i < people.length; i++) { %>
                         <li class="people-box" style="display:<%= i === 0 ? 'inline' : 'none' %>">
+                        <span id='matchedLogin' style="display:none;"><%= people[i]['login'] %></span>
                         <span><b><%= people[i]['firstName'] %> <%= people[i]['lastName'] %></b> (<%= people[i]['age'] %> ans)</span><br>
                         <span><%= people[i]['sex'] %></span><br>
                         <span><b>Address:</b> <%= people[i]['address'] %></span><br>

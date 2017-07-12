@@ -114,4 +114,15 @@ router.post('/getFilter', async function (req, res){
     }})
 });
 
+/**
+ * AJAX function
+ */
+router.post('/swipe', async function (req, res){
+    model.insertData('views', {
+        userOnline: req.session.login,
+        userSeen: req.body.loginSwiped,
+        status: req.body.status
+    });
+});
+
 module.exports = router;
