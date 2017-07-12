@@ -9,6 +9,7 @@ router.get('/', async (req, res, next) => {
     let db = await model.connectToDatabase();
     let userOnline = await db.collection('users').findOne({ login: req.session.login });
     let viewers = await views.getViewers(userOnline);
+    let likes = await views.getLikes(userOnline);
 
     let alertMessage = req.session.success;
     req.session.success = [];
@@ -19,6 +20,7 @@ router.get('/', async (req, res, next) => {
         bio: userOnline['bio'],
         title: 'Matcha - My profile',
         viewers: viewers,
+        likes: likes,
         success: alertMessage
     });
 });

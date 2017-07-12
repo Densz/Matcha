@@ -94,7 +94,7 @@
     <div class="row">
         <div class="col-sm-3">
             <div class="box col-sm-12">
-                <h4>Views</h4>
+                <h4>Who swiped your profile ?</h4>
                 <% if (viewers) { %>
                     <% for (i=0; i < viewers.length; i++) { %>
                         <% if (i !== viewers.length - 1) { %>
@@ -122,39 +122,30 @@
         </div>
         <div class="col-sm-3">
             <div class="box col-sm-12">
-                <h4>Likes</h4>
-                <div class="chat-people">
-                    <div class="chat-img">
-                        <img src="/images/medium_ltran.jpg" class="profile_picture_chat">
-                    </div>
-                    <div class="chat-description">
-                        <span><b>Kneth Master</b></span><br>
-                    </div>
-                </div>
-                <div class="chat-people">
-                    <div class="chat-img">
-                        <img src="/images/medium_ltran.jpg" class="profile_picture_chat">
-                    </div>
-                    <div class="chat-description">
-                        <span><b>Kneth Master</b></span><br>
-                    </div>
-                </div>
-                <div class="chat-people">
-                    <div class="chat-img">
-                        <img src="/images/medium_ltran.jpg" class="profile_picture_chat">
-                    </div>
-                    <div class="chat-description">
-                        <span><b>Kneth Master</b></span><br>
-                    </div>
-                </div>
-                <div class="chat-people last-box">
-                    <div class="chat-img">
-                        <img src="/images/medium_ltran.jpg" class="profile_picture_chat">
-                    </div>
-                    <div class="chat-description">
-                        <span><b>Kneth Master</b></span><br>
-                    </div>
-                </div>
+                <h4>Who liked your profile ?</h4>
+                <% if (likes) { %>
+                    <% for (i=0; i < likes.length; i++) { %>
+                        <% if (i !== likes.length - 1) { %>
+                            <div class="chat-people">
+                                <div class="chat-img">
+                                    <img src="/images/<%= likes[i]['sex'] === 'female' ? 'woman' : 'man' %>.jpg" class="profile_picture_chat">
+                                </div>
+                                <div class="chat-description">
+                                    <span><b><%= likes[i]['firstName'] %> <%= likes[i]['lastName'] %></b></span><br>
+                                </div>
+                            </div>
+                        <% } else { %>
+                            <div class="chat-people last-box">
+                                <div class="chat-img">
+                                    <img src="/images/<%= likes[i]['sex'] === 'female' ? 'woman' : 'man' %>.jpg" class="profile_picture_chat">
+                                </div>
+                                <div class="chat-description">
+                                    <span><b><%= likes[i]['firstName'] %> <%= likes[i]['lastName'] %></b></span><br>
+                                </div>
+                            </div>
+                        <% } %>
+                    <% } %>
+                <% } %>
 
             </div>
         </div>
