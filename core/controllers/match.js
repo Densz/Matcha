@@ -34,16 +34,21 @@ const filterByViews = async function (userOnline, matches) {
     let i = 0;
     let db = await model.connectToDatabase();
 
-    while (matches[i]) {
-        let view = await db.collection('views').findOne({ 
-            userOnline: userOnline['login'],
-            userSeen: matches[i]['login']
-        });
-        if (view === null)
-            newMatches.push(matches[i]);
-        i++;
+    if (matches) {
+        while (matches[i]) {
+            let view = await db.collection('views').findOne({ 
+                userOnline: userOnline['login'],
+                userSeen: matches[i]['login']
+            });
+            if (view === null)
+                newMatches.push(matches[i]);
+            i++;
+        }
+        console.log('New matches after views', newMatches);
+        return newMatches;
+    } else {
+        return undefined;
     }
-    return newMatches;
 };
 
 const countMatches = function(user1, user2){
@@ -61,17 +66,21 @@ const filterByInterests = async function (userOnline, matches) {
     let newMatches = [];
     let hashtagFilter = userOnline['hashtagFilter'].length > 0 ? [ userOnline['hashtagFilter'] ] : userOnline['hashtag'];
     
-    while (matches[i]) {
-        let commonInterests = countMatches(matches[i]['hashtag'], hashtagFilter);
-        if (commonInterests > 0) {
-            newMatches.push(matches[i]);
+    if (matches) {
+        while (matches[i]) {
+            let commonInterests = countMatches(matches[i]['hashtag'], hashtagFilter);
+            if (commonInterests > 0) {
+                newMatches.push(matches[i]);
+            }
+            i++;
         }
-        i++;
-    }
-    if (newMatches.length === 0) {
-        return undefined;
+        if (newMatches.length === 0) {
+            return undefined;
+        } else {
+            return newMatches;
+        }
     } else {
-        return newMatches;
+        return undefined;
     }
 };
 

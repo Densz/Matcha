@@ -79,6 +79,7 @@ router.post('/submit', function(req, res, next) {
         orientation: 'Bisexual',
         dob: req.body.DOBYear + '-' + req.body.DOBMonth + '-' + req.body.DOBDay,
         age: getAge(req.body.DOBYear + '-' + req.body.DOBMonth + '-' + req.body.DOBDay),
+        hashtagFilter: "",
         filter: {
             age: [0, 80],
             score: [0, 10]

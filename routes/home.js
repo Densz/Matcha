@@ -23,7 +23,7 @@ router.get('/', async function (req, res) {
         let allMatches = await match.filter(userOnline, req);
         let matchesFiltered = await match.filterByViews(userOnline, allMatches);
         let finalMatches = await match.filterByInterests(userOnline, matchesFiltered);
-
+        
         //render result
         res.render('home', {
             layout: 'layout_nav',

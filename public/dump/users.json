@@ -14,7 +14,8 @@
     "hashtag": [
         "testeet",
         "test",
-        "c'est bizarre quand meme"
+        "c'est bizarre quand meme",
+        "geek"
     ],
     "hashtagFilter": "",
     "lastName": "Zeeeennn",
@@ -62,6 +63,7 @@
         "minScore": "0.00",
         "maxScore": "10.00"
     },
+    "hashtagFilter": "",
     "hashtag": [
         "geek",
         "bavard",
@@ -98,6 +100,7 @@
         "minScore": "0.00",
         "maxScore": "10.00"
     },
+    "hashtagFilter": "",
     "hashtag": [
         "intello",
         "bavard",
@@ -132,6 +135,7 @@
         "minScore": "0.00",
         "maxScore": "10.00"
     },
+    "hashtagFilter": "",
     "hashtag": [
         "sociable",
         "aventurier"
@@ -164,6 +168,7 @@
         "minScore": "0.00",
         "maxScore": "10.00"
     },
+    "hashtagFilter": "",
     "hashtag": [
         "geek",
         "aventurier"
@@ -197,6 +202,7 @@
         "minScore": "0.00",
         "maxScore": "10.00"
     },
+    "hashtagFilter": "",
     "hashtag": [
         "bavard",
         "aventurier"
@@ -230,6 +236,7 @@
         "minScore": "0.00",
         "maxScore": "10.00"
     },
+    "hashtagFilter": "",
     "hashtag": [
         "aventurier"
     ],
@@ -262,6 +269,7 @@
         "minScore": "0.00",
         "maxScore": "10.00"
     },
+    "hashtagFilter": "",
     "hashtag": [
         "intello",
         "sociable",
@@ -284,6 +292,7 @@
             48.8836525
         ]
     },
+    "hashtagFilter": "",
     "lat": 48.8836525,
     "lng": 2.2565428,
     "age": 33,
@@ -316,11 +325,12 @@
             48.9637375
         ]
     },
+    "hashtagFilter": "",
     "lat": 48.9637375,
     "lng": 2.2368649,
     "age": 33,
     "bio": "Lorem Ipsum",
-    "dob": "1984-06-1984",
+    "dob": "1984-06-18",
     "email": "EricDurand@dayrep.com",
     "filter": {
         "minAge": "18.00",
@@ -362,6 +372,7 @@
         "minScore": "0.00",
         "maxScore": "10.00"
     },
+    "hashtagFilter": "",
     "hashtag": [
         "geek",
         "intello",
@@ -398,6 +409,7 @@
         "minScore": "0.00",
         "maxScore": "10.00"
     },
+    "hashtagFilter": "",
     "hashtag": [
         "geek",
         "bavard",
@@ -433,6 +445,7 @@
         "minScore": "0.00",
         "maxScore": "10.00"
     },
+    "hashtagFilter": "",
     "hashtag": [
         "intello",
         "bavard",
@@ -467,6 +480,7 @@
         "minScore": "0.00",
         "maxScore": "10.00"
     },
+    "hashtagFilter": "",
     "hashtag": [
         "sociable",
         "aventurier"
@@ -500,6 +514,7 @@
         "minScore": "0.00",
         "maxScore": "10.00"
     },
+    "hashtagFilter": "",
     "hashtag": [
         "geek",
         "aventurier"
@@ -533,6 +548,7 @@
         "minScore": "0.00",
         "maxScore": "10.00"
     },
+    "hashtagFilter": "",
     "hashtag": [
         "bavard",
         "aventurier"
@@ -566,6 +582,7 @@
         "minScore": "0.00",
         "maxScore": "10.00"
     },
+    "hashtagFilter": "",
     "hashtag": [
         "aventurier"
     ],
@@ -598,6 +615,7 @@
         "minScore": "0.00",
         "maxScore": "10.00"
     },
+    "hashtagFilter": "",
     "hashtag": [
         "intello",
         "sociable",
@@ -632,6 +650,7 @@
         "minScore": "0.00",
         "maxScore": "10.00"
     },
+    "hashtagFilter": "",
     "hashtag": [
         "geek"
     ],
@@ -652,11 +671,12 @@
             48.9637375
         ]
     },
+    "hashtagFilter": "",
     "lat": 48.9637375,
     "lng": 2.2368649,
     "age": 33,
     "bio": "Lorem Ipsum",
-    "dob": "1984-06-1984",
+    "dob": "1984-06-18",
     "email": "ErikaDurand@dayrep.com",
     "filter": {
         "minAge": "18.00",
@@ -698,6 +718,7 @@
         "minScore": "0.00",
         "maxScore": "10.00"
     },
+    "hashtagFilter": "",
     "hashtag": [
         "geek",
         "intello",
