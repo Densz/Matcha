@@ -95,22 +95,29 @@
         <div class="col-sm-3">
             <div class="box col-sm-12">
                 <h4>Views</h4>
-                <div class="chat-people">
-                    <div class="chat-img">
-                        <img src="/images/medium_ltran.jpg" class="profile_picture_chat">
-                    </div>
-                    <div class="chat-description">
-                        <span><b>Kneth Master</b></span><br>
-                    </div>
-                </div>
-                <div class="chat-people last-box">
-                    <div class="chat-img">
-                        <img src="/images/medium_ltran.jpg" class="profile_picture_chat">
-                    </div>
-                    <div class="chat-description">
-                        <span><b>Kneth Master</b></span><br>
-                    </div>
-                </div>
+                <% if (viewers) { %>
+                    <% for (i=0; i < viewers.length; i++) { %>
+                        <% if (i !== viewers.length - 1) { %>
+                            <div class="chat-people">
+                                <div class="chat-img">
+                                    <img src="/images/<%= viewers[i]['sex'] === 'female' ? 'woman' : 'man' %>.jpg" class="profile_picture_chat">
+                                </div>
+                                <div class="chat-description">
+                                    <span><b><%= viewers[i]['firstName'] %> <%= viewers[i]['lastName'] %></b></span><br>
+                                </div>
+                            </div>
+                        <% } else { %>
+                            <div class="chat-people last-box">
+                                <div class="chat-img">
+                                    <img src="/images/<%= viewers[i]['sex'] === 'female' ? 'woman' : 'man' %>.jpg" class="profile_picture_chat">
+                                </div>
+                                <div class="chat-description">
+                                    <span><b><%= viewers[i]['firstName'] %> <%= viewers[i]['lastName'] %></b></span><br>
+                                </div>
+                            </div>
+                        <% } %>
+                    <% } %>
+                <% } %>
             </div>
         </div>
         <div class="col-sm-3">

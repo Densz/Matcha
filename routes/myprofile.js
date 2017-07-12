@@ -3,10 +3,12 @@ const router = express.Router();
 const model = require('../core/models/database');
 const formidable = require('formidable');
 const fs = require('fs');
+const views = require('../core/controllers/views');
 
 router.get('/', async (req, res, next) => {
     let db = await model.connectToDatabase();
     let userOnline = await db.collection('users').findOne({ login: req.session.login });
+    let viewers = await views.getViewers(userOnline);
 
     let alertMessage = req.session.success;
     req.session.success = [];
@@ -16,6 +18,7 @@ router.get('/', async (req, res, next) => {
         lastName: userOnline['lastName'],
         bio: userOnline['bio'],
         title: 'Matcha - My profile',
+        viewers: viewers,
         success: alertMessage
     });
 });
