@@ -14,7 +14,12 @@
                 <label for="comment">Bio:</label>
                 <div><%= bio %></div>
                 <br>
-                <button class="btn-link">Like !</button>
+                <% if (swiped === null) { %>
+                    <a href="/profile/<%= login %>/dislike"><img class="dislike" src="/images/sign-error.png"></a>
+                    <a href="/profile/<%= login %>/like"><img class="like" src="/images/sign-check.png"></a>
+                <% } else { %>
+                    <span><b>You <%= swiped %>d <%= firstName %> already</b></span>
+                <% } %>
                 <br>
                 <div style="text-align: right;">
                     <button class="btn-link" style="font-size: 12px;">Report this profile as fake</button>
