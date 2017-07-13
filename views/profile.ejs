@@ -22,7 +22,11 @@
                 <% } %>
                 <br>
                 <div style="text-align: right;">
-                    <button class="btn-link" style="font-size: 12px;">Report this profile as fake</button>
+                    <% if (reported === null) { %>
+                        <a href="/profile/report/reported/<%= login %>">Report this profile as fake</a>
+                    <% } else { %>
+                        <span>You have reported this profile already</span>
+                    <% } %>
                 </div>
             </div>
         </div>

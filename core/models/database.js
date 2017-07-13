@@ -40,6 +40,7 @@ const insertData = function(collection, item) {
 		assert.equal(null, err);
 		db.collection(collection).insertOne(item, function(err, result){
 			assert.equal(null, err);
+			console.log(item, 'ITEM INSERTED');
 			db.close();
 		});
 	});
