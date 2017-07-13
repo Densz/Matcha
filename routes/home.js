@@ -3,6 +3,7 @@ const router = express.Router();
 const model = require('../core/models/database');
 const filter = require('../core/controllers/filter.js');
 const score = require('../core/controllers/score.js');
+const match = require('../core/controllers/match');
 const request = require('request');
 const getAge = require('get-age');
 
@@ -134,6 +135,10 @@ router.post('/swipe', async function (req, res){
         userSeen: req.body.loginSwiped,
         status: req.body.status
     });
+    if (req.body.status === 'like'){
+        await match.checkMatch(req.body.loginSwiped, req);
+    }
+    res.send('ok');
 });
 
 router.post('/searchRequest', async function (req, res){

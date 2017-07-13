@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const model = require('../core/models/database');
 const score = require('../core/controllers/score');
+const match = require('../core/controllers/match');
 const formidable = require('formidable');
 const fs = require('fs');
 const views = require('../core/controllers/views');
@@ -58,6 +59,9 @@ router.get('/:login/:status', async function(req, res){
             userSeen: req.params.login,
             status: req.params.status
         });
+        if (req.params.status === 'like'){
+            await match.checkMatch(req.params.login, req);
+        }
         res.redirect('/profile/' + req.params.login);
     } else {
         res.redirect('/profile/' + req.params.login);
