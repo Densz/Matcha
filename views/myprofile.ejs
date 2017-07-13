@@ -59,11 +59,11 @@
                     <img class="profile_picture" src="/images/medium_kneth.jpg">
                     <div class="upload-photo">+</div>
                 </div>
-                <div><img class="profile_star" src="/images/star.png">
-                <img class="profile_star" src="/images/star.png">
-                <img class="profile_star" src="/images/star.png">
-                <img class="profile_star" src="/images/star.png">
-                    <img class="profile_star" src="/images/star.png"></div>
+                <div>
+                <% for (stars=0; stars < popularityScore; stars++) { %>
+                    <img class="profile_star" src="/images/star.png">
+                <% } %>
+                </div>
                 <p><b><%= firstName %> <%= lastName %></b><button class="btn-link" id="edit-name">edit</button></p>
                 <form method="post" action="/myprofile/editName" class="editable_info" id="form-name">
                     <label>First Name:</label><br><input type="text" class="form-control edit_pro" name="firstname" value="<%= firstName %>"><br>
@@ -152,9 +152,24 @@
         <div class="col-sm-6">
             <div class="box col-sm-12">
                 <h4>Statistics</h4>
-                <div class="stats"><img src="/images/donuts.png"></div>
+                <div class="stats"><canvas id="myChart"></canvas></div>
             </div>
         </div>
     </div>
 </div>
 <script src="/js/myprofile.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+<script>
+var ctx = document.getElementById('myChart').getContext('2d');
+var myDoughnutChart = new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+    datasets: [{
+        data: [<%= statistics[0] %>, <%= statistics[1] %>],
+        backgroundColor: ['#36a2eb', '#ff6384']   
+    }],
+
+    labels: ['Likes', 'Dislikes'],
+    }
+});
+</script>

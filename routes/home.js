@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const model = require('../core/models/database');
-const match = require('../core/controllers/match.js');
+const filter = require('../core/controllers/filter.js');
+const score = require('../core/controllers/score.js');
 const request = require('request');
 const getAge = require('get-age');
 
@@ -15,15 +16,21 @@ router.get('/', async function (req, res) {
         //Update age each time the guy is connected in the homepage
         let db = await model.connectToDatabase();
         let userOnline = await db.collection('users').findOne({ login: req.session.login });
-        model.updateData('users', { login: req.session.login }, { $set: {
+        
+        //Update des infos de l'user avant la connexion
+        await score.updateScore(req.session.login);
+        await model.updateData('users', { login: req.session.login }, { $set: {
             age: getAge(userOnline['dob'])
         }});
 
-        //Matchs en fonction des filtres
-        let allMatches = await match.filter(userOnline, req);
-        let matchesFiltered = await match.filterByViews(userOnline, allMatches);
-        let finalMatches = await match.filterByInterests(userOnline, matchesFiltered);
+        //recuperation de l'user avec les informations a jour
+        userOnline = await db.collection('users').findOne({ login: req.session.login });
         
+        //Matchs en fonction des filtres
+        let allMatches = await filter.filter(userOnline, req);
+        let matchesFiltered = await filter.filterByViews(userOnline, allMatches);
+        let finalMatches = await filter.filterByInterests(userOnline, matchesFiltered);        
+
         //render result
         res.render('home', {
             layout: 'layout_nav',

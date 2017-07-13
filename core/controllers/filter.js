@@ -44,7 +44,6 @@ const filterByViews = async function (userOnline, matches) {
                 newMatches.push(matches[i]);
             i++;
         }
-        console.log('New matches after views', newMatches);
         return newMatches;
     } else {
         return undefined;

@@ -100,7 +100,6 @@ router.post('/getAddress', async function (req, res) {
     }});
     let db = await model.connectToDatabase();
     let user = await db.collection('users').findOne({ login: req.session.login });
-    console.log(user);
     if (user['lat'] === undefined) {
         model.updateData('users', { login: req.session.login }, { $set: { 
             location: {

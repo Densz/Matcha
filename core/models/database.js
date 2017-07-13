@@ -40,7 +40,6 @@ const insertData = function(collection, item) {
 		assert.equal(null, err);
 		db.collection(collection).insertOne(item, function(err, result){
 			assert.equal(null, err);
-			console.log('Item inserted');
 			db.close();
 		});
 	});
@@ -49,10 +48,8 @@ const insertData = function(collection, item) {
 const updateData = function (collection, field, item) {
 	mongo.connect(url, function(err, db) {
 		assert.equal(null, err);
-		console.log('field = ' + field, 'item ' + item);
 		db.collection(collection).update(field, item, function(err, result) {
 			assert.equal(null, err);
-			console.log('Item updated');
 			db.close();
 		});
 	});
