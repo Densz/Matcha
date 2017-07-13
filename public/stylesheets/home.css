@@ -19,12 +19,23 @@ nav {
     margin-bottom: 10px;
 }
 
+.result-search {
+    background-color: white;
+    width: 240px;
+    height: 100px;
+    position: absolute;
+    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    display: none;
+    padding-top: 5px;
+    padding-left: 15px;
+    overflow: auto;
+}
 
 /**
  *  Left Column
  */
 .hl1 {
-    height: 300px;
     text-align: center;
 }
 

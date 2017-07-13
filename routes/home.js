@@ -136,4 +136,18 @@ router.post('/swipe', async function (req, res){
     });
 });
 
+router.post('/searchRequest', async function (req, res){
+    let result = await model.getData('users', {
+        $or: [
+            {login: { $regex: ".*" + req.body.value + ".*" }},
+            {lastName: { $regex: ".*" + req.body.value + ".*" }},
+            {firstName: { $regex: ".*" + req.body.value + ".*" }},
+            {login: { $regex: ".*" + req.body.value.charAt(0).toUpperCase() + req.body.value.slice(1) + ".*" }},
+            {lastName: { $regex: ".*" + req.body.value.charAt(0).toUpperCase() + req.body.value.slice(1) + ".*" }},
+            {firstName: { $regex: ".*" + req.body.value.charAt(0).toUpperCase() + req.body.value.slice(1) + ".*" }}
+        ]
+    });
+    res.send(result);
+});
+
 module.exports = router;

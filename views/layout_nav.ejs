@@ -32,7 +32,8 @@
                 <li class="active"><a href="/home">Home</a></li>
                 <li><a href="/myprofile">My profile</a></li>
                 <form class="navbar-form navbar-right">
-                    <input type="text" class="form-control" placeholder="Search profile...">
+                    <input type="text" class="form-control" id="searchbar" placeholder="Search profile...">
+                    <div class="result-search"></div>    
                 </form>
             </ul>
             <ul class="nav navbar-nav navbar-right">
@@ -40,8 +41,10 @@
                 <li><a href="/signOut">Logout</a></li>
             </ul>
         </div>
-    </div>
+    </div>    
 </nav>
 <%- body %>
 </body>
 </html>
+
+<script src="/js/searchbar.js"></script>
