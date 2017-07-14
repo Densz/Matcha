@@ -3,44 +3,11 @@
     <div class="col-sm-12">
         <h4>Upload photos</h4>
         <div class="upload-individual-photo">
-            <img src="/images/medium_kneth.jpg" class="img-thumbnail" alt="Cinque Terre" width="150" height="150">
-            <div class="progress">
-                <div class="progress-bar" role="progressbar"></div>
-            </div>
-            <button class="btn btn-default btn-lg upload-btn" type="button">Upload photo</button>
-            <input type="file" id="upload-input" name="upload">
-        </div>
-        <div class="upload-individual-photo">
-            <img src="/images/medium_kneth.jpg" class="img-thumbnail" alt="Cinque Terre" width="150" height="150">
-            <div class="progress">
-                <div class="progress bar" role="progressbar"></div>
-            </div>
-            <button class="btn btn-default btn-lg upload-btn" type="button">Upload photo</button>
-            <input type="file" id="upload-input" name="upload">
-        </div>
-        <div class="upload-individual-photo">
-            <img src="/images/medium_kneth.jpg" class="img-thumbnail" alt="Cinque Terre" width="150" height="150">
-            <div class="progress">
-                <div class="progress bar" role="progressbar"></div>
-            </div>
-            <button class="btn btn-default btn-lg upload-btn" type="button">Upload photo</button>
-            <input type="file" id="upload-input" name="upload">
-        </div>
-        <div class="upload-individual-photo">
-            <img src="/images/medium_kneth.jpg" class="img-thumbnail" alt="Cinque Terre" width="150" height="150">
-            <div class="progress">
-                <div class="progress bar" role="progressbar"></div>
-            </div>
-            <button class="btn btn-default btn-lg upload-btn" type="button">Upload photo</button>
-            <input type="file" id="upload-input" name="upload">
-        </div>
-        <div class="upload-individual-photo">
-            <img src="/images/medium_kneth.jpg" class="img-thumbnail" alt="Cinque Terre" width="150" height="150">
-            <div class="progress">
-                <div class="progress bar" role="progressbar"></div>
-            </div>
-            <button class="btn btn-default btn-lg upload-btn" type="button">Upload photo</button>
-            <input type="file" id="upload-input" name="upload">
+            <img src="/images/cross.png" class="img-thumbnail" alt="Cinque Terre" width="150" height="150">
+            <form method="post" action="/myprofile/uploadPhotos" enctype="multipart/form-data">
+                <input type="file" id="upload-inputs" name="upload">
+                <input type="submit" name="submit" value="test">
+            </form>
         </div>
     </div>
 </div>

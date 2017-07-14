@@ -9,12 +9,14 @@ router.get('/', function(req, res, next){
     if (req.session.login) {
         res.redirect('/home');
     } else {
-        req.session.errors = null;
+        req.session.login = 'densz';
+        res.redirect('/myprofile');
+        // req.session.errors = null;
 
-        res.render('index', {
-            title: 'Matcha - Sign In',
-            errors: errors
-        });
+        // res.render('index', {
+        //     title: 'Matcha - Sign In',
+        //     errors: errors
+        // });
     }
 });
 

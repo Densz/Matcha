@@ -1,10 +1,38 @@
 const express = require('express');
 const router = express.Router();
+import path from 'path';
 const model = require('../core/models/database');
 const score = require('../core/controllers/score');
 const formidable = require('formidable');
 const fs = require('fs');
 const views = require('../core/controllers/views');
+const multer = require('multer');
+
+const imageFilter = function(req, file, cb){
+    if (!file.originalname.match(/\.(jpg|jpeg|png|gif)$/) && file.size < 3145728) {
+        req.session.success.push({msg: 'File not allowed'});
+        cb(null, false);
+    } else {
+        cb(null, true);
+    }
+}
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        console.log('destination');
+        cb(null, 'uploads')
+    },
+    filename: function(req, file, cb) {
+        console.log('filename');      
+        cb(null, req.session.login + '-' + Date.now() + path.extname(file.originalname));
+    }
+});
+
+const upload = multer({
+    fileFilter: imageFilter,
+    storage: storage
+});
+
 
 router.get('/', async (req, res, next) => {
     //update of popularity score
@@ -54,26 +82,9 @@ router.post('/editBio', (req, res) => {
     res.redirect('/myprofile');
 });
 
-router.post('/upload', (req, res) => {
-    let form = new formidable.IncomingForm();
-
-    form.uploadDir = '/upload';
-    console.log('form ->>>> ' + form);
-
-    form.on('file', (field, file) => {
-        fs.rename(file.path, path.join(form.uploadDir, file.name));
-    });
-
-    form.on('error', (err) => {
-        console.log('An error has occured: \n' + err);
-    });
-
-    form.on('end', () => {
-        console.log('success !!');
-        res.end('success');
-
-        form.parse(req);
-    })
-});
+router.post('/uploadPhotos', upload.single('upload'),function(req, res){
+    console.log('upload photo = ', req.file);
+    res.redirect('/myprofile');
+})
 
 module.exports = router;

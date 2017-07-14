@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const model = require('../core/models/database');
 const passwordHash = require('password-hash');
-const geolib = require('geolib');
 const request = require('request');
 
 router.get('/', async function (req, res) {
