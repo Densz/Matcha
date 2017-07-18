@@ -7,6 +7,11 @@ import bodyParser from 'body-parser';
 import expressLayouts from 'express-ejs-layouts';
 import expressSession from 'express-session';
 
+const app = express();
+
+const server = require('http').Server(app);
+const io = require('socket.io')(server);
+
 import users from './routes/users';
 import index from './routes/index';
 import signUp from './routes/signUp';
@@ -16,9 +21,6 @@ import myprofile from './routes/myprofile';
 import settings from './routes/settings';
 import getposition from './routes/getposition';
 import profile from './routes/profile';
-
-
-const app = express();
 
 // view engine setup
 app.set('layout', 'layout');
@@ -33,6 +35,20 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(expressSession({secret: 'max', saveUninitialized: false, resave: false}));
+
+app.use(function(req, res, next) {
+    req.io = io;
+    next();
+});
+
+io.on('connection', function(socket) {
+  console.log('Made socket connection', socket);
+
+  socket.on('chat', function(data){
+    //EMIT TO EVERY SOCKETS CLIENTS - Envoye a tout le monde
+    io.sockets.emit('chat', data);
+  })
+});
 
 app.use(expressLayouts);
 app.use('/', index);
@@ -63,4 +79,4 @@ app.use((err, req, res, next) => {
   res.render('error');
 });
 
-module.exports = app;
+module.exports = {app:app, server:server};

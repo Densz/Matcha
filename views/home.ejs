@@ -146,23 +146,27 @@
                 <div class="box message-box col-sm-12 col-xm-12 col-md-12">
                     <div class="row msg-img-text">
                         <div class="col-sm-1 col-xs-1 col-md-1"></div>
-                        <div class="col-sm-9 col-xs-9 col-md-9 message-sent" style="text-align: right;"><p>Lorem
-                                ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum</p></div>
-                        <div class="col-sm-2 col-xs-2 col-md-2"><img src="/images/medium_ltran.jpg"
-                                                            class="profile_picture_chat"></div>
+                        <div class="col-sm-9 col-xs-9 col-md-9 message-sent" style="text-align: right;">
+							<p>Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum</p>
+						</div>
+                        <div class="col-sm-2 col-xs-2 col-md-2">
+							<img src="/images/medium_ltran.jpg" class="profile_picture_chat">
+						</div>
                     </div>
-                    <div class="row msg-img-text">
-                        <div class="col-sm-2 col-xs-2 col-md-2" style="text-align: right;"><img
-                                    src="/images/medium_agrumbac.jpg"
-                                                      class="profile_picture_chat"/></div>
-                        <div class="col-sm-9 col-xs-9 col-md-9 message-received"><p>Lorem ipsumLorem ipsumLorem ipsumLorem</p></div>
+                    <div id="output" class="row msg-img-text">
+                        <div class="col-sm-2 col-xs-2 col-md-2" style="text-align: right;">
+							<img src="/images/medium_agrumbac.jpg" class="profile_picture_chat"/>
+						</div>
+                        <div class="col-sm-9 col-xs-9 col-md-9 message-received">
+							<p>Lorem ipsumLorem ipsumLorem ipsumLorem</p>
+						</div>
                     </div>
                 </div>
                 <div class="input-message">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Message">
+                        <input id="message" type="text" class="form-control" placeholder="Message">
                         <span class="input-group-btn">
-                        <button class="btn btn-default" type="button">Send</button>
+                        <button id="send" class="btn btn-default" type="button">Send</button>
                     </span>
                     </div>
                 </div>
@@ -299,3 +303,5 @@
         window.location.replace(url() + '/home');
     });
 </script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/socket.js"></script>

@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const model = require('../core/models/database');
-const filter = require('../core/controllers/filter.js');
-const score = require('../core/controllers/score.js');
-const match = require('../core/controllers/match');
 const request = require('request');
 const getAge = require('get-age');
+const model = require('../core/models/database');
+const filter = require('../core/controllers/filter');
+const score = require('../core/controllers/score');
+const match = require('../core/controllers/match');
 
 router.get('/', async function (req, res) {
     req.session.errors = [];
@@ -111,7 +111,6 @@ router.post('/hashtagFilter', async function (req, res) {
     res.redirect('/home');
 });
 
-
 /**
  * AJAX function
  */
@@ -141,6 +140,9 @@ router.post('/swipe', async function (req, res){
     res.send('ok');
 });
 
+/**
+ * AJAX function
+ */
 router.post('/searchRequest', async function (req, res){
     let result = await model.getData('users', {
         $or: [
