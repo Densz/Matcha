@@ -126,8 +126,7 @@
                 <% if (matches) { %>
                     <% for (i=0; i < matches.length; i++) { %>
                         <% if (i !== matches.length - 1) {%>
-                            <div class="chat-people" id="chat-<%= matches[i]['login'] %>">
-                                <div id="hidden-login" style="display: none;"><%= matches[i]['login'] %></div>
+                            <div class="chat-people" id="select-<%= matches[i]['login'] %>">
                                 <div class="chat-img">
                                     <img src="/images/medium_ltran.jpg" class="profile_picture_chat <%= matches[i]['status'] === 'online' ? 'online' : 'offline' %>">
                                 </div>
@@ -136,8 +135,7 @@
                                 </div>
                             </div>
                         <% } else { %>
-                            <div class="chat-people last-box" id="chat-<%= matches[i]['login'] %>">
-                                <div id="hidden-login" style="display: none;"><%= matches[i]['login'] %></div>                         
+                            <div class="chat-people last-box" id="select-<%= matches[i]['login'] %>">
                                 <div class="chat-img">
                                     <img src="/images/medium_ltran.jpg" class="profile_picture_chat <%= matches[i]['status'] === 'online' ? 'online' : 'offline' %>">
                                 </div>

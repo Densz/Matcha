@@ -35,6 +35,25 @@ const getData = function(collection, condition) {
 	});
 };
 
+const getDataSorted = function(collection, condition, sort) {
+	return new Promise(function(resolve, reject) {
+        let resultArray = [];
+        mongo.connect(url, function(err, db) {
+			if (assert.equal(null, err))
+				resolve("Error from database connection");
+			let cursor = db.collection(collection).find(condition).sort(sort);
+			cursor.forEach(function(doc, err) {
+				if (assert.equal(null, err))
+					resolve("Error from get data");
+				resultArray.push(doc);
+			}, function() {
+				db.close();
+				(resultArray.length) ? resolve(resultArray) : resolve("No data");
+			});
+		});
+	});
+};
+
 const insertData = function(collection, item) {
 	mongo.connect(url, function(err, db){
 		assert.equal(null, err);
@@ -59,6 +78,7 @@ const updateData = function (collection, field, item) {
 module.exports = {
     'connectToDatabase': connectToDatabase,
 	'getData': getData,
+	'getDataSorted': getDataSorted,
 	'updateData': updateData,
 	'insertData': insertData
 };

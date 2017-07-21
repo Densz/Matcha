@@ -7,6 +7,7 @@ const filter = require('../core/controllers/filter');
 const score = require('../core/controllers/score');
 const match = require('../core/controllers/match');
 const socketIO = require('../core/controllers/socket');
+const conversation = require('../core/controllers/conversation');
 
 router.get('/', async function (req, res) {
     req.session.errors = [];
@@ -61,7 +62,10 @@ router.get('/', async function (req, res) {
 
         // Matches
         let matches = await match.getMatches(req);
-        console.log('matches: ', matches);
+
+        // Conversations
+        let conversations = await conversation.getConversations(req, matches);
+        console.log('conversations: ', conversations);
 
         // render result
         res.render('home', {

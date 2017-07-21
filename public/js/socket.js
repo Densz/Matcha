@@ -3,22 +3,23 @@ var socket = io.connect('http://localhost:3000', { 'force new connection': true 
 
 var message = document.querySelector('#message'),
     send = document.querySelector('#send'),
-    output = document.querySelector('#output')
+    output = document.querySelector('#output'),
+    selectChat = document.querySelectorAll('.chat-people')
 
 /**
  * Handle connections Online / Offline users
  */
 socket.on('new user connection', function(data){
     console.log('New user connected: ', data);
-    if (document.getElementById('chat-' + data)) {
-        document.getElementById('chat-' + data).childNodes[3].childNodes[1].className = 'profile_picture_chat online';
+    if (document.getElementById('select-' + data)) {
+        document.getElementById('select-' + data).childNodes[1].childNodes[1].className = 'profile_picture_chat online';
     }
 })
 
 socket.on('user disconnected', function(data){
     console.log('User disconnected: ', data);
-    if (document.getElementById('chat-' + data)) {
-        document.getElementById('chat-' + data).childNodes[3].childNodes[1].className = 'profile_picture_chat offline';
+    if (document.getElementById('select-' + data)) {
+        document.getElementById('select-' + data).childNodes[1].childNodes[1].className = 'profile_picture_chat offline';
     }
 })
 
@@ -42,3 +43,20 @@ socket.on('chat', function(data){
 socket.on('message received', function(data){
 
 });
+
+/**
+ * Get the right conversation with the right user
+ */
+var i = 0;
+
+for (i; i < selectChat.length; i++) {
+    if (document.addEventListener) {
+		selectChat[i].addEventListener("click", selectConversation);
+	} else {
+        selectChat[i].attachEvent("click", selectConversation);
+	}
+}
+
+function selectConversation(){
+    console.log(this.id.split('-')[1]);
+}
