@@ -18,6 +18,32 @@ const checkMatch = async function(loginLiked, req){
     }
 }
 
+const getMatches = async function(req) {
+    let matches = await model.getData('matches', {
+        $or: [{ user1: req.session.login }, { user2: req.session.login }]
+    });
+    let db = await model.connectToDatabase();
+    let matchesInfo = [];
+    let i = 0;
+    console.log(matches, ' dans getMatches');
+    if (matches !== "No data") {    
+        while (i < matches.length) {
+            if (matches[i]['user1'] === req.session.login) {
+                let userInfo = await db.collection('users').findOne( { login: matches[i]['user2'] } );
+                matchesInfo.push(userInfo);
+            } else {
+                let userInfo = await db.collection('users').findOne( { login: matches[i]['user1'] } );
+                matchesInfo.push(userInfo);
+            }
+            i++;
+        }
+        return matchesInfo;
+    } else {
+        return undefined;
+    }
+}
+
 module.exports = { 
-    'checkMatch': checkMatch
+    'checkMatch': checkMatch,
+    'getMatches': getMatches
 };

@@ -6,48 +6,70 @@ const model = require('../core/models/database');
 const filter = require('../core/controllers/filter');
 const score = require('../core/controllers/score');
 const match = require('../core/controllers/match');
+const socketIO = require('../core/controllers/socket');
 
 router.get('/', async function (req, res) {
     req.session.errors = [];
+
+    req.io.once('connection', function(socket) {
+        // Connection to chat - set user online or offline
+        console.log('WHEN ARE U in IO.ON connection ???');
+        if (req.session.login !== undefined) {
+            model.updateData('users', { login: req.session.login }, { $set: { status: 'online' } });
+            req.io.sockets.emit('new user connection', req.session.login);
+            console.log('set user online: ', req.session.login);
+        } else {
+            model.updateData('users', { login: req.session.login }, { $set: { status: 'offline' } });
+            req.io.sockets.emit('user disconnected', req.session.login);           
+            console.log('set user offline: ', req.session.login);
+        }
+        socket.on('disconnect', function(socket) {
+            console.log('Set him offline: ', req.session.login);
+            req.io.sockets.emit('user disconnected', req.session.login);            
+            model.updateData('users', { login: req.session.login }, { $set: { status: 'offline' } });
+        })
+
+        // Emit chat message - to update Front
+        socket.on('chat', function(data){
+            req.io.sockets.emit('chat', data);
+            console.log(req.session.login);
+        })
+
+    });
     
     if (req.session.login === undefined) {
         req.session.errors.push({ msg: 'No access right' });
         res.redirect('/');
     } else {
-        //Update age each time the guy is connected in the homepage
+        // Update age each time the guy is connected in the homepage
         let db = await model.connectToDatabase();
-        let userOnline = await db.collection('users').findOne({ login: req.session.login });
+        let user = await db.collection('users').findOne({ login: req.session.login });
         
-        //Update des infos de l'user avant la connexion
+        // Update des infos de l'user avant la connexion
         await score.updateScore(req.session.login);
         await model.updateData('users', { login: req.session.login }, { $set: {
-            age: getAge(userOnline['dob'])
+            age: getAge(user['dob'])
         }});
 
-        //recuperation de l'user avec les informations a jour
-        userOnline = await db.collection('users').findOne({ login: req.session.login });
+        // recuperation de l'user avec les informations a jour
+        user = await db.collection('users').findOne({ login: req.session.login });
         
-        //Matchs en fonction des filtres
-        let allMatches = await filter.filter(userOnline, req);
-        let matchesFiltered = await filter.filterByViews(userOnline, allMatches);
-        let finalMatches = await filter.filterByInterests(userOnline, matchesFiltered);        
+        // Filtres
+        let filter1 = await filter.filter(user, req);
+        let filter2 = await filter.filterByViews(user, filter1);
+        let finalFilter = await filter.filterByInterests(user, filter2);        
 
-        //render result
+        // Matches
+        let matches = await match.getMatches(req);
+        console.log('matches: ', matches);
+
+        // render result
         res.render('home', {
             layout: 'layout_nav',
-            firstName: userOnline['firstName'],
-            lastName: userOnline['lastName'],
-            address: userOnline['address'],
-            tmpAddress: userOnline['tmpAddress'],
-            bio: userOnline['bio'],
-            sex: userOnline['sex'],
-            orientation: userOnline['orientation'],
-            hashtag: userOnline['hashtag'],
-            filter: userOnline['filter'],
-            hashtagFilter: userOnline['hashtagFilter'],
-            dob: getAge(userOnline['dob']),
-            popularityScore: userOnline['popularityScore'],
-            people: finalMatches,
+            people: finalFilter,
+            user: user,
+            dob: getAge(user['dob']),
+            matches: matches,
             title: 'Matcha - Home'
         });
     }

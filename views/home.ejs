@@ -6,11 +6,11 @@
                 <div>
                     <img class="profile_picture" src="/images/medium_kneth.jpg">
                 </div>
-                <p><b><%= firstName %> <%= lastName %></b> (<%= dob %> ans)</p>
-                <p><%= bio %></p>
+                <p><b><%= user['firstName'] %> <%= user['lastName'] %></b> (<%= dob %> ans)</p>
+                <p><%= user['bio'] %></p>
                 <br>
                 <p><b>Popularity score</b></p>
-                <% for (stars=0; stars < popularityScore; stars++) { %>
+                <% for (stars=0; stars < user['popularityScore']; stars++) { %>
                     <img class="profile_star" src="/images/star.png">
                 <% } %>
             </div>
@@ -26,9 +26,9 @@
                     </div>
                 </form>
                 <div class="hashtag-box">
-                <% if (hashtag) { %>
-                    <% for (var i = 0; i < hashtag.length; i++) { %>
-                        <span class="hashtag">#<%= hashtag[i] %></span>
+                <% if (user['hashtag']) { %>
+                    <% for (var i = 0; i < user['hashtag'].length; i++) { %>
+                        <span class="hashtag">#<%= user['hashtag'][i] %></span>
                     <% } %>
                 <% } %>
                 </div>
@@ -84,9 +84,9 @@
                 <form action="/home/editOrientation" method="post">
                     <div class="center-orientation">
                         <div class="btn-group" role="group" aria-label="...">
-                            <input type="submit" name="orientation" class="btn btn-default<%= orientation==='Men' ? ' selected': '' %> " value="Men">
-                            <input type="submit" name="orientation" class="btn btn-default<%= orientation==='Bisexual' ? ' selected': '' %>" value="Bisexual">
-                            <input type="submit" name="orientation" class="btn btn-default<%= orientation==='Women' ? ' selected': '' %>" value="Women">
+                            <input type="submit" name="orientation" class="btn btn-default<%= user['orientation']==='Men' ? ' selected': '' %> " value="Men">
+                            <input type="submit" name="orientation" class="btn btn-default<%= user['orientation']==='Bisexual' ? ' selected': '' %>" value="Bisexual">
+                            <input type="submit" name="orientation" class="btn btn-default<%= user['orientation']==='Women' ? ' selected': '' %>" value="Women">
                         </div>
                     </div>
                 </form>
@@ -94,13 +94,13 @@
             <div class="box hr2">
                 <h4>Location</h4>
                 <span><b>Address</b></span><br>
-                <span><%= address ? address : tmpAddress %></span><br><br>
+                <span><%= user['address'] ? user['address'] : user['tmpAddress'] %></span><br><br>
                 <form method="post" action="/home/editAddress">
                 <div class="input-group">
                     <span class="input-group-btn">
                         <input type="submit" class="btn btn-default" value="Update">
                     </span>
-                    <input type="text" name="newAddress" class="form-control" id="location" placeholder="<%= address ? address : tmpAddress %>" required="true">
+                    <input type="text" name="newAddress" class="form-control" id="location" placeholder="<%= user['address'] ? user['address'] : user['tmpAddress'] %>" required="true">
                 </div>
                 </form>
             </div>
@@ -111,7 +111,7 @@
                     <span class="input-group-btn">
                         <input type="submit" class="btn btn-default" value="Search">
                     </span>
-                    <input type="text" name="hashtagFilter" class="form-control" value="<%= hashtagFilter ? hashtagFilter : '' %>" placeholder="Enter #">
+                    <input type="text" name="hashtagFilter" class="form-control" value="<%= user['hashtagFilter'] ? user['hashtagFilter'] : '' %>" placeholder="Enter #">
                 </div>
                 </form>
             </div>
@@ -123,24 +123,33 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="col-sm-4 box hl-chat">
-                <div class="chat-people">
-                    <div class="chat-img">
-                        <img src="/images/medium_ltran.jpg" class="profile_picture_chat">
-                    </div>
-                    <div class="chat-description">
-                        <span><b>Kneth Master</b>&nbsp; <span class="new-match">New</span></span><br>
-                        <span>Petite Bio de merde pour cette sous merde</span>
-                    </div>
-                </div>
-                <div class="chat-people last-box">
-                    <div class="chat-img">
-                        <img src="/images/medium_ltran.jpg" class="profile_picture_chat">
-                    </div>
-                    <div class="chat-description">
-                        <span><b>Kneth Master</b></span><br>
-                        <span>Petite Bio de merde pour cette sous merde</span>
-                    </div>
-                </div>
+                <% if (matches) { %>
+                    <% for (i=0; i < matches.length; i++) { %>
+                        <% if (i !== matches.length - 1) {%>
+                            <div class="chat-people" id="chat-<%= matches[i]['login'] %>">
+                                <div id="hidden-login" style="display: none;"><%= matches[i]['login'] %></div>
+                                <div class="chat-img">
+                                    <img src="/images/medium_ltran.jpg" class="profile_picture_chat <%= matches[i]['status'] === 'online' ? 'online' : 'offline' %>">
+                                </div>
+                                <div class="chat-description">
+                                    <span><b><%= matches[i]['firstName'] %> <%= matches[i]['lastName'] %></b>&nbsp; <span class="new-match">New</span></span><br>
+                                </div>
+                            </div>
+                        <% } else { %>
+                            <div class="chat-people last-box" id="chat-<%= matches[i]['login'] %>">
+                                <div id="hidden-login" style="display: none;"><%= matches[i]['login'] %></div>                         
+                                <div class="chat-img">
+                                    <img src="/images/medium_ltran.jpg" class="profile_picture_chat <%= matches[i]['status'] === 'online' ? 'online' : 'offline' %>">
+                                </div>
+                                <div class="chat-description">
+                                    <span><b><%= matches[i]['firstName'] %> <%= matches[i]['lastName'] %></b>&nbsp; <span class="new-match">New</span></span><br>
+                                </div>
+                            </div>
+                        <% } %>    
+                    <% } %>
+                <% } else { %>
+                    <div>No matches yet</div>
+                <% } %>
             </div>
             <div class="col-sm-8 box hl-chat">
                 <div class="box message-box col-sm-12 col-xm-12 col-md-12">
@@ -253,7 +262,7 @@
             'max':	80
         },
         snap: true,
-        start: [<%= filter ? filter['minAge'] : 18 %>, <%= filter ? filter['maxAge'] : 80 %>]
+        start: [<%= user['filter'] ? user['filter']['minAge'] : 18 %>, <%= user['filter'] ? user['filter']['maxAge'] : 80 %>]
     });
     var skipValues = [
         document.getElementById('skip-value-lower'),
@@ -281,7 +290,7 @@
             'max':	10
         },
         snap: true,
-        start: [<%= filter ? filter['minScore']: 0 %>, <%= filter ? filter['maxScore'] : 10 %>]
+        start: [<%= user['filter'] ? user['filter']['minScore']: 0 %>, <%= user['filter'] ? user['filter']['maxScore'] : 10 %>]
     });
     var skipValuesScore = [
         document.getElementById('skip-value-lower-score'),

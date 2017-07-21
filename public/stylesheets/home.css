@@ -160,6 +160,14 @@ span.hashtag {
     margin-bottom: 10px;
 }
 
+.online {
+    border: 2px green solid;
+}
+
+.offline {
+    border: 2px red solid;
+}
+
 .chat-people {
     border-bottom: 1px solid rgba(0, 0, 0, 0.125);
     height: 65px;
