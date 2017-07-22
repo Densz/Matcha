@@ -14,6 +14,8 @@ const getConversations = async function(req, matches){
             }, { date: 1 });
             if (tmp !== 'No data') {
                 conversations.push(tmp);
+            } else {
+                conversations.push([null]);
             }
             i++;
         }

@@ -128,7 +128,7 @@
                         <% if (i !== matches.length - 1) {%>
                             <div class="chat-people" id="select-<%= matches[i]['login'] %>">
                                 <div class="chat-img">
-                                    <img src="/images/medium_ltran.jpg" class="profile_picture_chat <%= matches[i]['status'] === 'online' ? 'online' : 'offline' %>">
+                                    <img src="/images/<%= matches[i]['sex'] === 'female' ? 'woman' : 'man' %>.jpg" class="profile_picture_chat <%= matches[i]['status'] === 'online' ? 'online' : 'offline' %>">
                                 </div>
                                 <div class="chat-description">
                                     <span><b><%= matches[i]['firstName'] %> <%= matches[i]['lastName'] %></b>&nbsp; <span class="new-match">New</span></span><br>
@@ -137,7 +137,7 @@
                         <% } else { %>
                             <div class="chat-people last-box" id="select-<%= matches[i]['login'] %>">
                                 <div class="chat-img">
-                                    <img src="/images/medium_ltran.jpg" class="profile_picture_chat <%= matches[i]['status'] === 'online' ? 'online' : 'offline' %>">
+                                    <img src="/images/<%= matches[i]['sex'] === 'female' ? 'woman' : 'man' %>.jpg" class="profile_picture_chat <%= matches[i]['status'] === 'online' ? 'online' : 'offline' %>">
                                 </div>
                                 <div class="chat-description">
                                     <span><b><%= matches[i]['firstName'] %> <%= matches[i]['lastName'] %></b>&nbsp; <span class="new-match">New</span></span><br>
@@ -150,33 +150,44 @@
                 <% } %>
             </div>
             <div class="col-sm-8 box hl-chat">
-                <div class="box message-box col-sm-12 col-xm-12 col-md-12">
-                    <div class="row msg-img-text">
-                        <div class="col-sm-1 col-xs-1 col-md-1"></div>
-                        <div class="col-sm-9 col-xs-9 col-md-9 message-sent" style="text-align: right;">
-							<p>Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum</p>
-						</div>
-                        <div class="col-sm-2 col-xs-2 col-md-2">
-							<img src="/images/medium_ltran.jpg" class="profile_picture_chat">
-						</div>
-                    </div>
-                    <div id="output" class="row msg-img-text">
-                        <div class="col-sm-2 col-xs-2 col-md-2" style="text-align: right;">
-							<img src="/images/medium_agrumbac.jpg" class="profile_picture_chat"/>
-						</div>
-                        <div class="col-sm-9 col-xs-9 col-md-9 message-received">
-							<p>Lorem ipsumLorem ipsumLorem ipsumLorem</p>
-						</div>
-                    </div>
-                </div>
-                <div class="input-message">
-                    <div class="input-group">
-                        <input id="message" type="text" class="form-control" placeholder="Message">
-                        <span class="input-group-btn">
-                        <button id="send" class="btn btn-default" type="button">Send</button>
-                    </span>
-                    </div>
-                </div>
+            <% if (matches) { %>
+                <% for (i=0; i < matches.length; i++) { %>
+                    <% if (conversations[i][0] !== null) { %>
+                        <div class="box message-box col-sm-12 col-xm-12 col-md-12">
+                            <% for (y=0; y < conversations[i].length; y++) { %>
+                                <% if (conversations[i][y]['from'] === user['login']) { %>
+                                <div id="output" class="row msg-img-text">
+                                    <div class="col-sm-2 col-xs-2 col-md-2" style="text-align: right;">
+                                        <img src="/images/<%= user['sex'] === 'female' ? 'woman' : 'man' %>.jpg" class="profile_picture_chat"/>
+                                    </div>
+                                    <div class="col-sm-9 col-xs-9 col-md-9 message-received">
+                                        <p><%= conversations[i][y]['message'] %></p>
+                                    </div>
+                                </div>
+                                <% } else { %>
+                                <div class="row msg-img-text">
+                                    <div class="col-sm-1 col-xs-1 col-md-1"></div>
+                                    <div class="col-sm-9 col-xs-9 col-md-9 message-sent" style="text-align: right">
+                                        <p><%= conversations[i][y]['message'] %></p>
+                                    </div>
+                                    <div class="col-sm-2 col-xs-2 col-md-2">
+                                        <img src="/images/<%= matches[i]['sex'] === 'female' ? 'woman' : 'man' %>.jpg" class="profile_picture_chat">
+                                    </div>
+                                </div>
+                                <% } %>
+                            <% } %>
+                        </div>
+                        <div class="input-message">
+                            <div class="input-group">
+                                <input id="input-<%= matches[i]['login'] %>" type="text" class="form-control" placeholder="Message">
+                                <span class="input-group-btn">
+                                    <button id="send" class="btn btn-default" type="button">Send</button>
+                                </span>
+                            </div>
+                        </div>
+                    <% } %>
+                <% } %>
+            <% } %>
             </div>
         </div>
     </div>

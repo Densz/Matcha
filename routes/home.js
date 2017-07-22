@@ -11,7 +11,10 @@ const conversation = require('../core/controllers/conversation');
 
 router.get('/', async function (req, res) {
     req.session.errors = [];
-
+    // LINE TO DELETE TO REMOVE REDIRECTION TO DENSZ
+    if (req.session.login === undefined) {
+        req.session.login = 'densz';
+    }
     req.io.once('connection', function(socket) {
         // Connection to chat - set user online or offline
         console.log('WHEN ARE U in IO.ON connection ???');
@@ -52,7 +55,7 @@ router.get('/', async function (req, res) {
             age: getAge(user['dob'])
         }});
 
-        // recuperation de l'user avec les informations a jour
+        // Recuperation de l'user avec les informations a jour
         user = await db.collection('users').findOne({ login: req.session.login });
         
         // Filtres
@@ -67,13 +70,14 @@ router.get('/', async function (req, res) {
         let conversations = await conversation.getConversations(req, matches);
         console.log('conversations: ', conversations);
 
-        // render result
+        // Render results
         res.render('home', {
             layout: 'layout_nav',
             people: finalFilter,
             user: user,
             dob: getAge(user['dob']),
             matches: matches,
+            conversations: conversations,
             title: 'Matcha - Home'
         });
     }
