@@ -218,3 +218,7 @@ span.hashtag {
     margin-top: 10px;
     right: 0px;
 }
+
+.alignRight {
+    text-align: right;
+}

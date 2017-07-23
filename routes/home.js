@@ -17,28 +17,32 @@ router.get('/', async function (req, res) {
     }
     req.io.once('connection', function(socket) {
         // Connection to chat - set user online or offline
-        console.log('WHEN ARE U in IO.ON connection ???');
         if (req.session.login !== undefined) {
             model.updateData('users', { login: req.session.login }, { $set: { status: 'online' } });
             req.io.sockets.emit('new user connection', req.session.login);
-            console.log('set user online: ', req.session.login);
         } else {
             model.updateData('users', { login: req.session.login }, { $set: { status: 'offline' } });
             req.io.sockets.emit('user disconnected', req.session.login);           
-            console.log('set user offline: ', req.session.login);
         }
         socket.on('disconnect', function(socket) {
-            console.log('Set him offline: ', req.session.login);
             req.io.sockets.emit('user disconnected', req.session.login);            
             model.updateData('users', { login: req.session.login }, { $set: { status: 'offline' } });
         })
 
-        // Emit chat message - to update Front
-        socket.on('chat', function(data){
-            req.io.sockets.emit('chat', data);
-            console.log(req.session.login);
+        // Send chat message - to update Front
+        socket.on('send message to back', async function(data){
+            req.io.sockets.emit('Alert people new message', data);
+            let db = await model.connectToDatabase();
+            let receiver = await db.collection('users').findOne({ login: data['to'] });
+            let sender = await db.collection('users').findOne({ login: data['from'] });
+            model.insertData('conversations', { from: req.session.login, to: data['to'], message: data['message'], date: new Date() })
+            let value = {
+                from: sender,
+                to: receiver,
+                message: data['message']
+            };
+            req.io.emit('send message response back', value);
         })
-
     });
     
     if (req.session.login === undefined) {

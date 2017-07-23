@@ -2,9 +2,12 @@
 var socket = io.connect('http://localhost:3000', { 'force new connection': true });
 
 var message = document.querySelector('#message'),
-    send = document.querySelector('#send'),
+    send = document.querySelectorAll('.send'),
     output = document.querySelector('#output'),
-    selectChat = document.querySelectorAll('.chat-people')
+    selectChat = document.querySelectorAll('.chat-people'),
+    connectedUser = document.getElementById('userLogin').innerHTML;
+
+console.log('Connected User: ', connectedUser);
 
 /**
  * Handle connections Online / Offline users
@@ -23,40 +26,90 @@ socket.on('user disconnected', function(data){
     }
 })
 
-/**
- * Send message to server
- */
-send.addEventListener('click', function(){
-    socket.emit('chat', {
-        message: message.value
-    })
-});
 
-socket.on('chat', function(data){
-    output.firstElementChild.nextElementSibling.innerHTML += '<p>' + data.message + '<p>';
+var i = 0;
+for (i; i < send.length; i++) {
+    send[i].addEventListener('click', function(){
+        if (this.parentElement.previousElementSibling.value !== "") {
+            socket.emit('send message to back', {
+                from: connectedUser,
+                to: this.id,
+                message: this.parentElement.previousElementSibling.value
+            })
+            this.parentElement.previousElementSibling.value = "";
+        }
+    })
+}
+
+/**
+ * send message to server
+ */
+socket.on('send message response back', function(data){
+    var sentMessage = document.createElement('div');
+    sentMessage.className = 'row msg-img-text';
+        var emptyDiv = document.createElement('div');
+        emptyDiv.className = "col-sm-1 col-xs-1 col-md-1";
+        var messageBox = document.createElement('div');
+        messageBox.className = "col-sm-9 col-xs-9 col-md-9 message-sent alignRight";
+            var p = document.createElement('p');
+            p.innerHTML = data['message'];
+        var imgBox = document.createElement('div');
+        imgBox.className = 'col-sm-2 col-xs-2 col-md-2';
+            var img = document.createElement('img');
+            img.src = data['from']['sex'] === 'female' ? "/images/woman.jpg" : "/images/man.jpg";
+            img.className = "profile_picture_chat";
+    messageBox.appendChild(p);
+    imgBox.appendChild(img);
+    sentMessage.appendChild(emptyDiv);
+    sentMessage.appendChild(messageBox);
+    sentMessage.appendChild(imgBox);
+    if (document.getElementById('chat-' + data['to']['login'])) {
+        document.getElementById('chat-' + data['to']['login']).childNodes[1].appendChild(sentMessage);
+    }
+
+    socket.emit('Alert people new message', data);
 });
 
 
 /**
  * Receive message from server
  */
-socket.on('message received', function(data){
+socket.on('Alert people new message', function(data){
+    console.log(data);
+    if (data['to'] === connectedUser) {
+        var receivedMessage = document.createElement('div');
+        receivedMessage.className = 'row msg-img-text';
+            var imgBox = document.createElement('div');
+            imgBox.className = 'col-sm-2 col-xs-2 col-md-2 alignRight';
+                var img = document.createElement('img');
+                img.src = data['from']['sex'] === 'female' ? "/images/woman.jpg" : "/images/man.jpg";
+                img.className = "profile_picture_chat";
+            var messageBox = document.createElement('div');
+            messageBox.className = "col-sm-9 col-xs-9 col-md-9 message-received";
+                var p = document.createElement('p');
+                p.innerHTML = data['message'];
+        imgBox.appendChild(img);
+        messageBox.appendChild(p);
+        receivedMessage.appendChild(imgBox);
+        receivedMessage.appendChild(messageBox);
 
+        document.getElementById('chat-' + data['from']).childNodes[1].appendChild(receivedMessage);
+    }
 });
 
 /**
  * Get the right conversation with the right user
  */
 var i = 0;
-
 for (i; i < selectChat.length; i++) {
-    if (document.addEventListener) {
-		selectChat[i].addEventListener("click", selectConversation);
-	} else {
-        selectChat[i].attachEvent("click", selectConversation);
-	}
+    selectChat[i].addEventListener("click", selectConversation);
 }
 
 function selectConversation(){
-    console.log(this.id.split('-')[1]);
+    var chatbox = document.querySelectorAll('.chatbox');
+    var i = 0;
+    for (i; i < chatbox.length; i++) {
+        chatbox[i].style.display = "none";
+    }
+    document.getElementById('chat-'+this.id.split('-')[1]).style.display = 'inline';
 }
