@@ -194,6 +194,8 @@ span.hashtag {
 
 .message-box {
     height: 430px;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .new-match {
