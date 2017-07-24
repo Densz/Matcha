@@ -1,10 +1,14 @@
 const express = require('express');
 const router = express.Router();
 const model = require('../core/models/database');
+const socketIO = require('../core/controllers/socket');
 const passwordHash = require('password-hash');
 const request = require('request');
 
 router.get('/', async function (req, res) {
+    // Connexion to socket.io
+    socketIO.connexionChat(req);
+
     let db = await model.connectToDatabase();
     let info = await db.collection('users').findOne({ login: req.session.login });
 

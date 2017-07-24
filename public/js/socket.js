@@ -6,8 +6,7 @@ var message = document.querySelector('#message'),
     output = document.querySelector('#output'),
     selectChat = document.querySelectorAll('.chat-people'),
     connectedUser = document.getElementById('userLogin').innerHTML;
-
-console.log('Connected User: ', connectedUser);
+var messageBox = document.querySelectorAll('.message-box');    
 
 /**
  * Handle connections Online / Offline users
@@ -26,7 +25,9 @@ socket.on('user disconnected', function(data){
     }
 })
 
-
+/**
+ * Add event listener to button SEND
+ */
 var i = 0;
 for (i; i < send.length; i++) {
     send[i].addEventListener('click', function(){
@@ -66,7 +67,6 @@ socket.on('send message response back', function(data){
     if (document.getElementById('chat-' + data['to']['login'])) {
         document.getElementById('chat-' + data['to']['login']).childNodes[1].appendChild(sentMessage);
     }
-
     socket.emit('Alert people new message', data);
 });
 
@@ -76,7 +76,7 @@ socket.on('send message response back', function(data){
  */
 socket.on('Alert people new message', function(data){
     console.log(data);
-    if (data['to'] === connectedUser) {
+    if (data['to']['login'] === connectedUser) {
         var receivedMessage = document.createElement('div');
         receivedMessage.className = 'row msg-img-text';
             var imgBox = document.createElement('div');
@@ -92,8 +92,7 @@ socket.on('Alert people new message', function(data){
         messageBox.appendChild(p);
         receivedMessage.appendChild(imgBox);
         receivedMessage.appendChild(messageBox);
-
-        document.getElementById('chat-' + data['from']).childNodes[1].appendChild(receivedMessage);
+        document.getElementById('chat-' + data['from']['login']).childNodes[1].appendChild(receivedMessage);
     }
 });
 
@@ -113,3 +112,17 @@ function selectConversation(){
     }
     document.getElementById('chat-'+this.id.split('-')[1]).style.display = 'inline';
 }
+
+/**
+ * Scroll to Bottom
+*/
+
+// function scrollToBottom() {
+//     var i = 0;
+//     for (i; messageBox.length; i++){
+//         if (messageBox[i].scrollHeight !== undefined) {
+//             messageBox[i].scrollTop = messageBox[i].scrollHeight;
+//         }
+//     }
+// }
+// scrollToBottom();

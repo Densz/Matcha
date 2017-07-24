@@ -11,44 +11,14 @@ const conversation = require('../core/controllers/conversation');
 
 router.get('/', async function (req, res) {
     req.session.errors = [];
-    // LINE TO DELETE TO REMOVE REDIRECTION TO DENSZ
-    if (req.session.login === undefined) {
-        req.session.login = 'densz';
-    }
-    req.io.once('connection', function(socket) {
-        // Connection to chat - set user online or offline
-        if (req.session.login !== undefined) {
-            model.updateData('users', { login: req.session.login }, { $set: { status: 'online' } });
-            req.io.sockets.emit('new user connection', req.session.login);
-        } else {
-            model.updateData('users', { login: req.session.login }, { $set: { status: 'offline' } });
-            req.io.sockets.emit('user disconnected', req.session.login);           
-        }
-        socket.on('disconnect', function(socket) {
-            req.io.sockets.emit('user disconnected', req.session.login);            
-            model.updateData('users', { login: req.session.login }, { $set: { status: 'offline' } });
-        })
-
-        // Send chat message - to update Front
-        socket.on('send message to back', async function(data){
-            req.io.sockets.emit('Alert people new message', data);
-            let db = await model.connectToDatabase();
-            let receiver = await db.collection('users').findOne({ login: data['to'] });
-            let sender = await db.collection('users').findOne({ login: data['from'] });
-            model.insertData('conversations', { from: req.session.login, to: data['to'], message: data['message'], date: new Date() })
-            let value = {
-                from: sender,
-                to: receiver,
-                message: data['message']
-            };
-            req.io.emit('send message response back', value);
-        })
-    });
     
     if (req.session.login === undefined) {
         req.session.errors.push({ msg: 'No access right' });
         res.redirect('/');
     } else {
+        // Connexion with socket.io
+        socketIO.connexionChat(req);
+
         // Update age each time the guy is connected in the homepage
         let db = await model.connectToDatabase();
         let user = await db.collection('users').findOne({ login: req.session.login });
@@ -72,7 +42,6 @@ router.get('/', async function (req, res) {
 
         // Conversations
         let conversations = await conversation.getConversations(req, matches);
-        console.log('conversations: ', conversations);
 
         // Render results
         res.render('home', {
