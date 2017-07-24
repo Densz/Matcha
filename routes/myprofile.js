@@ -54,6 +54,7 @@ router.get('/', async (req, res, next) => {
         layout: 'layout_nav',
         firstName: userOnline['firstName'],
         lastName: userOnline['lastName'],
+        login: req.session.login,
         bio: userOnline['bio'],
         popularityScore: userOnline['popularityScore'],
         title: 'Matcha - My profile',

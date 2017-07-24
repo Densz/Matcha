@@ -20,6 +20,7 @@ router.get('/', async function (req, res) {
     res.render('settings', {
         layout: 'layout_nav',
         title: 'Matcha - Settings',
+        login: req.session.login,
         address: info['address'],
         tmpAddress: info['tmpAddress'],
         success: alertMessage,

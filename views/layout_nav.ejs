@@ -15,6 +15,7 @@
     <link rel='stylesheet' href='/stylesheets/myprofile.css'/>
     <!--To ensure proper rendering and touch zooming ON MOBILE-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
 </head>
 <body>
 <nav class="navbar navbar-default navbar-static-top">
@@ -38,6 +39,7 @@
                 </form>
             </ul>
             <ul class="nav navbar-nav navbar-right">
+                <li><a id="notificationsButton">Notifications</a><div class="result-search notifications"></div></li>
                 <li><a href="/settings">Settings</a></li>
                 <li><a href="/signOut">Logout</a></li>
             </ul>
@@ -47,7 +49,7 @@
 <%- body %>
 </body>
 </html>
-
 <script src="/js/searchbar.js"></script>
 <script src="/socket.io/socket.io.js"></script>
 <script src="/js/socket.js"></script>
+<script src="/js/notifications.js"></script>

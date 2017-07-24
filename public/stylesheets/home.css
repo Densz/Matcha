@@ -32,6 +32,12 @@ nav {
     overflow: auto;
 }
 
+.notifications {
+    height: 300px;
+    overflow: auto;
+    display: none;    
+}
+
 /**
  *  Left Column
  */

@@ -6,11 +6,15 @@ const match = require('../core/controllers/match');
 const formidable = require('formidable');
 const fs = require('fs');
 const views = require('../core/controllers/views');
+const notifications = require('../core/controllers/notifications');
 
 router.get('/:login', async function(req, res, next){
     if (req.params.login === req.session.login) {
         res.redirect('/myprofile');
     } else {
+        // Connexion with socket.io
+        notifications.saveNotificationsToDatabase(req);
+
         //update of popularity score
         let statistics = await score.updateScore(req.params.login);
 
@@ -39,6 +43,7 @@ router.get('/:login', async function(req, res, next){
             layout: 'layout_nav',
             firstName: user['firstName'],
             lastName: user['lastName'],
+            login: req.session.login,
             bio: user['bio'],
             login: user['login'],
             popularityScore: user['popularityScore'],

@@ -2,6 +2,7 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="box prohl1">
+                <div id='userLogin' style="display:none"><%= login %></div>
                 <div style="width: 100%;">
                     <img class="profile_picture" src="/images/medium_kneth.jpg">
                 </div>
@@ -10,6 +11,7 @@
                     <img class="profile_star" src="/images/star.png">
                 <% } %>
                 </div>
+                <div id='userLogin' style="display:none"><%= login %></div>
                 <p><b><%= firstName %> <%= lastName %></b></p>
                 <label for="comment">Bio:</label>
                 <div><%= bio %></div>
@@ -112,3 +114,4 @@ var myDoughnutChart = new Chart(ctx, {
     }
 });
 </script>
+<script src="/js/profile.js"></script>

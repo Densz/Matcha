@@ -7,6 +7,7 @@ const filter = require('../core/controllers/filter');
 const score = require('../core/controllers/score');
 const match = require('../core/controllers/match');
 const socketIO = require('../core/controllers/socket');
+const notifications = require('../core/controllers/notifications');
 const conversation = require('../core/controllers/conversation');
 
 router.get('/', async function (req, res) {
@@ -18,6 +19,7 @@ router.get('/', async function (req, res) {
     } else {
         // Connexion with socket.io
         socketIO.connexionChat(req);
+        notifications.saveNotificationsToDatabase(req);
 
         // Update age each time the guy is connected in the homepage
         let db = await model.connectToDatabase();

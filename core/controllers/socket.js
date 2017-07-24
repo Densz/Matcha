@@ -14,26 +14,29 @@ const connexionChat = function(req){
             req.io.sockets.emit('user disconnected', req.session.login);            
             model.updateData('users', { login: req.session.login }, { $set: { status: 'offline' } });
         })
-
-        // Send chat message - to update Front
-        socket.on('send message to back', async function(data){
-            let db = await model.connectToDatabase();
-            let receiver = await db.collection('users').findOne({ login: data['to'] });
-            let sender = await db.collection('users').findOne({ login: data['from'] });
-            req.io.sockets.emit('Alert people new message', {
-                to: receiver,
-                from: sender,
-                message: data['message']
-            });
-            model.insertData('conversations', { from: req.session.login, to: data['to'], message: data['message'], date: new Date() })
-            let value = {
-                from: sender,
-                to: receiver,
-                message: data['message']
-            };
-            req.io.emit('send message response back', value);
-        })
+        
+        getMessagesFromChat(req, socket);
     });
+}
+
+const getMessagesFromChat = async function(req, socket) {
+    socket.on('send message to back', async function(data){
+        let db = await model.connectToDatabase();
+        let receiver = await db.collection('users').findOne({ login: data['to'] });
+        let sender = await db.collection('users').findOne({ login: data['from'] });
+        req.io.sockets.emit('Alert people new message', {
+            to: receiver,
+            from: sender,
+            message: data['message']
+        });
+        model.insertData('conversations', { from: req.session.login, to: data['to'], message: data['message'], date: new Date() })
+        let value = {
+            from: sender,
+            to: receiver,
+            message: data['message']
+        };
+        req.io.emit('send message response back', value);
+    })
 }
 
 module.exports = {
