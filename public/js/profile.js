@@ -15,6 +15,6 @@ if (likeProfile) {
 
 if (dislikeProfile) {
     dislikeProfile.addEventListener("click", function(){
-        socket.emit('new view', { to: urlUserProfile() });        
+        socket.emit('new view', { to: urlUserProfile() });
     })
 }

@@ -2,7 +2,6 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="box prohl1">
-                <div id='userLogin' style="display:none"><%= login %></div>
                 <div style="width: 100%;">
                     <img class="profile_picture" src="/images/medium_kneth.jpg">
                 </div>
@@ -11,21 +10,20 @@
                     <img class="profile_star" src="/images/star.png">
                 <% } %>
                 </div>
-                <div id='userLogin' style="display:none"><%= login %></div>
                 <p><b><%= firstName %> <%= lastName %></b></p>
                 <label for="comment">Bio:</label>
                 <div><%= bio %></div>
                 <br>
                 <% if (swiped === null) { %>
-                    <a href="/profile/<%= login %>/dislike"><img class="dislike" src="/images/sign-error.png"></a>
-                    <a href="/profile/<%= login %>/like"><img class="like" src="/images/sign-check.png"></a>
+                    <a href="/profile/<%= loginProfile %>/dislike"><img class="dislike" src="/images/sign-error.png"></a>
+                    <a href="/profile/<%= loginProfile %>/like"><img class="like" src="/images/sign-check.png"></a>
                 <% } else { %>
                     <span><b>You <%= swiped %>d <%= firstName %> already</b></span>
                 <% } %>
                 <br>
                 <div style="text-align: right;">
                     <% if (reported === null) { %>
-                        <a href="/profile/report/reported/<%= login %>">Report this profile as fake</a>
+                        <a href="/profile/report/reported/<%= loginProfile %>">Report this profile as fake</a>
                     <% } else { %>
                         <span>You have reported this profile already</span>
                     <% } %>
@@ -99,6 +97,7 @@
         </div>
     </div>
 </div>
+<script src="/js/profile.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 <script>
 var ctx = document.getElementById('myChart').getContext('2d');
@@ -114,4 +113,3 @@ var myDoughnutChart = new Chart(ctx, {
     }
 });
 </script>
-<script src="/js/profile.js"></script>

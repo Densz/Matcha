@@ -7,7 +7,6 @@ const formidable = require('formidable');
 const fs = require('fs');
 const views = require('../core/controllers/views');
 const multer = require('multer');
-const socketIO = require('../core/controllers/socket');
 
 
 const imageFilter = function(req, file, cb){
@@ -37,9 +36,6 @@ const upload = multer({
 
 
 router.get('/', async (req, res, next) => {
-    //Connection to socket.io
-    socketIO.connexionChat(req);
-
     //update of popularity score
     let statistics = await score.updateScore(req.session.login);
 

@@ -49,6 +49,7 @@ router.get('/', async function (req, res) {
         res.render('home', {
             layout: 'layout_nav',
             people: finalFilter,
+            login: req.session.login,
             user: user,
             dob: getAge(user['dob']),
             matches: matches,
