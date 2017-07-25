@@ -20,36 +20,33 @@ router.get('/', async function (req, res) {
         // Connexion with socket.io
         socketIO.connexionChat(req);
         notifications.saveNotificationsToDatabase(req);
-
         // Update age each time the guy is connected in the homepage
         let db = await model.connectToDatabase();
         let user = await db.collection('users').findOne({ login: req.session.login });
-        
         // Update des infos de l'user avant la connexion
         await score.updateScore(req.session.login);
         await model.updateData('users', { login: req.session.login }, { $set: {
             age: getAge(user['dob'])
         }});
-
         // Recuperation de l'user avec les informations a jour
         user = await db.collection('users').findOne({ login: req.session.login });
-        
         // Filtres
         let filter1 = await filter.filter(user, req);
         let filter2 = await filter.filterByViews(user, filter1);
         let finalFilter = await filter.filterByInterests(user, filter2);        
-
         // Matches
         let matches = await match.getMatches(req);
-
         // Conversations
         let conversations = await conversation.getConversations(req, matches);
+        // Notifications
+        let notifs = await model.getDataSorted('notifications', { to: req.session.login }, { date: 1 });
 
         // Render results
         res.render('home', {
             layout: 'layout_nav',
             people: finalFilter,
             login: req.session.login,
+            notifications: notifs,
             user: user,
             dob: getAge(user['dob']),
             matches: matches,
@@ -167,6 +164,15 @@ router.post('/searchRequest', async function (req, res){
         ]
     });
     res.send(result);
+});
+
+/**
+ * AJAX function
+ */
+router.post('/setSeenNotifications', async function (req, res){
+    let db = await model.connectToDatabase();
+    db.collection('notifications').update({ to: req.session.login }, { $set: { seen: true }}, { multi: true });
+    res.send('ok');
 });
 
 module.exports = router;

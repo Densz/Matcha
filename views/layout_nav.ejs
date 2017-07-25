@@ -39,7 +39,45 @@
                 </form>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a id="notificationsButton">Notifications</a><div class="result-search notifications"></div></li>
+                <li><a id="notificationsButton">Notifications</a>
+                    <div class="result-search notifications" style="display:none">
+                        <% if (notifications) { %>
+                            <% for (i = 0; i < notifications.length; i++) { %>
+                                <% if (notifications[i]['type'] === 'match') { %>
+                                    <% if (notifications[i]['seen'] === false) { %>
+                                        <p><b><a href="/profile/<%= notifications[i]['from'] %>"><%= notifications[i]['from'] %></a> just matched your profile</b></p>
+                                    <% } else { %>
+                                        <p><a href="/profile/<%= notifications[i]['from'] %>"><%= notifications[i]['from'] %></a> just matched your profile</p>                                    
+                                    <% } %>
+                                <% } else if (notifications[i]['type'] === 'like') { %>
+                                    <% if (notifications[i]['seen'] === false) { %>
+                                        <p><b><a href="/profile/<%= notifications[i]['from'] %>"><%= notifications[i]['from'] %></a> just liked your profile</b></p>
+                                    <% } else { %>
+                                        <p><a href="/profile/<%= notifications[i]['from'] %>"><%= notifications[i]['from'] %></a> just liked your profile</p>                                    
+                                    <% } %>
+                                <% } else if (notifications[i]['type'] === 'view') { %>
+                                    <% if (notifications[i]['seen'] === false) { %>
+                                        <p><b><a href="/profile/<%= notifications[i]['from'] %>"><%= notifications[i]['from'] %></a> just viewed your profile</b></p>
+                                    <% } else { %>
+                                        <p><a href="/profile/<%= notifications[i]['from'] %>"><%= notifications[i]['from'] %></a> just viewed your profile</p>                                    
+                                    <% } %>
+                                <% } else if (notifications[i]['type'] === 'message') { %>
+                                    <% if (notifications[i]['seen'] === false) { %>
+                                        <p><b><a href="/profile/<%= notifications[i]['from'] %>"><%= notifications[i]['from'] %></a> sent you a message</b></p>
+                                    <% } else { %>
+                                        <p><a href="/profile/<%= notifications[i]['from'] %>"><%= notifications[i]['from'] %></a> sent you a message</p>                                    
+                                    <% } %>
+                                <% } else if (notifications[i]['type'] === 'dislike') { %>
+                                    <% if (notifications[i]['seen'] === false) { %>
+                                        <p><b><a href="/profile/<%= notifications[i]['from'] %>"><%= notifications[i]['from'] %></a> just disliked your profile</b></p>
+                                    <% } else { %>
+                                        <p><a href="/profile/<%= notifications[i]['from'] %>"><%= notifications[i]['from'] %></a> just disliked your profile</p>                                    
+                                    <% } %>
+                                <% } %>                                
+                            <% } %>
+                        <% } %>
+                    </div>
+                </li>
                 <li><a href="/settings">Settings</a></li>
                 <li><a href="/signOut">Logout</a></li>
             </ul>

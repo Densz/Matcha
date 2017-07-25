@@ -43,6 +43,9 @@ router.get('/', async (req, res, next) => {
     let userOnline = await db.collection('users').findOne({ login: req.session.login });
     let viewers = await views.getViewers(userOnline);
     let likes = await views.getLikes(userOnline);
+    
+    // Notifications
+    let notifs = await model.getDataSorted('notifications', { to: req.session.login }, { date: 1 });
 
     let alertMessage = req.session.success;
     req.session.success = [];
@@ -51,6 +54,7 @@ router.get('/', async (req, res, next) => {
         firstName: userOnline['firstName'],
         lastName: userOnline['lastName'],
         login: req.session.login,
+        notifications: notifs,
         bio: userOnline['bio'],
         popularityScore: userOnline['popularityScore'],
         title: 'Matcha - My profile',

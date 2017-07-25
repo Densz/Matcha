@@ -1,8 +1,18 @@
 var buttonNotifications = document.querySelector('#notificationsButton'),
     notificationsBox = document.querySelector('.notifications');
 
+function url(){
+	var url =  window.location.href;
+	url = url.split("/");
+	return(url[0] + '//' + url[2] + '');
+}
+
 buttonNotifications.addEventListener("click", function(){
     if (notificationsBox.style.display === "none") {
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', url() + '/home/setSeenNotifications', true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.send();
         notificationsBox.style.display = "inherit";
     } else {
         notificationsBox.style.display = "none"; 

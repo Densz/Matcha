@@ -39,12 +39,16 @@ router.get('/:login', async function(req, res, next){
             reportedLogin: req.params.login
         });
 
+        // Notifications
+        let notifs = await model.getDataSorted('notifications', { to: req.session.login }, { date: 1 });
+
         res.render('profile', {
             layout: 'layout_nav',
             firstName: user['firstName'],
             lastName: user['lastName'],
             login: req.session.login,
             bio: user['bio'],
+            notifications: notifs,
             loginProfile: user['login'],
             login: req.session.login,
             popularityScore: user['popularityScore'],

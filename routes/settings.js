@@ -15,12 +15,16 @@ router.get('/', async function (req, res) {
     let alertMessage = req.session.success;
     let errorMessage = req.session.errors;
 
+    // Notifications
+    let notifs = await model.getDataSorted('notifications', { to: req.session.login }, { date: 1 });
+
     req.session.success = [];
     req.session.errors = [];
     res.render('settings', {
         layout: 'layout_nav',
         title: 'Matcha - Settings',
         login: req.session.login,
+        notifications: notifs,
         address: info['address'],
         tmpAddress: info['tmpAddress'],
         success: alertMessage,
