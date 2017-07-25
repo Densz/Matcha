@@ -13,14 +13,14 @@
                 <p><b><%= firstName %> <%= lastName %></b></p>
                 <label for="comment">Bio:</label>
                 <div><%= bio %></div>
-                <br>
-                <% if (swiped === null) { %>
-                    <a href="/profile/<%= loginProfile %>/dislike"><img class="dislike" src="/images/sign-error.png"></a>
-                    <a href="/profile/<%= loginProfile %>/like"><img class="like" src="/images/sign-check.png"></a>
-                <% } else { %>
-                    <span><b>You <%= swiped %>d <%= firstName %> already</b></span>
-                <% } %>
-                <br>
+                <div id='swipe'>
+                    <% if (swiped === null) { %>
+                        <img class="dislike" src="/images/sign-error.png">
+                        <img class="like" src="/images/sign-check.png">
+                    <% } else { %>
+                        <span>You <%= swiped %>d this profile already</span>
+                    <% } %>
+                </div>
                 <div style="text-align: right;">
                     <% if (reported === null) { %>
                         <a href="/profile/report/reported/<%= loginProfile %>">Report this profile as fake</a>

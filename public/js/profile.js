@@ -1,5 +1,6 @@
 var likeProfile = document.querySelector('.like');
 var dislikeProfile = document.querySelector('.dislike');
+var div = document.querySelector('#swipe');
 
 function urlUserProfile(){
     var url =  window.location.href;
@@ -8,13 +9,46 @@ function urlUserProfile(){
 }
 
 if (likeProfile) {
-    likeProfile.addEventListener("click", function(){
-        socket.emit('new like', { to: urlUserProfile() });
+    likeProfile.addEventListener('click', function() {
+        var xhr = new XMLHttpRequest();
+        var loginSwiped = urlUserProfile();
+        
+        socket.emit('new like', { to: loginSwiped });
+        xhr.open('POST', url() + '/home/swipe', true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.send('loginSwiped=' + loginSwiped + '&status=like');
+        xhr.onload = function() {
+            if (xhr.readyState === xhr.DONE) {
+                if (xhr.status === 200 || xhr.status === 0) {
+                    var response = JSON.parse(xhr.responseText);
+                    if (response['match'] === true) {
+                        socket.emit('new match', { to: loginSwiped });
+                    }
+                }
+            }
+        }
+        likeProfile.remove();
+        dislikeProfile.remove();
+        var span = document.createElement('span');
+        span.innerHTML = "You liked this profile already";
+        div.appendChild(span);
     })
 }
 
 if (dislikeProfile) {
-    dislikeProfile.addEventListener("click", function(){
-        socket.emit('new view', { to: urlUserProfile() });
+    dislikeProfile.addEventListener('click', function(){
+        var xhr = new XMLHttpRequest();
+        var loginSwiped = urlUserProfile();
+
+        socket.emit('new view', { to: loginSwiped });    
+        xhr.open('POST', url() + '/home/swipe', true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.send('loginSwiped=' + loginSwiped + '&status=dislike');
+            
+        likeProfile.remove();
+        dislikeProfile.remove();
+        var span = document.createElement('span');
+        span.innerHTML = "You disliked this profile already";
+        div.appendChild(span);
     })
 }

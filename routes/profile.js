@@ -58,22 +58,6 @@ router.get('/:login', async function(req, res, next){
     }
 });
 
-router.get('/:login/:status', async function(req, res){
-    if (req.params.status === 'like' || req.params.status === 'dislike') {
-        await model.insertData('views', {
-            userOnline: req.session.login,
-            userSeen: req.params.login,
-            status: req.params.status
-        });
-        if (req.params.status === 'like'){
-            await match.checkMatch(req.params.login, req);
-        }
-        res.redirect('/profile/' + req.params.login);
-    } else {
-        res.redirect('/profile/' + req.params.login);
-    }
-});
-
 router.get('/report/reported/:login', async function(req, res){
     await model.insertData('reports', {
         login: req.session.login,
