@@ -179,4 +179,16 @@ router.post('/setSeenNotifications', async function (req, res){
     res.send('ok');
 });
 
+/**
+ * AJAX function
+ */
+router.post('/deleteHashtag', async function (req, res){
+    let db = await model.connectToDatabase();
+    db.collection('users').update(
+        { login: req.session.login },
+        { $pull: { hashtag: req.body.hashtagToDelete }}
+    );
+    res.send('ok');
+});
+
 module.exports = router;

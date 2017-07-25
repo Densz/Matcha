@@ -32,6 +32,10 @@ nav {
     display: none;
 }
 
+#notificationsButton:hover {
+    cursor: pointer;
+}
+
 .notifications {
     height: 300px;
     overflow: auto;
@@ -102,6 +106,17 @@ span.hashtag {
     border-radius: 4px;
     display: inline-block;
     margin-top: 1px;
+}
+
+span.hashtag_user {
+    border: 1px solid #ff5a33;
+    color: #ff5a33;
+    font-weight: bold;
+    padding: 2px;
+    border-radius: 4px;
+    display: inline-block;
+    margin-top: 1px;
+    cursor: pointer;
 }
 
 .hashtag-box {

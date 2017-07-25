@@ -2,17 +2,13 @@
 Tinder-like app made by 42 Students
 
 ### Need to do
-* Reset password (need to check if we have to do it)
+* Unlike people
+* Delete Hashtag
+* Reset password with email
+* Check Location / javascript is enough ?
+* Search users Page - See if user online
+* Block user and everything coming from him
 * Upload photos
-* Like
-* Chat (socket.io)
-* Notifications
-
-### Things done
-* Templates (HTML/CSS/Bootstrap)
-* Sign up / Sign In
-* Location
-* Match / Swipe
 
 #### Details
 * Babel
