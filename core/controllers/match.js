@@ -11,10 +11,10 @@ const checkMatch = async function(loginLiked, req){
         await model.insertData('matches', {
             user1: loginLiked,
             user2: req.session.login
-        })
-        console.log('There is a match');    
+        });
+        return true;
     } else {
-        console.log('There is NO match');
+        return false;
     }
 }
 
@@ -25,7 +25,6 @@ const getMatches = async function(req) {
     let db = await model.connectToDatabase();
     let matchesInfo = [];
     let i = 0;
-    console.log(matches, ' dans getMatches');
     if (matches !== "No data") {    
         while (i < matches.length) {
             if (matches[i]['user1'] === req.session.login) {

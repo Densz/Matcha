@@ -141,9 +141,15 @@ router.post('/swipe', async function (req, res){
         status: req.body.status
     });
     if (req.body.status === 'like'){
-        await match.checkMatch(req.body.loginSwiped, req);
+        let boolean = await match.checkMatch(req.body.loginSwiped, req);
+        if (boolean === true) {
+            res.send({ match: true });
+        } else {
+            res.send({ match: false });
+        }
+    } else {
+        res.send({ match: false });
     }
-    res.send('ok');
 });
 
 /**

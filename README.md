@@ -42,3 +42,7 @@ Tinder-like app made by 42 Students
                 "name" : "location_2dsphere"
         }
 ]
+
+#### At 42
+* Check all urls (check function)
+* Check PORT
