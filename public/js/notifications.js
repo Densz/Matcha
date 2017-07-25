@@ -23,6 +23,26 @@ function showNotification(login, text) {
 
 socket.on('Show like to user', function(data){
     if (data['to'] === connectedUser) {
-        showNotification(data['from'], " juste liked your profile");
+        showNotification(data['from'], " just liked your profile");
+    }
+})
+socket.on('Show view to user', function(data){
+    if (data['to'] === connectedUser) {
+        showNotification(data['from'], " just viewed your profile");
+    }
+})
+socket.on('Show message to user', function(data){
+    if (data['to'] === connectedUser) {
+        showNotification(data['from'], " sent you a message");
+    }
+})
+socket.on('Show match to user', function(data){
+    if (data['to'] === connectedUser) {
+        showNotification(data['from'], " just matched your profile");
+    }
+})
+socket.on('Show dislike to user', function(data){
+    if (data['to'] === connectedUser) {
+        showNotification(data['from'], " just disliked your profile");
     }
 })

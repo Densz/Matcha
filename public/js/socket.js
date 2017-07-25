@@ -45,6 +45,9 @@ if (urlPage() === 'home') {
                     to: this.id,
                     message: this.parentElement.previousElementSibling.value
                 })
+                socket.emit('new message', {
+                    to: this.id
+                })
                 this.parentElement.previousElementSibling.value = "";
             }
         })

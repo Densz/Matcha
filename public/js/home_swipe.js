@@ -30,7 +30,8 @@ likeButton.addEventListener('click', function(){
 dislikeButton.addEventListener('click', function(){
     var xhr = new XMLHttpRequest();
     var loginSwiped = people.firstElementChild.querySelector('#matchedLogin').innerHTML;
-    
+
+    socket.emit('new view', { to: loginSwiped });    
     xhr.open('POST', url() + '/home/swipe', true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.send('loginSwiped=' + loginSwiped + '&status=dislike');
