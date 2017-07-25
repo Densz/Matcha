@@ -41,6 +41,10 @@ router.get('/:login', async function(req, res, next){
 
         // Notifications
         let notifs = await model.getDataSorted('notifications', { to: req.session.login }, { date: 1 });
+        let newNotif = await model.getData('notifications', { to: req.session.login, seen: false });
+        if (newNotif === "No data") {
+            newNotif = undefined;
+        }
 
         res.render('profile', {
             layout: 'layout_nav',
@@ -49,6 +53,7 @@ router.get('/:login', async function(req, res, next){
             login: req.session.login,
             bio: user['bio'],
             notifications: notifs,
+            newNotif: newNotif,
             loginProfile: user['login'],
             login: req.session.login,
             popularityScore: user['popularityScore'],

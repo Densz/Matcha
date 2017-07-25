@@ -46,7 +46,10 @@ router.get('/', async (req, res, next) => {
     
     // Notifications
     let notifs = await model.getDataSorted('notifications', { to: req.session.login }, { date: 1 });
-
+    let newNotif = await model.getData('notifications', { to: req.session.login, seen: false });
+    if (newNotif === "No data") {
+        newNotif = undefined;
+    }
     let alertMessage = req.session.success;
     req.session.success = [];
     res.render('myprofile', {
@@ -55,6 +58,7 @@ router.get('/', async (req, res, next) => {
         lastName: userOnline['lastName'],
         login: req.session.login,
         notifications: notifs,
+        newNotif: newNotif,
         bio: userOnline['bio'],
         popularityScore: userOnline['popularityScore'],
         title: 'Matcha - My profile',

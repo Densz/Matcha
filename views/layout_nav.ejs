@@ -39,7 +39,13 @@
                 </form>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a id="notificationsButton">Notifications</a>
+                <li><a id="notificationsButton">
+                    <% if (newNotif) { %>
+                        <b>Notifications</b>
+                    <% } else { %>
+                        Notifications
+                    <% } %>
+                    </a>
                     <div class="result-search notifications" style="display:none">
                         <% if (notifications) { %>
                             <% for (i = 0; i < notifications.length; i++) { %>

@@ -40,13 +40,17 @@ router.get('/', async function (req, res) {
         let conversations = await conversation.getConversations(req, matches);
         // Notifications
         let notifs = await model.getDataSorted('notifications', { to: req.session.login }, { date: 1 });
-
+        let newNotif = await model.getData('notifications', { to: req.session.login, seen: false });
+        if (newNotif === "No data") {
+            newNotif = undefined;
+        }
         // Render results
         res.render('home', {
             layout: 'layout_nav',
             people: finalFilter,
             login: req.session.login,
             notifications: notifs,
+            newNotif: newNotif,
             user: user,
             dob: getAge(user['dob']),
             matches: matches,

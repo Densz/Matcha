@@ -17,6 +17,10 @@ router.get('/', async function (req, res) {
 
     // Notifications
     let notifs = await model.getDataSorted('notifications', { to: req.session.login }, { date: 1 });
+    let newNotif = await model.getData('notifications', { to: req.session.login, seen: false });
+    if (newNotif === "No data") {
+        newNotif = undefined;
+    }
 
     req.session.success = [];
     req.session.errors = [];
@@ -25,6 +29,7 @@ router.get('/', async function (req, res) {
         title: 'Matcha - Settings',
         login: req.session.login,
         notifications: notifs,
+        newNotif: newNotif,
         address: info['address'],
         tmpAddress: info['tmpAddress'],
         success: alertMessage,

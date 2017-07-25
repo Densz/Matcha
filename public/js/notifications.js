@@ -14,6 +14,7 @@ buttonNotifications.addEventListener("click", function(){
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xhr.send();
         notificationsBox.style.display = "inherit";
+        buttonNotifications.innerHTML = 'Notifications'
     } else {
         notificationsBox.style.display = "none"; 
     }
@@ -21,14 +22,17 @@ buttonNotifications.addEventListener("click", function(){
 
 function showNotification(login, text) {
     var p = document.createElement('p');
+    var b = document.createElement('b');
     var a = document.createElement('a');
     var span = document.createElement('span');
     span.innerHTML = text;
     a.href = '/profile/' + login;
     a.innerHTML = login;
-    p.appendChild(a);
-    p.appendChild(span);
+    b.appendChild(a);
+    b.appendChild(span);
+    p.appendChild(b);
     notificationsBox.appendChild(p);
+    buttonNotifications.innerHTML = '<b>Notifications</b>'
 }
 
 socket.on('Show like to user', function(data){
