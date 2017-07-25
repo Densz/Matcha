@@ -30,7 +30,10 @@ if (likeProfile) {
         likeProfile.remove();
         dislikeProfile.remove();
         var span = document.createElement('span');
-        span.innerHTML = "You liked this profile already";
+        var b = document.createElement('b');
+
+        b.innerHTML = "You liked this profile already";
+        span.appendChild(b);
         div.appendChild(span);
     })
 }
@@ -48,7 +51,9 @@ if (dislikeProfile) {
         likeProfile.remove();
         dislikeProfile.remove();
         var span = document.createElement('span');
-        span.innerHTML = "You disliked this profile already";
+        var b = document.createElement('b');        
+        b.innerHTML = "You disliked this profile already";
+        span.appendChild(b);
         div.appendChild(span);
     })
 }
