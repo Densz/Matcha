@@ -15,7 +15,6 @@
     "express": "~4.15.2",
     "express-ejs-layouts": "^2.3.0",
     "express-session": "^1.15.3",
-    "formidable": "^1.1.1",
     "get-age": "^1.0.1",
     "mongodb": "^2.2.28",
     "morgan": "~1.8.1",

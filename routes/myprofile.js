@@ -3,7 +3,6 @@ const router = express.Router();
 import path from 'path';
 const model = require('../core/models/database');
 const score = require('../core/controllers/score');
-const formidable = require('formidable');
 const fs = require('fs');
 const views = require('../core/controllers/views');
 const multer = require('multer');
@@ -21,7 +20,7 @@ const imageFilter = function(req, file, cb){
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         console.log('destination');
-        cb(null, 'uploads')
+        cb(null, 'public/uploads')
     },
     filename: function(req, file, cb) {
         console.log('filename');      
@@ -36,6 +35,10 @@ const upload = multer({
 
 
 router.get('/', async (req, res, next) => {
+    // A ENLEVER
+    if (req.session.login === undefined) {
+        req.session.login = 'arlecomt';
+    }
     //update of popularity score
     let statistics = await score.updateScore(req.session.login);
 
@@ -47,6 +50,10 @@ router.get('/', async (req, res, next) => {
     // Notifications
     let notifs = await model.getDataSorted('notifications', { to: req.session.login }, { date: 1 });
     let newNotif = await model.getData('notifications', { to: req.session.login, seen: false });
+
+    // Images
+    let imagesArray = await db.collection('users').findOne({ login: req.session.login }, {images: 1});
+    console.log(imagesArray);
     if (newNotif === "No data") {
         newNotif = undefined;
     }
@@ -65,7 +72,8 @@ router.get('/', async (req, res, next) => {
         viewers: viewers,
         likes: likes,
         statistics: statistics,
-        success: alertMessage
+        success: alertMessage,
+        image: imagesArray.images
     });
 });
 
@@ -92,9 +100,12 @@ router.post('/editBio', (req, res) => {
     res.redirect('/myprofile');
 });
 
-router.post('/uploadPhotos', upload.single('upload'),function(req, res){
+router.post('/uploadPhotos', upload.single('upload'), function(req, res){
+    let field = { login: req.session.login},
+        item = { $push: {images: req.file.filename}};
     console.log('upload photo = ', req.file);
+    model.updateData('users', field, item);
     res.redirect('/myprofile');
-})
+});
 
 module.exports = router;
