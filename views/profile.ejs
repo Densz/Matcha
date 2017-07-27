@@ -18,7 +18,11 @@
                         <img class="dislike" src="/images/sign-error.png">
                         <img class="like" src="/images/sign-check.png">
                     <% } else { %>
+                        <br><br>
                         <span><b>You <%= swiped %>d this profile already</b></span>
+                        <% if (swiped === 'like') { %>
+                        <br><span>If you want to dislike this profile <a href='/profile/dislike/users/login/<%= loginProfile %>'>Click here</a></span>
+                        <% } %>
                     <% } %>
                 </div>
                 <div style="text-align: right;">
@@ -26,6 +30,11 @@
                         <a href="/profile/report/reported/<%= loginProfile %>">Report this profile as fake</a>
                     <% } else { %>
                         <span>You have reported this profile already</span>
+                    <% } %><br>
+                    <% if (blocked === null) { %>
+                        <a href="/profile/block/block/<%= loginProfile %>">Block this profile</a>                        
+                    <% } else { %>
+                        <a href="/profile/block/unblock/<%= loginProfile %>">Unblock this profile</a>                    
                     <% } %>
                 </div>
             </div>
