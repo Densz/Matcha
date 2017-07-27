@@ -53,7 +53,7 @@ router.get('/', async (req, res, next) => {
 
     // Images
     let imagesArray = await db.collection('users').findOne({ login: req.session.login }, {images: 1});
-    console.log(imagesArray);
+
     if (newNotif === "No data") {
         newNotif = undefined;
     }
@@ -106,6 +106,14 @@ router.post('/uploadPhotos', upload.single('upload'), function(req, res){
     console.log('upload photo = ', req.file);
     model.updateData('users', field, item);
     res.redirect('/myprofile');
+});
+
+router.post('/changingpic', (req, res) => {
+    console.log(req.body.frontPic);
+    let field = { login: req.session.login},
+        picName = req.body.frontPic.split("/"),
+        item = { $set: {profilePicture: picName[4]}};
+    model.updateData('users', field, item);
 });
 
 module.exports = router;
