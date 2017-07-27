@@ -44,6 +44,15 @@ router.get('/', async function (req, res) {
         if (newNotif === "No data") {
             newNotif = undefined;
         }
+        // Profile picture
+        let profilePic = await db.collection('users').findOne({ login: req.session.login}, { profilePicture: 1});
+
+        if (profilePic === undefined) {
+            profilePic.profilePicture = '/images/basic_profile_picture.png';
+        } else {
+            profilePic.profilePicture = '/uploads/' + profilePic.profilePicture;
+        }
+
         // Render results
         res.render('home', {
             layout: 'layout_nav',
@@ -55,7 +64,8 @@ router.get('/', async function (req, res) {
             dob: getAge(user['dob']),
             matches: matches,
             conversations: conversations,
-            title: 'Matcha - Home'
+            title: 'Matcha - Home',
+            profilePic: profilePic.profilePicture
         });
     }
 });

@@ -4,6 +4,8 @@ const plusButton = document.querySelector('.upload-photo'),
     closePopup = document.querySelector('.close-pop-up'),
     chosenPicture = document.querySelectorAll('.upload-img');
 
+var profilePicture = document.querySelector('.profile_picture');
+
 function url(){
     var url =  window.location.href;
     url = url.split("/");
@@ -21,6 +23,8 @@ for (var i = 0; i < chosenPicture.length; i++) {
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xhr.send('frontPic=' + this.src);
         this.id = 'selected-img';
+        var tmp = this.src.split("/");
+        profilePicture.src = '/uploads/' + tmp[4];
     })
 }
 

@@ -90,6 +90,7 @@ router.post('/submit', function(req, res, next) {
 	};
     model.insertData('users', item);
     req.session.login = req.body.login;
+
     res.redirect('/getposition');
 });
 
