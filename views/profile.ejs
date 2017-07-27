@@ -30,6 +30,11 @@
                         <a href="/profile/report/reported/<%= loginProfile %>">Report this profile as fake</a>
                     <% } else { %>
                         <span>You have reported this profile already</span>
+                    <% } %><br>
+                    <% if (blocked === null) { %>
+                        <a href="/profile/block/block/<%= loginProfile %>">Block this profile</a>                        
+                    <% } else { %>
+                        <a href="/profile/block/unblock/<%= loginProfile %>">Unblock this profile</a>                    
                     <% } %>
                 </div>
             </div>

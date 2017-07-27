@@ -8,6 +8,9 @@ const views = require('../core/controllers/views');
 const notifications = require('../core/controllers/notifications');
 
 router.get('/:login', async function(req, res, next){
+    //LINE TO DELETE
+    req.session.login = 'densz';
+
     if (req.params.login === req.session.login) {
         res.redirect('/myprofile');
     } else {
@@ -38,6 +41,12 @@ router.get('/:login', async function(req, res, next){
             reportedLogin: req.params.login
         });
 
+        //Did you block him/her
+        let blocked = await db.collection('blockedUsers').findOne({
+            userOnline: req.session.login,
+            userBlocked: req.params.login
+        });
+
         // Notifications
         let notifs = await model.getDataSorted('notifications', { to: req.session.login }, { date: 1 });
         let newNotif = await model.getData('notifications', { to: req.session.login, seen: false });
@@ -60,6 +69,7 @@ router.get('/:login', async function(req, res, next){
             viewers: viewers,
             swiped: swiped,
             reported: reported,
+            blocked: blocked,
             likes: likes,
             statistics: statistics
         });
@@ -71,6 +81,33 @@ router.get('/report/reported/:login', async function(req, res){
         login: req.session.login,
         reportedLogin: req.params.login
     });
+    res.redirect('/profile/' + req.params.login);
+});
+
+router.get('/dislike/users/login/:login', async function(req, res){
+    await model.updateData('views',
+        { userOnline: req.session.login, userSeen: req.params.login, status: 'like' },
+        { $set: { status: 'dislike' } }
+    );
+    res.redirect('/profile/' + req.params.login);
+});
+
+router.get('/block/:block/:login', async function(req, res){
+    let db = await model.connectToDatabase();
+    if (req.params.block === 'block') {
+        model.insertData('blockedUsers',
+        {
+            userOnline: req.session.login,
+            userBlocked: req.params.login
+        });
+    } else if (req.params.block === 'unblock') {
+        db.collection('blockedUsers').remove(
+            {
+                userOnline: req.session.login,
+                userBlocked: req.params.login
+            }
+        );
+    }
     res.redirect('/profile/' + req.params.login);
 });
 

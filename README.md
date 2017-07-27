@@ -2,12 +2,12 @@
 Tinder-like app made by 42 Students
 
 ### Need to do
-* Unlike people
-* Reset password with email
+* Reset password with email => Kneth
 * Check Location / javascript is enough ?
-* Search users Page - See if user online
-* Block user and everything coming from him
-* Upload photos
+* Search users Page - Show online user
+* Block user and everything coming from him / Notifications / SearchPage 
+* Upload photos => Arnaud
+* L’utilisateur doit clairement voir si le profil consulté est connecté ou “like” le sien, et doit pouvoir “unlike”.
 
 #### Details
 * Babel
