@@ -3,7 +3,6 @@ const router = express.Router();
 import path from 'path';
 const model = require('../core/models/database');
 const score = require('../core/controllers/score');
-const formidable = require('formidable');
 const fs = require('fs');
 const views = require('../core/controllers/views');
 const multer = require('multer');
@@ -36,6 +35,10 @@ const upload = multer({
 
 
 router.get('/', async (req, res, next) => {
+    // A ENLEVER
+    if (req.session.login === undefined) {
+        req.session.login = 'arlecomt';
+    }
     //update of popularity score
     let statistics = await score.updateScore(req.session.login);
 
@@ -92,9 +95,12 @@ router.post('/editBio', (req, res) => {
     res.redirect('/myprofile');
 });
 
-router.post('/uploadPhotos', upload.single('upload'),function(req, res){
+router.post('/uploadPhotos', upload.single('upload'), function(req, res){
+    let field = { login: req.session.login},
+        item = { $push: {images: [req.file.filename]}};
     console.log('upload photo = ', req.file);
+    model.updateData('users', field, item);
     res.redirect('/myprofile');
-})
+});
 
 module.exports = router;

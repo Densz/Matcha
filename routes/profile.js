@@ -3,7 +3,6 @@ const router = express.Router();
 const model = require('../core/models/database');
 const score = require('../core/controllers/score');
 const match = require('../core/controllers/match');
-const formidable = require('formidable');
 const fs = require('fs');
 const views = require('../core/controllers/views');
 const notifications = require('../core/controllers/notifications');
