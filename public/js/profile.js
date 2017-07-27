@@ -35,6 +35,7 @@ if (likeProfile) {
         b.innerHTML = "You liked this profile already";
         span.appendChild(b);
         div.appendChild(span);
+        window.location.href = url() + '/profile/' + urlUserProfile();
     })
 }
 
@@ -55,5 +56,6 @@ if (dislikeProfile) {
         b.innerHTML = "You disliked this profile already";
         span.appendChild(b);
         div.appendChild(span);
+        window.location.href = url() + '/profile/' + urlUserProfile();
     })
 }

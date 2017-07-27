@@ -18,7 +18,11 @@
                         <img class="dislike" src="/images/sign-error.png">
                         <img class="like" src="/images/sign-check.png">
                     <% } else { %>
+                        <br><br>
                         <span><b>You <%= swiped %>d this profile already</b></span>
+                        <% if (swiped === 'like') { %>
+                        <br><span>If you want to dislike this profile <a href='/profile/dislike/users/login/<%= loginProfile %>'>Click here</a></span>
+                        <% } %>
                     <% } %>
                 </div>
                 <div style="text-align: right;">

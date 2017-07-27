@@ -3,7 +3,6 @@ Tinder-like app made by 42 Students
 
 ### Need to do
 * Unlike people
-* Delete Hashtag
 * Reset password with email
 * Check Location / javascript is enough ?
 * Search users Page - See if user online
