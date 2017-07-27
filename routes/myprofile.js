@@ -20,7 +20,7 @@ const imageFilter = function(req, file, cb){
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         console.log('destination');
-        cb(null, 'uploads')
+        cb(null, 'public/uploads')
     },
     filename: function(req, file, cb) {
         console.log('filename');      
@@ -50,6 +50,10 @@ router.get('/', async (req, res, next) => {
     // Notifications
     let notifs = await model.getDataSorted('notifications', { to: req.session.login }, { date: 1 });
     let newNotif = await model.getData('notifications', { to: req.session.login, seen: false });
+
+    // Images
+    let imagesArray = await db.collection('users').findOne({ login: req.session.login }, {images: 1});
+    console.log(imagesArray);
     if (newNotif === "No data") {
         newNotif = undefined;
     }
@@ -68,7 +72,8 @@ router.get('/', async (req, res, next) => {
         viewers: viewers,
         likes: likes,
         statistics: statistics,
-        success: alertMessage
+        success: alertMessage,
+        image: imagesArray.images
     });
 });
 
@@ -97,7 +102,7 @@ router.post('/editBio', (req, res) => {
 
 router.post('/uploadPhotos', upload.single('upload'), function(req, res){
     let field = { login: req.session.login},
-        item = { $push: {images: [req.file.filename]}};
+        item = { $push: {images: req.file.filename}};
     console.log('upload photo = ', req.file);
     model.updateData('users', field, item);
     res.redirect('/myprofile');

@@ -113,6 +113,9 @@
     margin-bottom: 10px;
 }
 
-.img-thumbnail {
+.img-thumbnail{
     margin-bottom: 10px;
+    height: 150px;
+    width: 150px;
+    object-fit: contain;
 }
