@@ -47,7 +47,7 @@ router.get('/', async function (req, res) {
         // Profile picture
         let profilePic = await db.collection('users').findOne({ login: req.session.login}, { profilePicture: 1});
 
-        if (profilePic === undefined) {
+        if (profilePic.profilePicture === undefined) {
             profilePic.profilePicture = '/images/basic_profile_picture.png';
         } else {
             profilePic.profilePicture = '/uploads/' + profilePic.profilePicture;

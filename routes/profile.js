@@ -53,6 +53,15 @@ router.get('/:login', async function(req, res, next){
         if (newNotif === "No data") {
             newNotif = undefined;
         }
+        
+         // Profile picture
+        let profilePic = await db.collection('users').findOne({ login: req.params.login}, { profilePicture: 1});
+
+        if (profilePic.profilePicture === undefined) {
+            profilePic.profilePicture = '/images/basic_profile_picture.png';
+        } else {
+            profilePic.profilePicture = '/uploads/' + profilePic.profilePicture;
+        }
 
         res.render('profile', {
             layout: 'layout_nav',
@@ -71,7 +80,8 @@ router.get('/:login', async function(req, res, next){
             reported: reported,
             blocked: blocked,
             likes: likes,
-            statistics: statistics
+            statistics: statistics,
+            profilePic: profilePic.profilePicture
         });
     }
 });
