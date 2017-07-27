@@ -53,7 +53,16 @@ router.get('/', async (req, res, next) => {
 
     // Images
     let imagesArray = await db.collection('users').findOne({ login: req.session.login }, {images: 1});
-    console.log(imagesArray);
+
+    // Profile picture
+    let profilePic = await db.collection('users').findOne({ login: req.session.login}, { profilePicture: 1});
+
+    if (profilePic === undefined) {
+        profilePic.profilePicture = '/images/basic_profile_picture.png';
+    } else {
+        profilePic.profilePicture = '/uploads/' + profilePic.profilePicture;
+    }
+
     if (newNotif === "No data") {
         newNotif = undefined;
     }
@@ -73,7 +82,8 @@ router.get('/', async (req, res, next) => {
         likes: likes,
         statistics: statistics,
         success: alertMessage,
-        image: imagesArray.images
+        image: imagesArray.images,
+        profilePic: profilePic.profilePicture
     });
 });
 
@@ -106,6 +116,14 @@ router.post('/uploadPhotos', upload.single('upload'), function(req, res){
     console.log('upload photo = ', req.file);
     model.updateData('users', field, item);
     res.redirect('/myprofile');
+});
+
+router.post('/changingpic', (req, res) => {
+    console.log(req.body.frontPic);
+    let field = { login: req.session.login},
+        picName = req.body.frontPic.split("/"),
+        item = { $set: {profilePicture: picName[4]}};
+    model.updateData('users', field, item);
 });
 
 module.exports = router;

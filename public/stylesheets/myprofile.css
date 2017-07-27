@@ -119,3 +119,7 @@
     width: 150px;
     object-fit: contain;
 }
+
+#selected-img{
+    border: 8px solid #337ab7;
+}

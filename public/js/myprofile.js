@@ -1,12 +1,31 @@
 const plusButton = document.querySelector('.upload-photo'),
     transparentBackground = document.querySelector('.popup-upload-photo'),
     popupUpload  = document.querySelector('.popup-box'),
-    closePopup = document.querySelector('.close-pop-up');
+    closePopup = document.querySelector('.close-pop-up'),
+    chosenPicture = document.querySelectorAll('.upload-img');
+
+var profilePicture = document.querySelector('.profile_picture');
 
 function url(){
     var url =  window.location.href;
     url = url.split("/");
     return(url[0] + '//' + url[2] + '');
+}
+
+for (var i = 0; i < chosenPicture.length; i++) {
+    chosenPicture[i].addEventListener('click', function(){
+        for(var j= 0; j < chosenPicture.length; j++) {
+            chosenPicture[j].removeAttribute('id');
+        }
+        var xhr = new XMLHttpRequest();
+
+        xhr.open('POST', url() + '/myprofile/changingpic', true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.send('frontPic=' + this.src);
+        this.id = 'selected-img';
+        var tmp = this.src.split("/");
+        profilePicture.src = '/uploads/' + tmp[4];
+    })
 }
 
 plusButton.addEventListener('click', () => {
