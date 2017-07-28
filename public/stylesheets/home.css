@@ -245,3 +245,19 @@ span.hashtag_user {
 .alignRight {
     text-align: right;
 }
+
+.next-arrow {
+    top: 44%;
+    right: 10%;
+    position: absolute;
+}
+
+.previous-arrow {
+    top: 44%;
+    left: 10%;
+    position: absolute;
+}
+
+.arrows {
+    width: 35px;
+}
