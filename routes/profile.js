@@ -8,9 +8,6 @@ const views = require('../core/controllers/views');
 const notifications = require('../core/controllers/notifications');
 
 router.get('/:login', async function(req, res, next){
-    //LINE TO DELETE
-    req.session.login = 'densz';
-
     if (req.params.login === req.session.login) {
         res.redirect('/myprofile');
     } else {
@@ -105,13 +102,13 @@ router.get('/dislike/users/login/:login', async function(req, res){
 router.get('/block/:block/:login', async function(req, res){
     let db = await model.connectToDatabase();
     if (req.params.block === 'block') {
-        model.insertData('blockedUsers',
+        await model.insertData('blockedUsers',
         {
             userOnline: req.session.login,
             userBlocked: req.params.login
         });
     } else if (req.params.block === 'unblock') {
-        db.collection('blockedUsers').remove(
+        await db.collection('blockedUsers').remove(
             {
                 userOnline: req.session.login,
                 userBlocked: req.params.login
