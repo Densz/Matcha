@@ -2,6 +2,8 @@
 var hashtags = document.querySelectorAll('.hashtag_user'),
     i = 0;
 
+
+
 if (hashtags) {
     for (i = 0; i < hashtags.length; i++) {
         hashtags[i].addEventListener('mouseover', function(){

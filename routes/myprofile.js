@@ -118,12 +118,17 @@ router.post('/uploadPhotos', upload.single('upload'), function(req, res){
     res.redirect('/myprofile');
 });
 
-router.post('/changingpic', (req, res) => {
+router.post('/changingpic', async (req, res) => {
     console.log(req.body.frontPic);
     let field = { login: req.session.login},
         picName = req.body.frontPic.split("/"),
         item = { $set: {profilePicture: picName[4]}};
-    model.updateData('users', field, item);
+    await model.updateData('users', field, item);
+    let db = await model.connectToDatabase();
+    let imageArray = await db.collection('users').findOne({ login: req.session.login }, {images: 1});
+    let currProfilePic = await db.collection('users').findOne({login: req.session.login}, {profilePicture: 1});
+    imageArray.images.unshift(imageArray.images.splice(imageArray.images.indexOf(currProfilePic.profilePicture), 1)[0]);
+    model.updateData('users', field, { $set: { images: imageArray.images }});
 });
 
 router.post('/erasePicture', async (req, res) => {

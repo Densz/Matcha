@@ -3,12 +3,18 @@ var dislikeButton = document.querySelector('.dislike');
 var people = document.querySelector('#peopleList');
 var like = document.querySelector('.dislike');
 var dislike = document.querySelector('.like');
+var arrowNext = document.querySelector('.next-arrow');
+var arrowPrev = document.querySelector('.previous-arrow');
 
 function url(){
 	var url =  window.location.href;
 	url = url.split("/");
 	return(url[0] + '//' + url[2] + '');
 }
+
+arrowNext.addEventListener('click', function() {
+
+});
 
 likeButton.addEventListener('click', function(){
     var xhr = new XMLHttpRequest();

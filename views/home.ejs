@@ -48,9 +48,11 @@
                         <% for (stars=0; stars < people[i]['popularityScore']; stars++) { %>
                             <img class="profile_star" src="/images/star.png">
                         <% } %><br><br>
-                            <img src="/images/arrow_next_picture.png" class="arrows">
                         <img class="match-img" src="/uploads/<%= people[i].profilePicture%>"><br><br>
-                        <% for (y=0; y < people[i]['hashtag'].length; y++) { %>
+                            <img src="/images/arrow_next_picture.png" class="arrows next-arrow">
+                            <img src="/images/arrow_previous_picture.png" class="arrows previous-arrow">
+
+                            <% for (y=0; y < people[i]['hashtag'].length; y++) { %>
                             <span class="hashtag"><%= people[i]['hashtag'][y] %></span>
                         <% } %>
                     </li>
