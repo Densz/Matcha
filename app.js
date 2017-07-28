@@ -14,6 +14,8 @@ const io = require('socket.io')(server);
 
 import users from './routes/users';
 import index from './routes/index';
+import resetpassword from './routes/resetpassword';
+import forgottenpassword from './routes/forgottenpassword';
 import signUp from './routes/signUp';
 import home from './routes/home';
 import signOut from './routes/signOut';
@@ -21,6 +23,7 @@ import myprofile from './routes/myprofile';
 import settings from './routes/settings';
 import getposition from './routes/getposition';
 import profile from './routes/profile';
+
 
 // view engine setup
 app.set('layout', 'layout');
@@ -51,6 +54,8 @@ app.use('/signOut', signOut);
 app.use('/settings', settings);
 app.use('/getposition', getposition);
 app.use('/profile', profile);
+app.use('/forgottenpassword', forgottenpassword);
+app.use('/resetpassword', resetpassword);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
