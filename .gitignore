@@ -5,3 +5,6 @@ mongodb
 .idea
 .DS_Store
 .vscode
+*-*.jpg
+*-*.png
+*-*.gif
