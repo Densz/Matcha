@@ -53,13 +53,14 @@ router.get('/:login', async function(req, res, next){
         
          // Profile picture
         let profilePic = await db.collection('users').findOne({ login: req.params.login}, { profilePicture: 1});
+        let userOnlinePic = await db.collection('users').findOne({ login: req.session.login}, { profilePicture: 1});
 
         if (profilePic.profilePicture === undefined) {
             profilePic.profilePicture = '/images/basic_profile_picture.png';
         } else {
             profilePic.profilePicture = '/uploads/' + profilePic.profilePicture;
         }
-
+        console.log('profilepic ->' ,profilePic);
         res.render('profile', {
             layout: 'layout_nav',
             firstName: user['firstName'],
@@ -78,7 +79,8 @@ router.get('/:login', async function(req, res, next){
             blocked: blocked,
             likes: likes,
             statistics: statistics,
-            profilePic: profilePic.profilePicture
+            profilePic: profilePic.profilePicture,
+            userOnlinePic: userOnlinePic.profilePicture
         });
     }
 });

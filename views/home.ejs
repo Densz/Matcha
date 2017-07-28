@@ -64,8 +64,12 @@
                     <img src="/images/arrow_next_picture.png" style="display: <%= people ? 'inline' : 'none' %>" class="arrows next-arrow">
                     <img src="/images/arrow_previous_picture.png" style="display: <%= people ? 'inline' : 'none' %>" class="arrows previous-arrow">
                 </ul>
-                <img class="dislike" src="/images/sign-error.png" style="display: <%= people ? 'inline' : 'none' %>">
-                <img class="like" src="/images/sign-check.png" style="display: <%= people ? 'inline' : 'none' %>;">
+                <% if (user.profilePicture !== undefined) {%>
+                    <img class="dislike" src="/images/sign-error.png" style="display: <%= people ? 'inline' : 'none' %>">
+                    <img class="like" src="/images/sign-check.png" style="display: <%= people ? 'inline' : 'none' %>;">
+                <% } else { %>
+                    <div class="alert alert-info">You must have a profile picture to swipe</div>
+                <%}%>
             </div>
         </div>
         <!-- RIGHT COLUMN -->
@@ -131,7 +135,7 @@
                         <% if (i !== matches.length - 1) {%>
                             <div class="chat-people" id="select-<%= matches[i]['login'] %>">
                                 <div class="chat-img">
-                                    <img src="/images/<%= matches[i]['sex'] === 'female' ? 'woman' : 'man' %>.jpg" class="profile_picture_chat <%= matches[i]['status'] === 'online' ? 'online' : 'offline' %>">
+                                    <img src="/uploads/<%= matches[i]['profilePicture'] %>" class="profile_picture_chat <%= matches[i]['status'] === 'online' ? 'online' : 'offline' %>">
                                 </div>
                                 <div class="chat-description">
                                     <span><b><%= matches[i]['firstName'] %> <%= matches[i]['lastName'] %></b>&nbsp; <span class="new-match">New</span></span><br>
@@ -140,7 +144,7 @@
                         <% } else { %>
                             <div class="chat-people last-box" id="select-<%= matches[i]['login'] %>">
                                 <div class="chat-img">
-                                    <img src="/images/<%= matches[i]['sex'] === 'female' ? 'woman' : 'man' %>.jpg" class="profile_picture_chat <%= matches[i]['status'] === 'online' ? 'online' : 'offline' %>">
+                                    <img src="/uploads/<%= matches[i]['profilePicture'] %>" class="profile_picture_chat <%= matches[i]['status'] === 'online' ? 'online' : 'offline' %>">
                                 </div>
                                 <div class="chat-description">
                                     <span><b><%= matches[i]['firstName'] %> <%= matches[i]['lastName'] %></b>&nbsp; <span class="new-match">New</span></span><br>
@@ -162,7 +166,7 @@
                                 <% if (conversations[i][y]['from'] !== user['login']) { %>
                                 <div class="row msg-img-text">
                                     <div class="col-sm-2 col-xs-2 col-md-2 alignRight">
-                                        <img src="/images/<%= matches[i]['sex'] === 'female' ? 'woman' : 'man' %>.jpg" class="profile_picture_chat"/>
+                                        <img src="/uploads/<%= matches[i]['profilePicture'] %>" class="profile_picture_chat"/>
                                     </div>
                                     <div class="col-sm-9 col-xs-9 col-md-9 message-received">
                                         <p><%= conversations[i][y]['message'] %></p>
@@ -175,7 +179,7 @@
                                         <p><%= conversations[i][y]['message'] %></p>
                                     </div>
                                     <div class="col-sm-2 col-xs-2 col-md-2">
-                                        <img src="/images/<%= user['sex'] === 'female' ? 'woman' : 'man' %>.jpg" class="profile_picture_chat">
+                                        <img src="/uploads/<%= user['profilePicture'] %>" class="profile_picture_chat">
                                     </div>
                                 </div>
                                 <% } %>

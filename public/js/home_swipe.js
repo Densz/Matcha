@@ -100,5 +100,7 @@ dislikeButton.addEventListener('click', function(){
     if (people.firstElementChild.id === 'no-more') {
         like.remove();
         dislike.remove();
+        arrowNext.remove();
+        arrowPrev.remove();
     }
 })

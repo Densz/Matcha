@@ -68,7 +68,7 @@ if (urlPage() === 'home') {
             var imgBox = document.createElement('div');
             imgBox.className = 'col-sm-2 col-xs-2 col-md-2';
                 var img = document.createElement('img');
-                img.src = data['from']['sex'] === 'female' ? "/images/woman.jpg" : "/images/man.jpg";
+                img.src = '/uploads/' + data['from']['profilePicture'];
                 img.className = "profile_picture_chat";
         messageBox.appendChild(p);
         imgBox.appendChild(img);
@@ -93,7 +93,7 @@ if (urlPage() === 'home') {
                 var imgBox = document.createElement('div');
                 imgBox.className = 'col-sm-2 col-xs-2 col-md-2 alignRight';
                     var img = document.createElement('img');
-                    img.src = data['from']['sex'] === 'female' ? "/images/woman.jpg" : "/images/man.jpg";
+                    img.src = '/uploads/' + data['from']['profilePicture'];
                     img.className = "profile_picture_chat";
                 var messageBox = document.createElement('div');
                 messageBox.className = "col-sm-9 col-xs-9 col-md-9 message-received";

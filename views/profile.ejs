@@ -13,18 +13,22 @@
                 <p><b><%= firstName %> <%= lastName %></b></p>
                 <label for="comment">Bio:</label>
                 <div><%= bio %></div>
-                <div id='swipe'>
-                    <% if (swiped === null) { %>
-                        <img class="dislike" src="/images/sign-error.png">
-                        <img class="like" src="/images/sign-check.png">
-                    <% } else { %>
-                        <br><br>
-                        <span><b>You <%= swiped %>d this profile already</b></span>
-                        <% if (swiped === 'like') { %>
-                        <br><span>If you want to dislike this profile <a id="dislikeAfterLike" href='/profile/dislike/users/login/<%= loginProfile %>'>Click here</a></span>
+                <% if (profilePic !== '/images/basic_profile_picture.png' && userOnlinePic !== undefined) {%>
+                    <div id='swipe'>
+                        <% if (swiped === null) { %>
+                            <img class="dislike" src="/images/sign-error.png">
+                            <img class="like" src="/images/sign-check.png">
+                        <% } else { %>
+                            <br><br>
+                            <span><b>You <%= swiped %>d this profile already</b></span>
+                            <% if (swiped === 'like') { %>
+                            <br><span>If you want to dislike this profile <a id="dislikeAfterLike" href='/profile/dislike/users/login/<%= loginProfile %>'>Click here</a></span>
+                            <% } %>
                         <% } %>
-                    <% } %>
-                </div>
+                    </div>
+                <% } else {%>
+                    <div class="alert alert-info">You must have a profile picture to swipe</div>
+                <% }%>
                 <div style="text-align: right;">
                     <% if (reported === null) { %>
                         <a href="/profile/report/reported/<%= loginProfile %>">Report this profile as fake</a>
