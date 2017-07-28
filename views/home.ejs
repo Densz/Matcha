@@ -49,22 +49,22 @@
                             <img class="profile_star" src="/images/star.png">
                         <% } %><br><br>
                         <img class="match-img" src="/uploads/<%= people[i].profilePicture%>"><br><br>
-                            <img src="/images/arrow_next_picture.png" class="arrows next-arrow">
-                            <img src="/images/arrow_previous_picture.png" class="arrows previous-arrow">
 
                             <% for (y=0; y < people[i]['hashtag'].length; y++) { %>
                             <span class="hashtag"><%= people[i]['hashtag'][y] %></span>
                         <% } %>
                     </li>
                     <% } %>
-                <% } %>
-                    <li class="people-box" style="display: <%= people ? 'none' : 'inline' %>;" id="no-more">
+                <% }     %>
+                    <li class="people-box" style="display: <%= people ? 'none' : 'inline' %>" id="no-more">
                         <span><b>No more matches</b></span><br>
                         <br><br><br>
                         <img class="match-img" src="/images/cross.png"><br><br>
                     </li>
+                    <img src="/images/arrow_next_picture.png" style="display: <%= people ? 'inline' : 'none' %>" class="arrows next-arrow">
+                    <img src="/images/arrow_previous_picture.png" style="display: <%= people ? 'inline' : 'none' %>" class="arrows previous-arrow">
                 </ul>
-                <img class="dislike" src="/images/sign-error.png" style="display: <%= people ? 'inline' : 'none' %>;">
+                <img class="dislike" src="/images/sign-error.png" style="display: <%= people ? 'inline' : 'none' %>">
                 <img class="like" src="/images/sign-check.png" style="display: <%= people ? 'inline' : 'none' %>;">
             </div>
         </div>

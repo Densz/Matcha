@@ -6,15 +6,55 @@ var dislike = document.querySelector('.like');
 var arrowNext = document.querySelector('.next-arrow');
 var arrowPrev = document.querySelector('.previous-arrow');
 
+
 function url(){
 	var url =  window.location.href;
 	url = url.split("/");
 	return(url[0] + '//' + url[2] + '');
 }
+if (arrowNext != null) {
+    arrowNext.addEventListener('click', function() {
+        var xhr = new XMLHttpRequest();
+        var currSrcPic = document.querySelector('.match-img');
+        var loginMatch = currSrcPic.parentNode.childNodes[1].innerHTML;
+        var currPicName = currSrcPic.src.split("/");
+        console.log('currImgSrc -> ' + currPicName[4]);
+        xhr.open('POST', url() + '/home/nextPicture', true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.send('indexCurrPic=' + currPicName[4] + '&loginMatch=' + loginMatch);
+        xhr.onload = function() {
+            if (xhr.readyState === xhr.DONE) {
+                if (xhr.status === 200 || xhr.status === 0) {
+                    var res = xhr.responseText;
 
-arrowNext.addEventListener('click', function() {
+                    currSrcPic.src = res;
+                }
+            }
+        }
+    });
+}
 
-});
+if (arrowPrev !== null) {
+    arrowPrev.addEventListener('click', function() {
+        var xhr = new XMLHttpRequest();
+        var currSrcPic = document.querySelector('.match-img');
+        var loginMatch = currSrcPic.parentNode.childNodes[1].innerHTML;
+        var currPicName = currSrcPic.src.split("/");
+        console.log('currImgSrc -> ' + currPicName[4]);
+        xhr.open('POST', url() + '/home/previousPicture', true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.send('indexCurrPic=' + currPicName[4] + '&loginMatch=' + loginMatch);
+        xhr.onload = function() {
+            if (xhr.readyState === xhr.DONE) {
+                if (xhr.status === 200 || xhr.status === 0) {
+                    var res = xhr.responseText;
+
+                    currSrcPic.src = res;
+                }
+            }
+        }
+    });
+}
 
 likeButton.addEventListener('click', function(){
     var xhr = new XMLHttpRequest();
@@ -41,6 +81,8 @@ likeButton.addEventListener('click', function(){
     if (people.firstElementChild.id === 'no-more') {
         like.remove();
         dislike.remove();
+        arrowNext.remove();
+        arrowPrev.remove();
     }
 })
 

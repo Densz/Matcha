@@ -12,6 +12,7 @@ const conversation = require('../core/controllers/conversation');
 
 router.get('/', async function (req, res) {
     req.session.errors = [];
+    req.session.login = (req.session.login === undefined ? 'densz' : req.session.login);
     
     if (req.session.login === undefined) {
         req.session.errors.push({ msg: 'No access right' });
@@ -199,6 +200,30 @@ router.post('/deleteHashtag', async function (req, res){
         { $pull: { hashtag: req.body.hashtagToDelete }}
     );
     res.send('ok');
+});
+
+router.post('/nextPicture', async (req, res) => {
+    let db = await model.connectToDatabase();
+    let imageArray = await db.collection('users').findOne({login: req.body.loginMatch}, {images: 1});
+
+    var currIndex = imageArray.images.indexOf(req.body.indexCurrPic);
+    if (imageArray.images[currIndex + 1] !== undefined) {
+        res.send('/uploads/' + imageArray.images[currIndex + 1]);
+    } else {
+        res.send('/uploads/' + imageArray.images[0]);
+    }
+});
+
+router.post('/previousPicture', async (req, res) => {
+    let db = await model.connectToDatabase();
+    let imageArray = await db.collection('users').findOne({login: req.body.loginMatch}, {images: 1});
+
+    var currIndex = imageArray.images.indexOf(req.body.indexCurrPic);
+    if (imageArray.images[currIndex - 1] !== undefined) {
+        res.send('/uploads/' + imageArray.images[currIndex - 1]);
+    } else {
+        res.send('/uploads/' + imageArray.images[imageArray.images.length - 1]);
+    }
 });
 
 module.exports = router;
