@@ -21,7 +21,7 @@
                         <br><br>
                         <span><b>You <%= swiped %>d this profile already</b></span>
                         <% if (swiped === 'like') { %>
-                        <br><span>If you want to dislike this profile <a href='/profile/dislike/users/login/<%= loginProfile %>'>Click here</a></span>
+                        <br><span>If you want to dislike this profile <a id="dislikeAfterLike" href='/profile/dislike/users/login/<%= loginProfile %>'>Click here</a></span>
                         <% } %>
                     <% } %>
                 </div>

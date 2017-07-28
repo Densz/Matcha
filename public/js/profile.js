@@ -1,5 +1,6 @@
 var likeProfile = document.querySelector('.like');
 var dislikeProfile = document.querySelector('.dislike');
+var dislikeAfterLike = document.querySelector('#dislikeAfterLike');
 var div = document.querySelector('#swipe');
 
 function urlUserProfile(){
@@ -57,5 +58,13 @@ if (dislikeProfile) {
         span.appendChild(b);
         div.appendChild(span);
         window.location.href = url() + '/profile/' + urlUserProfile();
+    })
+}
+
+if (dislikeAfterLike) {
+    dislikeAfterLike.addEventListener('click', function(){
+        console.log('DISLEKD USER');
+        var loginSwiped = urlUserProfile();
+        socket.emit('new dislike', { to: loginSwiped });
     })
 }
