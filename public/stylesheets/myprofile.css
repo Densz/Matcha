@@ -68,6 +68,7 @@
 
 .upload-individual-photo {
     display: inline-block;
+    width: 150px;
 }
 
 .upload-drop-zone {

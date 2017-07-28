@@ -106,7 +106,7 @@ router.post('/editAddress', async function (req, res) {
  * AJAX
  */
 router.post('/getAddress', async function (req, res) {
-    model.updateData('users', { login: req.session.login }, { $set: {
+    await model.updateData('users', { login: req.session.login }, { $set: {
         tmpAddress: req.body.tmpAddress, 
         tmpLat: req.body.tmpLat,
         tmpLng: req.body.tmpLng
@@ -114,7 +114,7 @@ router.post('/getAddress', async function (req, res) {
     let db = await model.connectToDatabase();
     let user = await db.collection('users').findOne({ login: req.session.login });
     if (user['lat'] === undefined) {
-        model.updateData('users', { login: req.session.login }, { $set: { 
+        await model.updateData('users', { login: req.session.login }, { $set: {
             location: {
                 type: "Point",
                 coordinates: [

@@ -2,7 +2,8 @@ const plusButton = document.querySelector('.upload-photo'),
     transparentBackground = document.querySelector('.popup-upload-photo'),
     popupUpload  = document.querySelector('.popup-box'),
     closePopup = document.querySelector('.close-pop-up'),
-    chosenPicture = document.querySelectorAll('.upload-img');
+    chosenPicture = document.querySelectorAll('.upload-img'),
+    eraseBtnPicture = document.querySelectorAll('.erase-picture');
 
 var profilePicture = document.querySelector('.profile_picture');
 
@@ -10,6 +11,30 @@ function url(){
     var url =  window.location.href;
     url = url.split("/");
     return(url[0] + '//' + url[2] + '');
+}
+
+for (var i = 0; i < eraseBtnPicture.length; i++) {
+    eraseBtnPicture[i].addEventListener('click', function() {
+        var xhr = new XMLHttpRequest(),
+            tmp = this.previousElementSibling.src.split("/");
+
+        xhr.open('POST', url() + '/myprofile/erasePicture', true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.send('pictureToErase=' + tmp[4]);
+        xhr.onload = function() {
+            if (xhr.readyState === xhr.DONE) {
+                if (xhr.status === 200 || xhr.status === 0) {
+                    var string = xhr.responseText;
+
+                    if (string === 'ProfilePicture deleted') {
+                        var profilePicture = document.querySelector('.profile_picture');
+                        profilePicture.src = '/images/basic_profile_picture.png';
+                    }
+                }
+            }
+        }
+        this.parentNode.parentNode.removeChild(this.parentNode);
+    })
 }
 
 for (var i = 0; i < chosenPicture.length; i++) {

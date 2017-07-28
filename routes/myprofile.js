@@ -126,4 +126,24 @@ router.post('/changingpic', (req, res) => {
     model.updateData('users', field, item);
 });
 
+router.post('/erasePicture', async (req, res) => {
+    let db = await model.connectToDatabase(),
+        profilePic = await db.collection('users').findOne({ login: req.session.login}, { profilePicture: 1});
+
+    db.collection('users').update(
+        { login: req.session.login },
+        { $pull: { images: req.body.pictureToErase}}
+    );
+    fs.unlinkSync('public/uploads/' + req.body.pictureToErase);
+    if (profilePic.profilePicture === req.body.pictureToErase) {
+        let field = {login: req.session.login},
+            item = { $unset: {profilePicture: req.body.pictureToErase}};
+        model.updateData('users', field, item);
+        // res.send('ProfilePicture deleted');
+        res.writeHead(200, {"Content-Type": "text/plain"});
+        res.end('ProfilePicture deleted');
+    }
+    console.log('picture deleted');
+});
+
 module.exports = router;
