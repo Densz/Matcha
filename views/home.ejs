@@ -48,7 +48,8 @@
                         <% for (stars=0; stars < people[i]['popularityScore']; stars++) { %>
                             <img class="profile_star" src="/images/star.png">
                         <% } %><br><br>
-                        <img class="match-img" src="/images/<%= people[i]['sex'] === 'female' ? 'woman' : 'man' %>.jpg"><br><br>
+                            <img src="/images/arrow_next_picture.png" class="arrows">
+                        <img class="match-img" src="/uploads/<%= people[i].profilePicture%>"><br><br>
                         <% for (y=0; y < people[i]['hashtag'].length; y++) { %>
                             <span class="hashtag"><%= people[i]['hashtag'][y] %></span>
                         <% } %>
