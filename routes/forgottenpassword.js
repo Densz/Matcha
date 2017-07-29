@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const model = require('../core/models/database');
+const nodemailer = require('nodemailer');
+const smtpTransport = require('nodemailer-smtp-transport');
 
 router.get('/', function(req, res){
     let errors = req.session.errors;
@@ -31,6 +33,32 @@ router.post('/submit', async function(req, res){
         res.redirect('/forgottenpassword');
     } else {
         req.session.success.push({msg: "Email sent."});
+
+        let transporter = nodemailer.createTransport(smtpTransport({
+            service: 'gmail',
+            auth: {
+                user: 'zheng.denis@gmail.com',
+                pass: ''
+            },
+            tls: { rejectUnauthorized: false }
+        }));
+
+        // setup email data with unicode symbols
+        let mailOptions = {
+            from: '"Denis" <zheng.denis@gmail.com>', // sender address
+            to: 'Denis Zheng, zheng.denis@gmail.com', // list of receivers
+            subject: 'Hello ✔', // Subject line
+            text: 'Hello world ?', // plain text body
+            html: '<b>Hello world ?</b>' // html body
+        };
+
+        // send mail with defined transport object
+        transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+                return console.log(error);
+            }
+            console.log('Message %s sent: %s', info.messageId, info.response);
+        });
         res.redirect('/forgottenpassword');
     }
 });
