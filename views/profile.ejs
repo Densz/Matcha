@@ -3,7 +3,7 @@
         <div class="col-sm-12">
             <div class="box prohl1">
                 <div style="width: 100%;">
-                    <img class="profile_picture" src="<%= profilePic%>">
+                    <img class="profile_picture" src="<%= profilePic %>">
                     <img src="/images/arrow_next_picture.png" class="arrows next-arrow">
                     <img src="/images/arrow_previous_picture.png" class="arrows previous-arrow">
                 </div>
@@ -13,8 +13,15 @@
                 <% } %>
                 </div>
                 <p><b><%= firstName %> <%= lastName %></b></p>
+                <p><b>Sex: </b> <%= sex %></p>
                 <label for="comment">Bio:</label>
-                <div><%= bio %></div>
+                <div><%= bio %></div><br>
+                <label for="comment">Hashtags:</label>
+                <% if (hashtags) { %>
+                    <% for (var i = 0; i < hashtags.length; i++) { %>
+                        <span class="hashtag_user">#<%= hashtags[i] %></span>
+                    <% } %>
+                <% } %><br><br>
                 <% if (profilePic !== '/images/basic_profile_picture.png' && userOnlinePic !== undefined) {%>
                     <div id='swipe'>
                         <% if (swiped === null) { %>
