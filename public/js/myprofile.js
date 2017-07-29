@@ -34,9 +34,10 @@ if (eraseBtnPicture) {
                     if (xhr.status === 200 || xhr.status === 0) {
                         var string = xhr.responseText;
 
-                        if (string === 'ProfilePicture deleted') {
+                        if (string !== 'null') {
                             var profilePicture = document.querySelector('.profile_picture');
-                            profilePicture.src = '/images/basic_profile_picture.png';
+                            profilePicture.src = '/uploads/' + string;
+                            document.querySelector('.upload-img').id = 'selected-img';
                         }
                     }
                 }

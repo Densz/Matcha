@@ -66,6 +66,7 @@ router.get('/', async (req, res, next) => {
     if (newNotif === "No data") {
         newNotif = undefined;
     }
+
     let alertMessage = req.session.success;
     req.session.success = [];
     res.render('myprofile', {
@@ -110,10 +111,16 @@ router.post('/editBio', (req, res) => {
     res.redirect('/myprofile');
 });
 
-router.post('/uploadPhotos', upload.single('upload'), function(req, res){
+router.post('/uploadPhotos', upload.single('upload'), async function(req, res){
     try {
+        let db = await model.connectToDatabase();
+        let imageArray = await db.collection('users').findOne({ login: req.session.login }, {images: 1});
         let field = {login: req.session.login},
             item = {$push: {images: req.file.filename}};
+
+        if (imageArray.images.length === 0) {
+            model.updateData('users', field, { $set: {profilePicture: req.file.filename}});
+        }
         console.log('117 upload photo = ', req.file);
         model.updateData('users', field, item);
         res.redirect('/myprofile');
@@ -137,22 +144,23 @@ router.post('/changingpic', async (req, res) => {
 });
 
 router.post('/erasePicture', async (req, res) => {
-    let db = await model.connectToDatabase(),
-        profilePic = await db.collection('users').findOne({ login: req.session.login}, { profilePicture: 1});
+    let db = await model.connectToDatabase();
+
 
     db.collection('users').update(
         { login: req.session.login },
         { $pull: { images: req.body.pictureToErase}}
     );
     fs.unlinkSync('public/uploads/' + req.body.pictureToErase);
+    let profilePic = await db.collection('users').findOne({ login: req.session.login});
     if (profilePic.profilePicture === req.body.pictureToErase) {
         let field = {login: req.session.login},
-            item = { $unset: {profilePicture: req.body.pictureToErase}};
+            item = { $set: {profilePicture: profilePic.images[0]}};
         model.updateData('users', field, item);
-        // res.send('ProfilePicture deleted');
         res.writeHead(200, {"Content-Type": "text/plain"});
-        res.end('ProfilePicture deleted');
+        res.end(profilePic.images[0]);
     }
+    res.send('null');
     console.log('picture deleted');
 });
 

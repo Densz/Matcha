@@ -5,12 +5,12 @@
         <% if (image !== undefined) {
             for(var i = 0; i < image.length; i++) {%>
             <div class="upload-individual-photo">
-                <img src="/uploads/<%= image[i]%>" class="upload-img img-thumbnail" alt="Cinque Terre">
+                <img src="/uploads/<%= image[i] %>" class="upload-img img-thumbnail" id="<%= '/uploads/' + image[i] === profilePic ? 'selected-img' : '' %>" alt="Cinque Terre">
                 <button type="button" class="erase-picture btn btn-danger">Erase this picture</button>
             </div>
-            <% }
-        }
-        if (image === undefined || image.length < 5) {%>
+            <% } %>
+        <% } %>
+        <% if (image === undefined || image.length < 5) { %>
         <div class="upload-individual-photo">
             <img src="/images/cross.png" class="img-thumbnail" alt="Cinque Terre">
             <form method="post" action="/myprofile/uploadPhotos" enctype="multipart/form-data">
@@ -34,7 +34,7 @@
         <div class="col-sm-12">
             <div class="box prohl1">
                 <div style="width: 100%;">
-                    <img class="profile_picture" src="<%= profilePic%>">
+                    <img class="profile_picture" src="<%= profilePic %>">
                     <div class="upload-photo">+</div>
                 </div>
                 <div>
