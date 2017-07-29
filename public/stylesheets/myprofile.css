@@ -124,3 +124,19 @@
 #selected-img{
     border: 8px solid #337ab7;
 }
+
+.next-arrow {
+    top: 15%;
+    right: 30%;
+    position: absolute;
+}
+
+.previous-arrow {
+    top: 15%;
+    left: 30%;
+    position: absolute;
+}
+
+.arrows {
+    width: 25px;
+}

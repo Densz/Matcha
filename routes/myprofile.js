@@ -9,7 +9,7 @@ const multer = require('multer');
 
 
 const imageFilter = function(req, file, cb){
-    if (!file.originalname.match(/\.(jpg|jpeg|png|gif)$/) && file.size < 3145728) {
+    if (!file.originalname.match(/\.(jpg|jpeg|png|gif)$/) || file.size > 3145728) {
         req.session.success.push({msg: 'File not allowed'});
         cb(null, false);
     } else {
@@ -20,7 +20,7 @@ const imageFilter = function(req, file, cb){
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         console.log('destination');
-        cb(null, 'public/uploads')
+        cb(null, 'public/uploads');
     },
     filename: function(req, file, cb) {
         console.log('filename');      
@@ -111,11 +111,16 @@ router.post('/editBio', (req, res) => {
 });
 
 router.post('/uploadPhotos', upload.single('upload'), function(req, res){
-    let field = { login: req.session.login},
-        item = { $push: {images: req.file.filename}};
-    console.log('upload photo = ', req.file);
-    model.updateData('users', field, item);
-    res.redirect('/myprofile');
+    try {
+        let field = {login: req.session.login},
+            item = {$push: {images: req.file.filename}};
+        console.log('117 upload photo = ', req.file);
+        model.updateData('users', field, item);
+        res.redirect('/myprofile');
+    } catch (err) {
+        console.log(err);
+        res.redirect('/myprofile');
+    }
 });
 
 router.post('/changingpic', async (req, res) => {
