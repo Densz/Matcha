@@ -37,19 +37,18 @@ router.post('/submit', async function(req, res){
         let transporter = nodemailer.createTransport(smtpTransport({
             service: 'gmail',
             auth: {
-                user: 'zheng.denis@gmail.com',
-                pass: ''
+                user: '42matcha2017@gmail.com',
+                pass: 'qwerty2017'
             },
             tls: { rejectUnauthorized: false }
         }));
 
         // setup email data with unicode symbols
         let mailOptions = {
-            from: '"Denis" <zheng.denis@gmail.com>', // sender address
-            to: 'Denis Zheng, zheng.denis@gmail.com', // list of receivers
-            subject: 'Hello ✔', // Subject line
-            text: 'Hello world ?', // plain text body
-            html: '<b>Hello world ?</b>' // html body
+            from: '"Matcha" <42matcha2017@gmail.com>', // sender address
+            to: req.body.email, // list of receivers
+            subject: 'Hello - Reset Password - Matcha', // Subject line
+            html: '<p>Hello</p><br><p>To reset your password, click the link below<p><a href="http://localhost:3000/resetpassword/' + email['_id'] + '">Reset password</a><br><br><br>Kind regards,<br>Team Matcha'
         };
 
         // send mail with defined transport object
