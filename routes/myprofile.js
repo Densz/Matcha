@@ -118,7 +118,7 @@ router.post('/uploadPhotos', upload.single('upload'), async function(req, res){
         let field = {login: req.session.login},
             item = {$push: {images: req.file.filename}};
 
-        if (imageArray.images.length === 0) {
+        if (imageArray.images === undefined || imageArray.images.length === 0) {
             model.updateData('users', field, { $set: {profilePicture: req.file.filename}});
         }
         console.log('117 upload photo = ', req.file);
