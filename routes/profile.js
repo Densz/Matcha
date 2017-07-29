@@ -20,6 +20,7 @@ router.get('/:login', async function(req, res, next){
         //get Views and Likes
         let db = await model.connectToDatabase();
         let user = await db.collection('users').findOne({ login: req.params.login });
+        let likesMe = await db.collection('views').findOne({ userOnline: req.params.login, userSeen: req.session.login, status: 'like' });
         let viewers = await views.getViewers(user);
         let likes = await views.getLikes(user);
 
@@ -65,9 +66,12 @@ router.get('/:login', async function(req, res, next){
             layout: 'layout_nav',
             firstName: user['firstName'],
             lastName: user['lastName'],
+            dob: user['age'],
             bio: user['bio'],
             sex: user['sex'],
+            status: user['status'],
             hashtags: user['hashtag'],
+            likesMe: likesMe,
             notifications: notifs,
             newNotif: newNotif,
             loginProfile: user['login'],

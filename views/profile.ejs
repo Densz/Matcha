@@ -12,8 +12,10 @@
                     <img class="profile_star" src="/images/star.png">
                 <% } %>
                 </div>
-                <p><b><%= firstName %> <%= lastName %></b></p>
+                <p><b><%= firstName %> <%= lastName %></b> <%= likesMe ? ' likes me' : '' %></p>
+                <span style="color:<%= status === 'offline' ? 'red' : 'green' %>"><%= status %></span>
                 <p><b>Sex: </b> <%= sex %></p>
+                <p><b>Age: </b> <%= dob %></p>
                 <label for="comment">Bio:</label>
                 <div><%= bio %></div><br>
                 <label for="comment">Hashtags:</label>
