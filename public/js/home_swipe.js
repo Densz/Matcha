@@ -55,52 +55,54 @@ if (arrowPrev !== null) {
         }
     });
 }
+if (likeButton) {
+    likeButton.addEventListener('click', function(){
+        var xhr = new XMLHttpRequest();
+        var loginSwiped = people.firstElementChild.querySelector('#matchedLogin').innerHTML;
 
-likeButton.addEventListener('click', function(){
-    var xhr = new XMLHttpRequest();
-    var loginSwiped = people.firstElementChild.querySelector('#matchedLogin').innerHTML;
-    
-    socket.emit('new like', { to: loginSwiped });
-    xhr.open('POST', url() + '/home/swipe', true);
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.send('loginSwiped=' + loginSwiped + '&status=like');
-    xhr.onload = function() {
-        if (xhr.readyState === xhr.DONE) {
-            if (xhr.status === 200 || xhr.status === 0) {
-                var response = JSON.parse(xhr.responseText);
-                console.log(response);
-                if (response['match'] === true) {
-                    socket.emit('new match', { to: loginSwiped });
+        socket.emit('new like', { to: loginSwiped });
+        xhr.open('POST', url() + '/home/swipe', true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.send('loginSwiped=' + loginSwiped + '&status=like');
+        xhr.onload = function() {
+            if (xhr.readyState === xhr.DONE) {
+                if (xhr.status === 200 || xhr.status === 0) {
+                    var response = JSON.parse(xhr.responseText);
+                    console.log(response);
+                    if (response['match'] === true) {
+                        socket.emit('new match', { to: loginSwiped });
+                    }
                 }
             }
         }
-    }    
 
-    people.removeChild(people.firstElementChild);
-    people.firstElementChild.style.display = 'inherit';
-    if (people.firstElementChild.id === 'no-more') {
-        like.remove();
-        dislike.remove();
-        arrowNext.remove();
-        arrowPrev.remove();
-    }
-})
+        people.removeChild(people.firstElementChild);
+        people.firstElementChild.style.display = 'inherit';
+        if (people.firstElementChild.id === 'no-more') {
+            like.remove();
+            dislike.remove();
+            arrowNext.remove();
+            arrowPrev.remove();
+        }
+    });
+}
+if (dislikeButton) {
+    dislikeButton.addEventListener('click', function(){
+        var xhr = new XMLHttpRequest();
+        var loginSwiped = people.firstElementChild.querySelector('#matchedLogin').innerHTML;
 
-dislikeButton.addEventListener('click', function(){
-    var xhr = new XMLHttpRequest();
-    var loginSwiped = people.firstElementChild.querySelector('#matchedLogin').innerHTML;
+        socket.emit('new view', { to: loginSwiped });
+        xhr.open('POST', url() + '/home/swipe', true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.send('loginSwiped=' + loginSwiped + '&status=dislike');
 
-    socket.emit('new view', { to: loginSwiped });    
-    xhr.open('POST', url() + '/home/swipe', true);
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.send('loginSwiped=' + loginSwiped + '&status=dislike');
-
-    people.removeChild(people.firstElementChild);
-    people.firstElementChild.style.display = 'inherit';
-    if (people.firstElementChild.id === 'no-more') {
-        like.remove();
-        dislike.remove();
-        arrowNext.remove();
-        arrowPrev.remove();
-    }
-})
+        people.removeChild(people.firstElementChild);
+        people.firstElementChild.style.display = 'inherit';
+        if (people.firstElementChild.id === 'no-more') {
+            like.remove();
+            dislike.remove();
+            arrowNext.remove();
+            arrowPrev.remove();
+        }
+    });
+}

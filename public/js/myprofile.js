@@ -13,29 +13,42 @@ function url(){
     return(url[0] + '//' + url[2] + '');
 }
 
-for (var i = 0; i < eraseBtnPicture.length; i++) {
-    eraseBtnPicture[i].addEventListener('click', function() {
-        var xhr = new XMLHttpRequest(),
-            tmp = this.previousElementSibling.src.split("/");
+if (chosenPicture.length === 1) {
+    eraseBtnPicture[0].remove();
+}
 
-        xhr.open('POST', url() + '/myprofile/erasePicture', true);
-        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        xhr.send('pictureToErase=' + tmp[4]);
-        xhr.onload = function() {
-            if (xhr.readyState === xhr.DONE) {
-                if (xhr.status === 200 || xhr.status === 0) {
-                    var string = xhr.responseText;
+if (eraseBtnPicture) {
+    for (var i = 0; i < eraseBtnPicture.length; i++) {
+        eraseBtnPicture[i].addEventListener('click', function() {
+            if (chosenPicture.length === 1) {
+                eraseBtnPicture[0].remove();
+            }
+            var xhr = new XMLHttpRequest(),
+                tmp = this.previousElementSibling.src.split("/");
 
-                    if (string === 'ProfilePicture deleted') {
-                        var profilePicture = document.querySelector('.profile_picture');
-                        profilePicture.src = '/images/basic_profile_picture.png';
+            xhr.open('POST', url() + '/myprofile/erasePicture', true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.send('pictureToErase=' + tmp[4]);
+            xhr.onload = function() {
+                if (xhr.readyState === xhr.DONE) {
+                    if (xhr.status === 200 || xhr.status === 0) {
+                        var string = xhr.responseText;
+
+                        if (string === 'ProfilePicture deleted') {
+                            var profilePicture = document.querySelector('.profile_picture');
+                            profilePicture.src = '/images/basic_profile_picture.png';
+                        }
                     }
                 }
+            };
+            this.parentNode.parentNode.removeChild(this.parentNode);
+            if (document.querySelectorAll('.upload-img').length === 1) {
+                document.querySelector('.erase-picture').remove();
             }
-        }
-        this.parentNode.parentNode.removeChild(this.parentNode);
-    })
+        })
+    }
 }
+
 
 for (var i = 0; i < chosenPicture.length; i++) {
     chosenPicture[i].addEventListener('click', function(){
