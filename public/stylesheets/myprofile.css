@@ -125,18 +125,18 @@
     border: 8px solid #337ab7;
 }
 
-.next-arrow {
+#next-arrow {
     top: 15%;
     right: 30%;
     position: absolute;
 }
 
-.previous-arrow {
+#previous-arrow {
     top: 15%;
     left: 30%;
     position: absolute;
 }
 
-.arrows {
+.arrows-profile {
     width: 25px;
 }

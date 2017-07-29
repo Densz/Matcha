@@ -2,8 +2,8 @@ var likeProfile = document.querySelector('.like');
 var dislikeProfile = document.querySelector('.dislike');
 var dislikeAfterLike = document.querySelector('#dislikeAfterLike');
 var div = document.querySelector('#swipe');
-var arrowNext = document.querySelector('.next-arrow');
-var arrowPrev = document.querySelector('.previous-arrow');
+var arrowNext = document.querySelector('#next-arrow');
+var arrowPrev = document.querySelector('#previous-arrow');
 
 if (arrowNext != null) {
     arrowNext.addEventListener('click', function() {
