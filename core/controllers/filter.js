@@ -19,7 +19,7 @@ const filter = async function (userOnline, req) {
                 { age: { $lte: parseInt(userOnline['filter']['maxAge']) } }, 
                 { popularityScore: { $gte: parseInt(userOnline['filter']['minScore']) } }, 
                 { popularityScore: { $lte: parseInt(userOnline['filter']['maxScore']) } }
-            ],
+            ]
     });
     if (Array.isArray(array)) {
         return array;
