@@ -23,6 +23,7 @@ import myprofile from './routes/myprofile';
 import settings from './routes/settings';
 import getposition from './routes/getposition';
 import profile from './routes/profile';
+import search from './routes/search';
 
 
 // view engine setup
@@ -56,6 +57,7 @@ app.use('/getposition', getposition);
 app.use('/profile', profile);
 app.use('/forgottenpassword', forgottenpassword);
 app.use('/resetpassword', resetpassword);
+app.use('/search', search);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

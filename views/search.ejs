@@ -1,0 +1,220 @@
+<div class="container">
+    <div class="row">
+        <!-- RIGHT COLUMN -->
+        <div class="col-sm-3">
+        <form action="/search/result" method="post">
+            <div class="box hr1">
+                <h4>Filter</h4>
+                <span><b>Age</b></span><br>
+                <div class="range-age-values" id="skip-value-lower"></div>
+                <div class="range-age-values" id="skip-value-upper"></div>
+                <div id="range_age"></div><br>
+                <span><b>Score</b></span><br>
+                <div class="range-age-values" id="skip-value-lower-score"></div>
+                <div class="range-age-values" id="skip-value-upper-score"></div>
+                <div id="range_score"></div>
+            </div>
+            <div class="box hl2">
+                <h4>Orientation</h4>
+                <select class="form-control" id="sel1">
+                    <option name="orientation" value="bisexual">Bisexual</option>
+                    <option name="orientation" value="men">Men</option>
+                    <option name="orientation" value="women">Women</option>
+                </select>
+            </div>
+            <div class="box hr2">
+                <h4>Location filter</h4>
+                <span><b>Address</b></span><br>
+                <input type="text" name="newAddress" class="form-control" id="location" placeholder="">
+                <span></span><br><br>
+                </form>
+            </div>
+            <div class="box hr3">
+                <h4>Filter by interest</h4>
+                <span>Separated by commas</span>
+                <input type="text" name="hashtagFilter" class="form-control" value="" placeholder="Enter #">
+            </div>
+            <div class="box">
+                <h4>Filter by</h4>
+                <div class="form-group">
+                <select class="form-control" id="sel1">
+                    <option name="filter" value="age up">Age ↗</option>
+                    <option name="filter" value="age down">Age ↘</option>
+                    <option name="filter" value="location up">Localisation ↗</option>
+                    <option name="filter" value="location down">Localisation ↘</option>
+                    <option name="filter" value="popularity up">Popularity ↗</option>
+                    <option name="filter" value="popularity down">Popularity ↘</option>
+                    <option name="filter" value="tags up">Tags in common ↗</option>
+                    <option name="filter" value="tags down">Tags in common ↘</option>
+                </select>
+                </div>
+            </div>
+            <div class="box">
+                <!-- Secondary, outline button -->
+                <input type="submit" class="btn btn-primary" value="Go !">
+            </div>
+        </div>
+        </form>
+        <!-- MIDD COLUMN -->
+        <div class="col-sm-9">
+            <div class="box">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Login</th>
+                            <th>Name</th>
+                            <th>Age</th>
+                            <th>Sex</th>
+                            <th>Location</th>
+                            <th>Hashtags</th>
+                            <th>Score</th>
+                            <th>Status</th>
+                            <th>Link</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Densz</td>
+                            <td>Denis Zheng</td>
+                            <td>24</td>
+                            <td>Male</td>
+                            <td>76 Avenue Parmentier, 75011 Paris</td>
+                            <td>#test #test2</td>
+                            <td>7 / 10</td>
+                            <td style="color: green;">Online</td>
+                            <td><a href="">Profile</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/js/nouislider.js"></script>
+<script>
+    function url(){
+        var url =  window.location.href;
+        url = url.split("/");
+        return(url[0] + '//' + url[2] + '');
+    }
+
+    /* Age range */
+    var skipSlider = document.getElementById('range_age');
+
+    noUiSlider.create(skipSlider, {
+        range: {
+            'min':	18,
+            '2%':	19,
+            '3%':	20,
+            '5%':	21,
+            '6%':	22,
+            '8%':	23,
+            '10%':	24,
+            '11%':	25,
+            '13%':	26,
+            '15%':	27,
+            '16%':	28,
+            '18%':	29,
+            '19%':	30,
+            '21%':	31,
+            '23%':	32,
+            '24%':	33,
+            '26%':	34,
+            '27%':	35,
+            '29%':	36,
+            '31%':	37,
+            '32%':	38,
+            '34%':	39,
+            '35%':	40,
+            '37%':	41,
+            '39%':	42,
+            '40%':	43,
+            '42%':	44,
+            '44%':	45,
+            '45%':	46,
+            '47%':	47,
+            '48%':	48,
+            '50%':	49,
+            '52%':	50,
+            '53%':	51,
+            '55%':	52,
+            '56%':	53,
+            '58%':	54,
+            '60%':	55,
+            '61%':	56,
+            '63%':	57,
+            '65%':	58,
+            '66%':	59,
+            '68%':	60,
+            '69%':	61,
+            '71%':	62,
+            '73%':	63,
+            '74%':	64,
+            '76%':	65,
+            '77%':	66,
+            '79%':	67,
+            '81%':	68,
+            '82%':	69,
+            '84%':	70,
+            '85%':	71,
+            '87%':	72,
+            '89%':	73,
+            '90%':	74,
+            '92%':	75,
+            '94%':	76,
+            '95%':	77,
+            '97%':	78,
+            '98%':	79,
+            'max':	80
+        },
+        snap: true,
+        start: [18, 80]
+    });
+    var skipValues = [
+        document.getElementById('skip-value-lower'),
+        document.getElementById('skip-value-upper')
+    ];
+    skipSlider.noUiSlider.on('update', function( values, handle ) {
+        skipValues[handle].innerHTML = Math.round(values[handle]);
+    });
+
+    /* Score range */
+    var skipSliderScore = document.getElementById('range_score');
+
+    noUiSlider.create(skipSliderScore, {
+        range: {
+            'min':	0,
+            '10%':	1,
+            '20%':	2,
+            '30%':	3,
+            '40%':	4,
+            '50%':	5,
+            '60%':	6,
+            '70%':	7,
+            '80%':	8,
+            '90%':	9,
+            'max':	10
+        },
+        snap: true,
+        start: [0, 10]
+    });
+    var skipValuesScore = [
+        document.getElementById('skip-value-lower-score'),
+        document.getElementById('skip-value-upper-score')
+    ];
+    skipSliderScore.noUiSlider.on('update', function( values, handle ) {
+        skipValuesScore[handle].innerHTML = Math.round(values[handle]);
+    });
+
+    /* get Data on filter */
+    var buttonFilter = document.querySelector('#filter-age-score');
+    buttonFilter.addEventListener('click', function(){
+        var age = skipSlider.noUiSlider.get();
+        var score = skipSliderScore.noUiSlider.get();
+        var xhr = new XMLHttpRequest();
+        xhr.open('post', url() + '/home/getFilter', true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.send('minAge=' + age[0] + '&maxAge=' + age[1] + '&minScore=' + score[0] + '&maxScore=' + score[1] );
+        window.location.replace(url() + '/home');
+    });
+</script>
