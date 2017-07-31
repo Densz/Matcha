@@ -55,8 +55,13 @@ router.post('/result', async function(req, res, next) {
     let locationDetails = await search.getAddress(req);
 
     //Filter people
-    let filter = await search.filter(req);
+    let queryFilter = await search.queryFilter(req, locationDetails);
+    console.log(queryFilter);
+    let filter = await search.filter(queryFilter);
 
+    if (req.body.filter === "location down") {
+        filter.reverse();
+    }
     let errors = req.session.errors;
     req.session.errors = [];
     

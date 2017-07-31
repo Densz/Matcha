@@ -30,36 +30,63 @@ const getAddress = function(req) {
     })
 }
 
-const filter = async function(req) {
-    let results = await model.getDataSorted('users', 
-        {
-            sex: req.body['orientation'] === 'Women' ? 'female' : req.body['orientation'] === 'Men' ? 'male' : { $regex: ".*male" },
-            login: { $ne: req.session.login },
-            // location: {
-            //     $nearSphere: {
-            //         $geometry: {
-            //             type: "Point",
-            //             coordinates: [userOnline['location']['coordinates'][0], userOnline['location']['coordinates'][1]]
-            //         },
-            //         $minDistance: 0,
-            //         $maxDistance: 1000000
-            //     } 
-            // },
-            $and: [ 
+const queryFilter = async function(req, loc) {
+    let blockedUser = await model.getData('blockedUsers', { userOnline: req.session.login });
+    let json = {};
+    let sort = {};
+
+    // jsonFilter
+    json.sex = req.body['orientation'] === 'women' ? 'female' : req.body['orientation'] === 'men' ? 'male' : { $regex: ".*male" };
+    json.login = { $ne: req.session.login };
+    if (loc.location.address) {
+        json.location = {
+            $nearSphere: {
+                $geometry: {
+                    type: "Point",
+                    coordinates: [
+                        loc.location.address ? loc.location.coordinates[0] : 0,
+                        loc.location.address ? loc.location.coordinates[1] : 0
+                    ]
+                },
+                $minDistance: 0,
+                $maxDistance: 1000000
+            } 
+        };
+    }
+    json.$and = [ 
                     { age: { $gte: parseInt(req.body['age-min']) } }, 
                     { age: { $lte: parseInt(req.body['age-max']) } }, 
                     { popularityScore: { $gte: parseInt(req.body['score-min']) } }, 
                     { popularityScore: { $lte: parseInt(req.body['score-max']) } }
-                ]
-        },
-        { 
-            age: -1
-        }
+                ];
+    // sortFilter
+    if (req.body.filter === 'age up') {
+        sort.age = 1;
+    } else if (req.body.filter === 'age down') {
+        sort.age = -1;
+    } else if (req.body.filter === 'popularity up') {
+        sort.popularityScore = 1;
+    } else if (req.body.filter === 'popularity down') {
+        sort.popularityScore = -1;
+    }
+    let queries = [json, sort];
+    return (queries);
+}
+
+const filter = async function(queryFilter) {
+    let results = await model.getDataSorted('users', 
+        queryFilter[0],
+        queryFilter[1]
     );
-    return results;
+    if (results === "No data") {
+        return undefined;
+    } else {
+        return results;
+    }
 }
 
 module.exports = {
     'getAddress' : getAddress,
-    'filter': filter
+    'filter': filter,
+    'queryFilter': queryFilter
 };
