@@ -8,8 +8,6 @@ const search = require('../core/controllers/search');
 
 router.get('/', async function (req, res) {
     req.session.errors = [];
-    //Line to delete
-    req.session.login = (req.session.login === undefined ? 'densz' : req.session.login);
     
     if (req.session.login === undefined) {
         req.session.errors.push({ msg: 'No access right' });

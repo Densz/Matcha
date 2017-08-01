@@ -34,21 +34,22 @@ const getBlockedUser = async function(req) {
     let blockedUser = await model.getData('blockedUsers', { userOnline: req.session.login });
     let array = [];
 
+    array.push(req.session.login);
     if (blockedUser !== "No data") {
         let i = 0;
         while (i < blockedUser.length) {
             array.push(blockedUser[i].userBlocked);
             i++;
         }
-        array.push(req.session.login);
         return array;
     } else {
-        return [];
+        return array;
     }
 }
 
 const queryFilter = async function(req, loc) {
     let blockedUser = await getBlockedUser(req);
+    console.log(blockedUser);
     let json = {};
     let sort = {};
 

@@ -204,7 +204,6 @@ router.post('/deleteHashtag', async function (req, res){
 router.post('/nextPicture', async (req, res) => {
     let db = await model.connectToDatabase();
     let imageArray = await db.collection('users').findOne({login: req.body.loginMatch}, {images: 1});
-    console.log('here we are !');
     var currIndex = imageArray.images.indexOf(req.body.indexCurrPic);
     if (imageArray.images[currIndex + 1] !== undefined) {
         res.send('/uploads/' + imageArray.images[currIndex + 1]);
