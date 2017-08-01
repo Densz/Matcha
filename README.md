@@ -2,7 +2,6 @@
 Tinder-like app made by 42 Students
 
 ### Need to do
-* Date of last time visited
 * Put filter by in homepage
 * Check Location / javascript is enough ?
 

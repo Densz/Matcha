@@ -33,6 +33,25 @@
                 <% } %>
                 </div>
             </div>
+            <div class="box">
+                <h4>Filter by</h4>
+                <div class="form-group">
+                <form method="post" action="/home/filterBy">
+                <select class="form-control" id="sel1" name="filter">
+                    <option value="none" <%= user['filterBy'] === "none" ? 'selected' : '' %>>None</option>
+                    <option value="age-up" <%= user['filterBy'] === "age-up" ? 'selected' : '' %>>Age ↗</option>
+                    <option value="age-down" <%= user['filterBy'] === "age-down" ? 'selected' : '' %>>Age ↘</option>
+                    <option value="location-up" <%= user['filterBy'] === "location-up" ? 'selected' : '' %>>Localisation ↗</option>
+                    <option value="location-down" <%= user['filterBy'] === "location-down" ? 'selected' : '' %>>Localisation ↘</option>
+                    <option value="popularity-up" <%= user['filterBy'] === "popularity-up" ? 'selected' : '' %>>Popularity ↗</option>
+                    <option value="popularity-down" <%= user['filterBy'] === "popularity-down" ? 'selected' : '' %>>>Popularity ↘</option>
+                    <option value="tags-up" <%= user['filterBy'] === "tags-up" ? 'selected' : '' %>>Tags in common ↗</option>
+                    <option value="tags-down" <%= user['filterBy'] === "tags-down" ? 'selected' : '' %>>Tags in common ↘</option>
+                </select>
+                <input type="submit" class="btn btn-default" name="filterBy" value="Filter">
+                </form>
+                </div>
+            </div>
         </div>
         <!-- MIDDLE COLUMN -->
         <div class="col-sm-6">
@@ -138,7 +157,7 @@
                                     <img src="/uploads/<%= matches[i]['profilePicture'] %>" class="profile_picture_chat <%= matches[i]['status'] === 'online' ? 'online' : 'offline' %>">
                                 </div>
                                 <div class="chat-description">
-                                    <span><b><%= matches[i]['firstName'] %> <%= matches[i]['lastName'] %></b>&nbsp; <span class="new-match">New</span></span><br>
+                                    <span><b><%= matches[i]['firstName'] %> <%= matches[i]['lastName'] %></b></span><br>
                                 </div>
                             </div>
                         <% } else { %>
@@ -147,7 +166,7 @@
                                     <img src="/uploads/<%= matches[i]['profilePicture'] %>" class="profile_picture_chat <%= matches[i]['status'] === 'online' ? 'online' : 'offline' %>">
                                 </div>
                                 <div class="chat-description">
-                                    <span><b><%= matches[i]['firstName'] %> <%= matches[i]['lastName'] %></b>&nbsp; <span class="new-match">New</span></span><br>
+                                    <span><b><%= matches[i]['firstName'] %> <%= matches[i]['lastName'] %></b></span><br>
                                 </div>
                             </div>
                         <% } %>    

@@ -128,6 +128,13 @@ router.post('/hashtagFilter', async function (req, res) {
     res.redirect('/home');
 });
 
+router.post('/filterBy', async function (req, res) {
+    model.updateData('users', { login: req.session.login }, { $set: {
+        filterBy: req.body.filter
+    }});
+    res.redirect('/home');
+});
+
 /**
  * AJAX function
  */
