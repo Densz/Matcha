@@ -14,6 +14,9 @@
                 </div>
                 <p><b><%= firstName %> <%= lastName %></b> <%= likesMe ? ' likes me' : '' %></p>
                 <span style="color:<%= status === 'offline' ? 'red' : 'green' %>"><%= status %></span>
+                <% if (status === 'offline') { %>
+                    <p><b>Last time connected: </b><br><%= lastConnection.toLocaleString() %></p>
+                <% } %>
                 <p><b>Sex: </b> <%= sex %></p>
                 <p><b>Age: </b> <%= dob %></p>
                 <label for="comment">Bio:</label>

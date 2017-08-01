@@ -4,15 +4,15 @@ const connexionChat = function(req){
     req.io.once('connection', function(socket) {
         // Connection to chat - set user online or offline
         if (req.session.login !== undefined) {
-            model.updateData('users', { login: req.session.login }, { $set: { status: 'online' } });
+            model.updateData('users', { login: req.session.login }, { $set: { status: 'online', lastConnection: new Date() } });
             req.io.sockets.emit('new user connection', req.session.login);
         } else {
-            model.updateData('users', { login: req.session.login }, { $set: { status: 'offline' } });
+            model.updateData('users', { login: req.session.login }, { $set: { status: 'offline', lastConnection: new Date() } });
             req.io.sockets.emit('user disconnected', req.session.login);           
         }
         socket.on('disconnect', function(socket) {
             req.io.sockets.emit('user disconnected', req.session.login);            
-            model.updateData('users', { login: req.session.login }, { $set: { status: 'offline' } });
+            model.updateData('users', { login: req.session.login }, { $set: { status: 'offline', lastConnection: new Date() } });
         })
         
         getMessagesFromChat(req, socket);

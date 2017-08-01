@@ -68,6 +68,7 @@ router.get('/:login', async function(req, res, next){
             dob: user['age'],
             bio: user['bio'],
             sex: user['sex'],
+            lastConnection: user['lastConnection'],
             status: user['status'],
             hashtags: user['hashtag'],
             likesMe: likesMe,
