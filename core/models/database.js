@@ -59,7 +59,6 @@ const insertData = function(collection, item) {
 		assert.equal(null, err);
 		db.collection(collection).insertOne(item, function(err, result){
 			assert.equal(null, err);
-			console.log(item, 'ITEM INSERTED');
 			db.close();
 		});
 	});
@@ -70,7 +69,6 @@ const updateData = function (collection, field, item) {
 		assert.equal(null, err);
 		db.collection(collection).update(field, item, function(err, result) {
 			assert.equal(null, err);
-			console.log('ITEM UPDATED');
 			db.close();
 		});
 	});
