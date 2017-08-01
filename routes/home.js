@@ -12,7 +12,6 @@ const conversation = require('../core/controllers/conversation');
 
 router.get('/', async function (req, res) {
     req.session.errors = [];
-    req.session.login = (req.session.login === undefined ? 'densz' : req.session.login);
     
     if (req.session.login === undefined) {
         req.session.errors.push({ msg: 'No access right' });

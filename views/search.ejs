@@ -87,7 +87,7 @@
                                 <td><%= filter[i].lastName %></td>
                                 <td><%= filter[i].age %></td>
                                 <td><%= filter[i].sex %></td>
-                                <td><%= filter[i].address %></td>
+                                <td><%= filter[i].address ? filter[i].address : filter[i].tmpAddress; %></td>
                                 <td>
                                     <% for (var j = 0; j < filter[i].hashtag.length; j++) { %>
                                         <%= filter[i].hashtag[j] %> 

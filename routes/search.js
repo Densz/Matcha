@@ -41,9 +41,6 @@ router.get('/', async function (req, res) {
 });
 
 router.post('/result', async function(req, res, next) {
-    //Line to delete
-    req.session.login = (req.session.login === undefined ? 'densz' : req.session.login);
-
     // Connexion with socket.io
     socketIO.connexionChat(req);
     notifications.saveNotificationsToDatabase(req);

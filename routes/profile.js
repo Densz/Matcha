@@ -61,7 +61,6 @@ router.get('/:login', async function(req, res, next){
         } else {
             profilePic.profilePicture = '/uploads/' + profilePic.profilePicture;
         }
-        console.log('profilepic ->' ,profilePic);
         res.render('profile', {
             layout: 'layout_nav',
             firstName: user['firstName'],

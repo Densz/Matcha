@@ -2,6 +2,11 @@
 Tinder-like app made by 42 Students
 
 ### Need to do
+* Check upload images
+* Check all consolelog
+* Don't show blocked user in the homepage
+* Put filter by in homepage
+* Check all Line to delete
 * Check Location / javascript is enough ?
 
 #### Details

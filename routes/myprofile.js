@@ -19,11 +19,9 @@ const imageFilter = function(req, file, cb){
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        console.log('destination');
         cb(null, 'public/uploads');
     },
     filename: function(req, file, cb) {
-        console.log('filename');      
         cb(null, req.session.login + '-' + Date.now() + path.extname(file.originalname));
     }
 });
@@ -35,10 +33,6 @@ const upload = multer({
 
 
 router.get('/', async (req, res, next) => {
-    // A ENLEVER
-    if (req.session.login === undefined) {
-        req.session.login = 'arlecomt';
-    }
     //update of popularity score
     let statistics = await score.updateScore(req.session.login);
 
@@ -121,17 +115,14 @@ router.post('/uploadPhotos', upload.single('upload'), async function(req, res){
         if (imageArray.images === undefined || imageArray.images.length === 0) {
             model.updateData('users', field, { $set: {profilePicture: req.file.filename}});
         }
-        console.log('117 upload photo = ', req.file);
         model.updateData('users', field, item);
         res.redirect('/myprofile');
     } catch (err) {
-        console.log(err);
         res.redirect('/myprofile');
     }
 });
 
 router.post('/changingpic', async (req, res) => {
-    console.log(req.body.frontPic);
     let field = { login: req.session.login},
         picName = req.body.frontPic.split("/"),
         item = { $set: {profilePicture: picName[4]}};
@@ -161,7 +152,6 @@ router.post('/erasePicture', async (req, res) => {
         res.end(profilePic.images[0]);
     }
     res.send('null');
-    console.log('picture deleted');
 });
 
 module.exports = router;
