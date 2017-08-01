@@ -33,7 +33,11 @@ router.get('/', async function (req, res) {
         // Filtres
         let filter1 = await filter.filter(user, req);
         let filter2 = await filter.filterByViews(user, filter1);
-        let finalFilter = await filter.filterByInterests(user, filter2);        
+        let finalFilter = await filter.filterByInterests(user, filter2);
+        if (user['filterBy'] === 'location-down') {
+            finalFilter.reverse();    
+        }
+        
         // Matches
         let matches = await match.getMatches(req);
         // Conversations

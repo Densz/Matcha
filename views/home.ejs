@@ -44,9 +44,7 @@
                     <option value="location-up" <%= user['filterBy'] === "location-up" ? 'selected' : '' %>>Localisation ↗</option>
                     <option value="location-down" <%= user['filterBy'] === "location-down" ? 'selected' : '' %>>Localisation ↘</option>
                     <option value="popularity-up" <%= user['filterBy'] === "popularity-up" ? 'selected' : '' %>>Popularity ↗</option>
-                    <option value="popularity-down" <%= user['filterBy'] === "popularity-down" ? 'selected' : '' %>>>Popularity ↘</option>
-                    <option value="tags-up" <%= user['filterBy'] === "tags-up" ? 'selected' : '' %>>Tags in common ↗</option>
-                    <option value="tags-down" <%= user['filterBy'] === "tags-down" ? 'selected' : '' %>>Tags in common ↘</option>
+                    <option value="popularity-down" <%= user['filterBy'] === "popularity-down" ? 'selected' : '' %>>Popularity ↘</option>
                 </select>
                 <input type="submit" class="btn btn-default" name="filterBy" value="Filter">
                 </form>
@@ -63,7 +61,7 @@
                         <span id='matchedLogin' style="display:none;"><%= people[i]['login'] %></span>
                         <span><b><%= people[i]['firstName'] %> <%= people[i]['lastName'] %></b> (<%= people[i]['age'] %> ans)</span><br>
                         <span><%= people[i]['sex'] %></span><br>
-                        <span><b>Address:</b> <%= people[i]['address'] %></span><br>
+                        <span><b>Address:</b> <%= people[i]['address'] ? people[i]['address'] : people[i]['tmpAddress'] %></span><br>
                         <% for (stars=0; stars < people[i]['popularityScore']; stars++) { %>
                             <img class="profile_star" src="/images/star.png">
                         <% } %><br><br>
@@ -132,6 +130,7 @@
             </div>
             <div class="box hr3">
                 <h4>By interest</h4>
+                <span>Separated by spaces</span>
                 <form method="post" action="/home/hashtagFilter">
                 <div class="input-group">
                     <span class="input-group-btn">

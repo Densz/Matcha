@@ -105,6 +105,7 @@ const filter = async function(queryFilter) {
         return results;
     }
 }
+
 const compare = function (a, b) {
   return a.commonTags - b.commonTags;
 }
