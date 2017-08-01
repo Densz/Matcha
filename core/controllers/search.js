@@ -49,7 +49,6 @@ const getBlockedUser = async function(req) {
 
 const queryFilter = async function(req, loc) {
     let blockedUser = await getBlockedUser(req);
-    console.log(blockedUser);
     let json = {};
     let sort = {};
 
@@ -132,5 +131,6 @@ module.exports = {
     'getAddress' : getAddress,
     'filter': filter,
     'queryFilter': queryFilter,
-    'filterByCommonTags': filterByCommonTags
+    'filterByCommonTags': filterByCommonTags,
+    'getBlockedUser': getBlockedUser
 };1

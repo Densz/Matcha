@@ -1,9 +1,12 @@
 const model = require('../models/database.js');
+const search = require('./search.js');
 
 const filter = async function (userOnline, req) {
+    let blockedUser = await search.getBlockedUser(req);
     let array = await model.getData('users', {
         sex: userOnline['orientation'] === 'Women' ? 'female' : userOnline['orientation'] === 'Men' ? 'male' : { $regex: ".*male" },
-        login: { $ne: req.session.login },
+        login: { $nin: blockedUser },
+        profilePicture: { $exists: true },
         location: {
             $nearSphere: {
                 $geometry: {
@@ -24,7 +27,6 @@ const filter = async function (userOnline, req) {
     if (Array.isArray(array)) {
         return array;
     } else {
-        console.log('Error message ==> ', array); 
         return undefined;
     }
 };
