@@ -62,7 +62,7 @@ router.post('/result', async function(req, res, next) {
     if (req.body.location === "" && (req.body.filter === "location down" || req.body.filter === "location up")) {
         req.session.errors.push({ msg: "Cannot filter by location without location set" });
     }
-    if (req.body.location !== "" && (req.body.filter === "tags down" || req.body.filter === "tags up")) {
+    if (req.body.hashtags !== "" && (req.body.filter === "tags down" || req.body.filter === "tags up")) {
         req.session.errors.push({ msg: "Cannot filter by common tags if hashtags filter is set" });
     }
     let queryFilter = await search.queryFilter(req, locationDetails);
