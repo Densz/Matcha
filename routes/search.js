@@ -8,6 +8,7 @@ const search = require('../core/controllers/search');
 
 router.get('/', async function (req, res) {
     req.session.errors = [];
+    //Line to delete
     req.session.login = (req.session.login === undefined ? 'densz' : req.session.login);
     
     if (req.session.login === undefined) {
@@ -40,6 +41,9 @@ router.get('/', async function (req, res) {
 });
 
 router.post('/result', async function(req, res, next) {
+    //Line to delete
+    req.session.login = (req.session.login === undefined ? 'densz' : req.session.login);
+
     // Connexion with socket.io
     socketIO.connexionChat(req);
     notifications.saveNotificationsToDatabase(req);
@@ -55,13 +59,24 @@ router.post('/result', async function(req, res, next) {
     let locationDetails = await search.getAddress(req);
 
     //Filter people
+    if (req.body.location === "" && (req.body.filter === "location down" || req.body.filter === "location up")) {
+        req.session.errors.push({ msg: "Cannot filter by location without location set" });
+    }
+    if (req.body.location !== "" && (req.body.filter === "tags down" || req.body.filter === "tags up")) {
+        req.session.errors.push({ msg: "Cannot filter by common tags if hashtags filter is set" });
+    }
     let queryFilter = await search.queryFilter(req, locationDetails);
-    console.log(queryFilter);
     let filter = await search.filter(queryFilter);
 
     if (req.body.filter === "location down") {
         filter.reverse();
+    } else if (req.body.filter === "tags up" || req.body.filter === "tags down") {
+        filter = await search.filterByCommonTags(filter, req);
+        for (let i = 0; i < filter.length; i++) {
+            console.log(filter[i].commonTags);
+        }
     }
+
     let errors = req.session.errors;
     req.session.errors = [];
     

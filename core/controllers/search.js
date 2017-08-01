@@ -30,14 +30,35 @@ const getAddress = function(req) {
     })
 }
 
-const queryFilter = async function(req, loc) {
+const getBlockedUser = async function(req) {
     let blockedUser = await model.getData('blockedUsers', { userOnline: req.session.login });
+    let array = [];
+
+    if (blockedUser !== "No data") {
+        let i = 0;
+        while (i < blockedUser.length) {
+            array.push(blockedUser[i].userBlocked);
+            i++;
+        }
+        array.push(req.session.login);
+        return array;
+    } else {
+        return [];
+    }
+}
+
+const queryFilter = async function(req, loc) {
+    let blockedUser = await getBlockedUser(req);
     let json = {};
     let sort = {};
 
     // jsonFilter
     json.sex = req.body['orientation'] === 'women' ? 'female' : req.body['orientation'] === 'men' ? 'male' : { $regex: ".*male" };
-    json.login = { $ne: req.session.login };
+    json.login = { $nin: blockedUser };
+    if (req.body['hashtags'] !== "") {
+        let hashtags = req.body['hashtags'].split(' ');
+        json.hashtag = { $all: hashtags };
+    }
     if (loc.location.address) {
         json.location = {
             $nearSphere: {
@@ -84,9 +105,31 @@ const filter = async function(queryFilter) {
         return results;
     }
 }
+const compare = function (a, b) {
+  return a.commonTags - b.commonTags;
+}
+
+const filterByCommonTags = async function(array, req) {
+    let db = await model.connectToDatabase();
+    let userTags = await db.collection('users').findOne({ login: req.session.login });
+    let i = 0;
+    while (i < array.length) {
+        let value = array[i].hashtag.filter(function(e) {
+            return userTags.hashtag.indexOf(e) > -1;
+        });
+        array[i].commonTags = value.length;
+        i++;
+    }
+    array.sort(compare);
+    if (req.body.filter === "tags up") {
+        array.reverse();
+    }
+    return array;
+}
 
 module.exports = {
     'getAddress' : getAddress,
     'filter': filter,
-    'queryFilter': queryFilter
-};
+    'queryFilter': queryFilter,
+    'filterByCommonTags': filterByCommonTags
+};1

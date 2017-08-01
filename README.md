@@ -2,7 +2,6 @@
 Tinder-like app made by 42 Students
 
 ### Need to do
-* Search users Page - Show online user and blocked user
 * Check Location / javascript is enough ?
 
 #### Details
