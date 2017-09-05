@@ -62,7 +62,7 @@ if (urlPage() === 'home') {
             var emptyDiv = document.createElement('div');
             emptyDiv.className = "col-sm-1 col-xs-1 col-md-1";
             var messageBox = document.createElement('div');
-            messageBox.className = "col-sm-9 col-xs-9 col-md-9 message-sent alignRight";
+            messageBox.className = "col-sm-8 col-xs-8 col-md-8 message-sent alignRight";
                 var p = document.createElement('p');
                 p.innerHTML = data['message'];
             var imgBox = document.createElement('div');
