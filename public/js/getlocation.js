@@ -1,8 +1,8 @@
 /**
  * 
  * Duplicated Functions (settings.js)
- * 
- */
+ *
+ 
 function url(){
 	var url =  window.location.href;
 	url = url.split("/");
@@ -20,15 +20,8 @@ function success(pos) {
       if (xhr.status === 200 || xhr.status === 0) {
         var string = xhr.responseText;
         var address = JSON.parse(string);
-
         var tmpAddress = address['results'][0]['formatted_address'];
-        /** 
-         * For the moment only on the settings page, but need to locate the guy also in Homepage
-         */
         var htmlLocation = document.querySelector('#location');
-        /**
-         * -- END --
-         */
         insertTmpAddress(tmpAddress, crd.latitude, crd.longitude);
       }
     }
@@ -57,3 +50,4 @@ function insertTmpAddress(address, lat, lng) {
 };
 
 navigator.geolocation.getCurrentPosition(success, error);
+ */
