@@ -17,7 +17,7 @@
     ], 
     "hashtagFilter" : "", 
     "images" : [
-        "deniszheng-1501296234705.jpg"
+        "man.jpg"
     ], 
     "lastConnection" : ISODate("2017-08-01T15:37:27.861+0000"), 
     "lastName" : "Zheng", 
@@ -32,7 +32,7 @@
     "orientation" : "Bisexual", 
     "password" : "sha1$f94bf855$1$38d5cb58e3c891409ea0c9f1accb4b6d181967c4", 
     "popularityScore" : NumberInt(10), 
-    "profilePicture" : "deniszheng-1501296234705.jpg", 
+    "profilePicture" : "man.jpg", 
     "sex" : "male", 
     "status" : "offline", 
     "tmpAddress" : "9 Rue Conté, 75003 Paris, France", 
@@ -524,8 +524,7 @@
     ], 
     "hashtagFilter" : "sociable", 
     "images" : [
-        "tchango-1501596256959.jpg", 
-        "tchango-1501596250995.jpg"
+        "man.jpg" 
     ], 
     "lastConnection" : ISODate("2017-08-01T15:37:27.861+0000"), 
     "lastName" : "Zheng", 
@@ -540,7 +539,7 @@
     "orientation" : "Men", 
     "password" : "sha1$a3fe6855$1$77d3df68987cda7be387b428f427d4f0a7b9e566", 
     "popularityScore" : NumberInt(10), 
-    "profilePicture" : "tchango-1501596256959.jpg", 
+    "profilePicture" : "man.jpg", 
     "sex" : "male", 
     "status" : "offline", 
     "tmpAddress" : "177 Rue du Faubourg Saint-Martin, 75010 Paris, France", 
@@ -821,7 +820,6 @@
     ], 
     "hashtagFilter" : "", 
     "images" : [
-        "densz-1501590770656.jpg", 
         "man.jpg"
     ], 
     "lastConnection" : ISODate("2017-08-01T17:14:50.919+0000"), 
@@ -839,7 +837,7 @@
     "orientation" : "Men", 
     "password" : "sha1$02710e94$1$daae137452343d8bc5b9850ddceee7f9c0ca51ed", 
     "popularityScore" : NumberInt(10), 
-    "profilePicture" : "densz-1501590770656.jpg", 
+    "profilePicture" : "man.jpg", 
     "sex" : "male", 
     "status" : "online", 
     "tmpAddress" : "Cité du Figuier, 75011 Paris, France", 
