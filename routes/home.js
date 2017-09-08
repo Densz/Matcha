@@ -32,8 +32,10 @@ router.get('/', async function (req, res) {
         user = await db.collection('users').findOne({ login: req.session.login });
         // Filtres
         let filter1 = await filter.filter(user, req);
-        let filter2 = await filter.filterByViews(user, filter1);
-        let finalFilter = await filter.filterByInterests(user, filter2);
+        let finalFilter = await filter.filterByViews(user, filter1);
+        if (user.hashtagFilter === "") {
+            let finalFilter = await filter.filterByInterests(user, finalFilter);
+        }
         if (user['filterBy'] === 'location-down') {
             finalFilter.reverse();    
         }
