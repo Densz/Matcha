@@ -2,7 +2,7 @@
 var hashtags = document.querySelectorAll('.hashtag_user'),
     i = 0;
 
-
+document.querySelector('#homeButton').setAttribute('class', 'active');
 
 if (hashtags) {
     for (i = 0; i < hashtags.length; i++) {
