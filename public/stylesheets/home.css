@@ -30,6 +30,7 @@ nav {
     padding-left: 15px;
     overflow: auto;
     display: none;
+    z-index: 1;
 }
 
 #notificationsButton:hover {
