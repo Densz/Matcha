@@ -11,7 +11,6 @@ if (arrowNext != null) {
         var currSrcPic = document.querySelector('.profile_picture');
         var loginMatch = urlUserProfile();
         var currPicName = currSrcPic.src.split("/");
-        console.log('currImgSrc -> ' + currPicName[4]);
         xhr.open('POST', url() + '/home/nextPicture', true);
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xhr.send('indexCurrPic=' + currPicName[4] + '&loginMatch=' + loginMatch);
@@ -31,7 +30,6 @@ if (arrowPrev !== null) {
         var currSrcPic = document.querySelector('.profile_picture');
         var loginMatch = urlUserProfile();
         var currPicName = currSrcPic.src.split("/");
-        console.log('currImgSrc -> ' + currPicName[4]);
         xhr.open('POST', url() + '/home/previousPicture', true);
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xhr.send('indexCurrPic=' + currPicName[4] + '&loginMatch=' + loginMatch);
@@ -105,7 +103,6 @@ if (dislikeProfile) {
 
 if (dislikeAfterLike) {
     dislikeAfterLike.addEventListener('click', function(){
-        console.log('DISLEKD USER');
         var loginSwiped = urlUserProfile();
         socket.emit('new dislike', { to: loginSwiped });
     })

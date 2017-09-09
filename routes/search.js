@@ -68,9 +68,6 @@ router.post('/result', async function(req, res, next) {
         filter.reverse();
     } else if (req.body.filter === "tags up" || req.body.filter === "tags down") {
         filter = await search.filterByCommonTags(filter, req);
-        for (let i = 0; i < filter.length; i++) {
-            console.log(filter[i].commonTags);
-        }
     }
 
     let errors = req.session.errors;
@@ -78,6 +75,7 @@ router.post('/result', async function(req, res, next) {
     
     res.render('search', {
         layout: 'layout_nav',
+        title: 'Matcha - Search',
         login: req.session.login,
         newNotif: newNotif,
         notifications: notifs,

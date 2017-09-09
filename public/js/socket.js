@@ -20,14 +20,12 @@ if (urlPage() === 'home') {
      * Handle connections Online / Offline users
      */
     socket.on('new user connection', function(data){
-        console.log('New user connected: ', data);
         if (document.getElementById('select-' + data)) {
             document.getElementById('select-' + data).childNodes[1].childNodes[1].className = 'profile_picture_chat online';
         }
     })
 
     socket.on('user disconnected', function(data){
-        console.log('User disconnected: ', data);
         if (document.getElementById('select-' + data)) {
             document.getElementById('select-' + data).childNodes[1].childNodes[1].className = 'profile_picture_chat offline';
         }
@@ -86,7 +84,6 @@ if (urlPage() === 'home') {
      * Receive message from server
      */
     socket.on('Alert people new message', function(data){
-        console.log(data);
         if (data['to']['login'] === connectedUser) {
             var receivedMessage = document.createElement('div');
             receivedMessage.className = 'row msg-img-text';

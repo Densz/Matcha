@@ -123,8 +123,11 @@ router.post('/getAddress', async function (req, res) {
                 ]
             }
         }} );
+        res.send("Okay");
+    } else {
+        res.send("Okay");
     }
-    res.send("Okay");
+
 });
 
 module.exports = router;

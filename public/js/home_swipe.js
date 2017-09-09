@@ -18,7 +18,6 @@ if (arrowNext != null) {
         var currSrcPic = document.querySelector('.match-img');
         var loginMatch = currSrcPic.parentNode.childNodes[1].innerHTML;
         var currPicName = currSrcPic.src.split("/");
-        console.log('currImgSrc -> ' + currPicName[4]);
         xhr.open('POST', url() + '/home/nextPicture', true);
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xhr.send('indexCurrPic=' + currPicName[4] + '&loginMatch=' + loginMatch);
@@ -40,7 +39,6 @@ if (arrowPrev !== null) {
         var currSrcPic = document.querySelector('.match-img');
         var loginMatch = currSrcPic.parentNode.childNodes[1].innerHTML;
         var currPicName = currSrcPic.src.split("/");
-        console.log('currImgSrc -> ' + currPicName[4]);
         xhr.open('POST', url() + '/home/previousPicture', true);
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xhr.send('indexCurrPic=' + currPicName[4] + '&loginMatch=' + loginMatch);
@@ -68,7 +66,7 @@ if (likeButton) {
             if (xhr.readyState === xhr.DONE) {
                 if (xhr.status === 200 || xhr.status === 0) {
                     var response = JSON.parse(xhr.responseText);
-                    console.log(response);
+                    (response);
                     if (response['match'] === true) {
                         socket.emit('new match', { to: loginSwiped });
                     }
