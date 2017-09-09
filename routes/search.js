@@ -31,6 +31,7 @@ router.get('/', async function (req, res) {
             newNotif: newNotif,
             notifications: notifs,
             post: req.body,
+            title: 'Matcha - Search',
             location: undefined,
             filter: undefined,
             errors: undefined
