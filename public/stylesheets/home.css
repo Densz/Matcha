@@ -57,10 +57,12 @@ nav {
 .profile_picture {
     border-radius: 50%;
     width: 100px;
+    height: 100px;
     margin-top: 5px;
     margin-bottom: 10px;
     display: inline-block;
     position: relative;
+    object-fit: cover;
 }
 
 .upload-photo {
@@ -178,8 +180,10 @@ span.hashtag_user {
 .profile_picture_chat {
     border-radius: 50%;
     width: 40px;
+    height: 40px;
     margin-top: 5px;
     margin-bottom: 10px;
+    object-fit: cover;
 }
 
 .online {

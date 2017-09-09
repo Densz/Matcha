@@ -7,7 +7,7 @@ const getViewers = async function(userOnline){
     let i = 0;
     if(Array.isArray(viewers)){
         while (viewers[i]) {
-            let tmp = await db.collection('users').findOne({ login: viewers[i]['userOnline'] }, { login: 1, firstName: 1, lastName: 1, sex: 1 });
+            let tmp = await db.collection('users').findOne({ login: viewers[i]['userOnline'] }, { login: 1, firstName: 1, lastName: 1, sex: 1, profilePicture: 1 });
             finalViewers.push(tmp);
             i++;
         }
@@ -25,7 +25,7 @@ const getLikes = async function(userOnline) {
 
     if(Array.isArray(viewers)){
         while (viewers[i]) {
-            let tmp = await db.collection('users').findOne({ login: viewers[i]['userOnline'] }, { login: 1, firstName: 1, lastName: 1, sex: 1 });
+            let tmp = await db.collection('users').findOne({ login: viewers[i]['userOnline'] }, { login: 1, firstName: 1, lastName: 1, sex: 1, profilePicture: 1 });
             finalViewers.push(tmp);
             i++;
         }

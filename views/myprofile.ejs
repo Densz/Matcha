@@ -48,12 +48,6 @@
                     <label>Last Name:</label><br><input type="text" class="form-control edit_pro" name="lastname" value="<%= lastName %>"><br><br>
                     <input type="submit" class="btn btn-primary btn-sm" value="Edit Name">
                 </form>
-                <!--<label for="comment">Sex: </label>Female<button class="btn-link" id="edit-sex">edit</button>-->
-                <!--<br>-->
-                <!--<form method="post" action="#" class="editable_info">-->
-                    <!--<textarea class="form-control edit_pro" rows="4" name="bio">Bio pour cette sous merde Lorem</textarea><br>-->
-                    <!--<input type="submit" class="btn btn-primary btn-sm">-->
-                <!--</form>-->
                 <label for="comment">Bio:</label><button class="btn-link" id="edit-bio">edit</button>
                 <div><%= bio %></div>
                 <form method="post" action="/myprofile/editBio" class="editable_info" id="form-bio">
@@ -73,7 +67,7 @@
                         <% if (i !== viewers.length - 1) { %>
                             <div class="chat-people">
                                 <div class="chat-img">
-                                    <img src="/images/<%= viewers[i]['sex'] === 'female' ? 'woman' : 'man' %>.jpg" class="profile_picture_chat">
+                                    <img src="/uploads/<%= viewers[i]['profilePicture'] %>" class="profile_picture_chat">
                                 </div>
                                 <div class="chat-description">
                                     <span><b><%= viewers[i]['firstName'] %> <%= viewers[i]['lastName'] %></b></span><br>
@@ -82,7 +76,7 @@
                         <% } else { %>
                             <div class="chat-people last-box">
                                 <div class="chat-img">
-                                    <img src="/images/<%= viewers[i]['sex'] === 'female' ? 'woman' : 'man' %>.jpg" class="profile_picture_chat">
+                                    <img src="/uploads/<%= viewers[i]['profilePicture'] %>" class="profile_picture_chat">
                                 </div>
                                 <div class="chat-description">
                                     <span><b><%= viewers[i]['firstName'] %> <%= viewers[i]['lastName'] %></b></span><br>
@@ -101,7 +95,7 @@
                         <% if (i !== likes.length - 1) { %>
                             <div class="chat-people">
                                 <div class="chat-img">
-                                    <img src="/images/<%= likes[i]['sex'] === 'female' ? 'woman' : 'man' %>.jpg" class="profile_picture_chat">
+                                    <img src="/uploads/<%= likes[i]['profilePicture'] %>" class="profile_picture_chat">
                                 </div>
                                 <div class="chat-description">
                                     <span><b><%= likes[i]['firstName'] %> <%= likes[i]['lastName'] %></b></span><br>
@@ -110,7 +104,7 @@
                         <% } else { %>
                             <div class="chat-people last-box">
                                 <div class="chat-img">
-                                    <img src="/images/<%= likes[i]['sex'] === 'female' ? 'woman' : 'man' %>.jpg" class="profile_picture_chat">
+                                    <img src="/uploads/<%= likes[i]['profilePicture'] %>" class="profile_picture_chat">
                                 </div>
                                 <div class="chat-description">
                                     <span><b><%= likes[i]['firstName'] %> <%= likes[i]['lastName'] %></b></span><br>
