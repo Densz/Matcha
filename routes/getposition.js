@@ -9,7 +9,7 @@ router.get('/', function(req, res, next){
     } else {
         req.session.errors = [];
         res.render('getposition', {
-            title: 'Matcha - Sign Up'
+            title: 'Matcha - Get your position'
         });
     }
 });

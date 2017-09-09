@@ -77,7 +77,7 @@ router.get('/:login', async function(req, res, next){
             loginProfile: user['login'],
             login: req.session.login,
             popularityScore: user['popularityScore'],
-            title: 'Matcha - My profile',
+            title: 'Matcha - Profile',
             viewers: viewers,
             swiped: swiped,
             reported: reported,
