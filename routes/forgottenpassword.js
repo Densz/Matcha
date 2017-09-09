@@ -54,9 +54,9 @@ router.post('/submit', async function(req, res){
         // send mail with defined transport object
         transporter.sendMail(mailOptions, (error, info) => {
             if (error) {
-                return console.log(error);
+                return ;//console.log(error);
             }
-            console.log('Message %s sent: %s', info.messageId, info.response);
+            //console.log('Message %s sent: %s', info.messageId, info.response);
         });
         res.redirect('/forgottenpassword');
     }
