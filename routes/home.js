@@ -34,7 +34,7 @@ router.get('/', async function (req, res) {
         let filter1 = await filter.filter(user, req);
         let finalFilter = await filter.filterByViews(user, filter1);
         if (user.hashtagFilter === "") {
-            let finalFilter = await filter.filterByInterests(user, finalFilter);
+            finalFilter = await filter.filterByInterests(user, finalFilter);
         }
         if (user['filterBy'] === 'location-down') {
             finalFilter.reverse();    

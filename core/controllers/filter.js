@@ -86,7 +86,7 @@ const countMatches = function(user1, user2){
 const filterByInterests = async function (userOnline, matches) {
     let i = 0;
     let newMatches = [];
-    let hashtagFilter = userOnline['hashtagFilter'].length > 0 ? [ userOnline['hashtagFilter'] ] : userOnline['hashtag'];
+    let hashtagFilter = userOnline['hashtag'];
     
     if (hashtagFilter === undefined) {
         return undefined;
