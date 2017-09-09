@@ -33,53 +33,59 @@ const upload = multer({
 
 
 router.get('/', async (req, res, next) => {
-    //update of popularity score
-    let statistics = await score.updateScore(req.session.login);
-
-    let db = await model.connectToDatabase();
-    let userOnline = await db.collection('users').findOne({ login: req.session.login });
-    let viewers = await views.getViewers(userOnline);
-    let likes = await views.getLikes(userOnline);
-    
-    // Notifications
-    let notifs = await model.getDataSorted('notifications', { to: req.session.login }, { date: 1 });
-    let newNotif = await model.getData('notifications', { to: req.session.login, seen: false });
-
-    // Images
-    let imagesArray = await db.collection('users').findOne({ login: req.session.login }, {images: 1});
-
-    // Profile picture
-    let profilePic = await db.collection('users').findOne({ login: req.session.login}, { profilePicture: 1});
-
-    if (profilePic.profilePicture === undefined) {
-        profilePic.profilePicture = '/images/basic_profile_picture.png';
+    if (req.session.login === undefined) {
+        req.session.errors = [];
+        req.session.errors.push({msg: 'No access right'});
+        res.redirect('/');
     } else {
-        profilePic.profilePicture = '/uploads/' + profilePic.profilePicture;
-    }
+        //update of popularity score
+        let statistics = await score.updateScore(req.session.login);
 
-    if (newNotif === "No data") {
-        newNotif = undefined;
-    }
+        let db = await model.connectToDatabase();
+        let userOnline = await db.collection('users').findOne({ login: req.session.login });
+        let viewers = await views.getViewers(userOnline);
+        let likes = await views.getLikes(userOnline);
+        
+        // Notifications
+        let notifs = await model.getDataSorted('notifications', { to: req.session.login }, { date: 1 });
+        let newNotif = await model.getData('notifications', { to: req.session.login, seen: false });
 
-    let alertMessage = req.session.success;
-    req.session.success = [];
-    res.render('myprofile', {
-        layout: 'layout_nav',
-        firstName: userOnline['firstName'],
-        lastName: userOnline['lastName'],
-        login: req.session.login,
-        notifications: notifs,
-        newNotif: newNotif,
-        bio: userOnline['bio'],
-        popularityScore: userOnline['popularityScore'],
-        title: 'Matcha - My profile',
-        viewers: viewers,
-        likes: likes,
-        statistics: statistics,
-        success: alertMessage,
-        image: imagesArray.images,
-        profilePic: profilePic.profilePicture
-    });
+        // Images
+        let imagesArray = await db.collection('users').findOne({ login: req.session.login }, {images: 1});
+
+        // Profile picture
+        let profilePic = await db.collection('users').findOne({ login: req.session.login}, { profilePicture: 1});
+
+        if (profilePic.profilePicture === undefined) {
+            profilePic.profilePicture = '/images/basic_profile_picture.png';
+        } else {
+            profilePic.profilePicture = '/uploads/' + profilePic.profilePicture;
+        }
+
+        if (newNotif === "No data") {
+            newNotif = undefined;
+        }
+
+        let alertMessage = req.session.success;
+        req.session.success = [];
+        res.render('myprofile', {
+            layout: 'layout_nav',
+            firstName: userOnline['firstName'],
+            lastName: userOnline['lastName'],
+            login: req.session.login,
+            notifications: notifs,
+            newNotif: newNotif,
+            bio: userOnline['bio'],
+            popularityScore: userOnline['popularityScore'],
+            title: 'Matcha - My profile',
+            viewers: viewers,
+            likes: likes,
+            statistics: statistics,
+            success: alertMessage,
+            image: imagesArray.images,
+            profilePic: profilePic.profilePicture
+        });
+    }
 });
 
 router.post('/editName', (req, res, next) => {
@@ -132,6 +138,7 @@ router.post('/changingpic', async (req, res) => {
     let currProfilePic = await db.collection('users').findOne({login: req.session.login}, {profilePicture: 1});
     imageArray.images.unshift(imageArray.images.splice(imageArray.images.indexOf(currProfilePic.profilePicture), 1)[0]);
     model.updateData('users', field, { $set: { images: imageArray.images }});
+    res.send('ok');
 });
 
 router.post('/erasePicture', async (req, res) => {
