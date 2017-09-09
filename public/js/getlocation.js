@@ -1,8 +1,3 @@
-/**
- * 
- * Duplicated Functions (settings.js)
- *
- 
 function url(){
 	var url =  window.location.href;
 	url = url.split("/");
@@ -29,9 +24,17 @@ function success(pos) {
 };
 
 function error(err) {
-  console.warn(`ERROR(${err.code}): ${err.message}`);
-  htmlAddress.innerHTML = 'Address not found';
-  return null;
+  var xhr = new XMLHttpRequest();
+
+  xhr.open('GET', '/getposition/forceGetPos', true);
+  xhr.send();
+  xhr.onload = function() {
+    if (xhr.readyState === xhr.DONE) {
+      if (xhr.status === 200 || xhr.status === 0) {
+        window.location.href = url() + '/home';
+      }
+    }
+  }
 };
 
 function insertTmpAddress(address, lat, lng) {
@@ -50,4 +53,3 @@ function insertTmpAddress(address, lat, lng) {
 };
 
 navigator.geolocation.getCurrentPosition(success, error);
- */

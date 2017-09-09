@@ -59,6 +59,11 @@ app.use('/forgottenpassword', forgottenpassword);
 app.use('/resetpassword', resetpassword);
 app.use('/search', search);
 
+app.get('/robots.txt', function (req, res) {
+    res.type('text/plain');
+    res.send("User-agent: *\nDisallow: /");
+});
+
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
 	let err = new Error('Not Found');

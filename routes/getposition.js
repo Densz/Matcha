@@ -4,7 +4,17 @@ const request = require('request');
 const model = require('../core/models/database');
 
 router.get('/', function(req, res, next){
-    req.session.errors = [];
+    if (req.session.login === undefined) {
+        res.redirect('/signup');
+    } else {
+        req.session.errors = [];
+        res.render('getposition', {
+            title: 'Matcha - Sign Up'
+        });
+    }
+});
+
+router.get('/forceGetPos', function(req, res, next){
     if (req.session.login !== undefined) {
         request('http://freegeoip.net/json/', function(error, response, body){
             let data = JSON.parse(body);
