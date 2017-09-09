@@ -13,6 +13,8 @@ function url(){
     return(url[0] + '//' + url[2] + '');
 }
 
+document.querySelector('#profileButton').setAttribute('class', 'active');
+
 if (chosenPicture.length === 1) {
     eraseBtnPicture[0].remove();
 }
