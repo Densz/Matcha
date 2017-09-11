@@ -6,5 +6,4 @@ mongodb
 .DS_Store
 .vscode
 *-*.jpg
-*-*.png
 *-*.gif

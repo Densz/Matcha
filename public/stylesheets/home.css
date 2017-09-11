@@ -62,7 +62,7 @@ nav {
     margin-bottom: 10px;
     display: inline-block;
     position: relative;
-    object-fit: cover;
+    object-fit: contain;
 }
 
 .upload-photo {
@@ -146,6 +146,8 @@ span.hashtag_user {
 .match-img {
     max-width: 400px;
     width: 90%;
+    max-height: 400px;
+    object-fit: contain;
 }
 
 /**
@@ -183,7 +185,7 @@ span.hashtag_user {
     height: 40px;
     margin-top: 5px;
     margin-bottom: 10px;
-    object-fit: cover;
+    object-fit: contain;
 }
 
 .online {

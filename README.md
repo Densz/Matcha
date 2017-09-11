@@ -7,9 +7,9 @@ Tinder-like app made by 42 Students
 
 #### At 42
 * npm install --save
-* /usr/local/mongodb/bin/mongod --dbpath ~/http/MyWebSite/matcha/mongodb
-* /usr/local/mongodb/bin/mongoimport --db matcha --collection users --drop --file ~/42/matcha/public/dump/users.json
-* /usr/local/mongodb/bin/mongoimport --db matcha --collection views --drop --file ~/42/matcha/public/dump/views.json
+* /usr/local/mongodb/bin/mongod --dbpath ~/42/matcha/
+* /usr/local/mongodb/bin/mongoimport --db matcha --collection users --drop --file /tmp/dzheng/public/dump/users.json
+* /usr/local/mongodb/bin/mongoimport --db matcha --collection views --drop --file /tmp/dzheng/public/dump/views.json
 * /usr/local/mongodb/bin/mongo
 * use matcha
 * db.users.createIndex({location: "2dsphere"});

@@ -39,7 +39,9 @@ router.get('/', async function (req, res) {
         if (user['filterBy'] === 'location-down') {
             finalFilter.reverse();    
         }
-        
+        if (finalFilter && finalFilter.length === 0) {
+            finalFilter = undefined;
+        }
         // Matches
         let matches = await match.getMatches(req);
         // Conversations

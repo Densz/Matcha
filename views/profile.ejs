@@ -67,7 +67,7 @@
                         <% if (i !== viewers.length - 1) { %>
                             <div class="chat-people">
                                 <div class="chat-img">
-                                    <img src="/images/<%= viewers[i]['sex'] === 'female' ? 'woman' : 'man' %>.jpg" class="profile_picture_chat">
+                                    <img src="/uploads/<%= viewers[i]['profilePicture'] %>" class="profile_picture_chat">
                                 </div>
                                 <div class="chat-description">
                                     <span><b><%= viewers[i]['firstName'] %> <%= viewers[i]['lastName'] %></b></span><br>
@@ -76,7 +76,7 @@
                         <% } else { %>
                             <div class="chat-people last-box">
                                 <div class="chat-img">
-                                    <img src="/images/<%= viewers[i]['sex'] === 'female' ? 'woman' : 'man' %>.jpg" class="profile_picture_chat">
+                                    <img src="/uploads/<%= viewers[i]['profilePicture'] %>" class="profile_picture_chat">
                                 </div>
                                 <div class="chat-description">
                                     <span><b><%= viewers[i]['firstName'] %> <%= viewers[i]['lastName'] %></b></span><br>
@@ -95,7 +95,7 @@
                         <% if (i !== likes.length - 1) { %>
                             <div class="chat-people">
                                 <div class="chat-img">
-                                    <img src="/images/<%= likes[i]['sex'] === 'female' ? 'woman' : 'man' %>.jpg" class="profile_picture_chat">
+                                    <img src="/uploads/<%= likes[i]['profilePicture'] %>" class="profile_picture_chat">
                                 </div>
                                 <div class="chat-description">
                                     <span><b><%= likes[i]['firstName'] %> <%= likes[i]['lastName'] %></b></span><br>
@@ -104,7 +104,7 @@
                         <% } else { %>
                             <div class="chat-people last-box">
                                 <div class="chat-img">
-                                    <img src="/images/<%= likes[i]['sex'] === 'female' ? 'woman' : 'man' %>.jpg" class="profile_picture_chat">
+                                    <img src="/uploads/<%= likes[i]['profilePicture'] %>" class="profile_picture_chat">
                                 </div>
                                 <div class="chat-description">
                                     <span><b><%= likes[i]['firstName'] %> <%= likes[i]['lastName'] %></b></span><br>

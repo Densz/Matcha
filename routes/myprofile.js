@@ -144,7 +144,6 @@ router.post('/changingpic', async (req, res) => {
 router.post('/erasePicture', async (req, res) => {
     let db = await model.connectToDatabase();
 
-
     db.collection('users').update(
         { login: req.session.login },
         { $pull: { images: req.body.pictureToErase}}

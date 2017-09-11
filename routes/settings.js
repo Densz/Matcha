@@ -6,35 +6,41 @@ const passwordHash = require('password-hash');
 const request = require('request');
 
 router.get('/', async function (req, res) {
-    // Connexion to socket.io
-    socketIO.connexionChat(req);
+    if (req.session.login === undefined) {
+         req.session.errors = [];
+        req.session.errors.push({msg: 'No access right'});
+        res.redirect('/');
+    } else {
+        // Connexion to socket.io
+        socketIO.connexionChat(req);
 
-    let db = await model.connectToDatabase();
-    let info = await db.collection('users').findOne({ login: req.session.login });
+        let db = await model.connectToDatabase();
+        let info = await db.collection('users').findOne({ login: req.session.login });
 
-    let alertMessage = req.session.success;
-    let errorMessage = req.session.errors;
+        let alertMessage = req.session.success;
+        let errorMessage = req.session.errors;
 
-    // Notifications
-    let notifs = await model.getDataSorted('notifications', { to: req.session.login }, { date: 1 });
-    let newNotif = await model.getData('notifications', { to: req.session.login, seen: false });
-    if (newNotif === "No data") {
-        newNotif = undefined;
+        // Notifications
+        let notifs = await model.getDataSorted('notifications', { to: req.session.login }, { date: 1 });
+        let newNotif = await model.getData('notifications', { to: req.session.login, seen: false });
+        if (newNotif === "No data") {
+            newNotif = undefined;
+        }
+
+        req.session.success = [];
+        req.session.errors = [];
+        res.render('settings', {
+            layout: 'layout_nav',
+            title: 'Matcha - Settings',
+            login: req.session.login,
+            notifications: notifs,
+            newNotif: newNotif,
+            address: info['address'],
+            tmpAddress: info['tmpAddress'],
+            success: alertMessage,
+            errors: errorMessage
+        });
     }
-
-    req.session.success = [];
-    req.session.errors = [];
-    res.render('settings', {
-        layout: 'layout_nav',
-        title: 'Matcha - Settings',
-        login: req.session.login,
-        notifications: notifs,
-        newNotif: newNotif,
-        address: info['address'],
-        tmpAddress: info['tmpAddress'],
-        success: alertMessage,
-        errors: errorMessage
-    });
 });
 
 router.post('/editEmail', async function (req, res) {
@@ -51,7 +57,7 @@ router.post('/editEmail', async function (req, res) {
                 req.session.success.push({ msg: 'Email has been updated' });
             }
         } else {
-            req.session.errors.push({ msg: 'Confirmation password is not the same' });
+            req.session.errors.push({ msg: 'Email confirmation is not the same' });
         }
     } else {
         req.session.errors.push({ msg: 'Old email is different from the current email' });
