@@ -1,14 +1,13 @@
 # Matcha
 
 ## Introduction
-Tinder-like Web Application .<br />
 Dating Website made by 42 Students using: <br/>
-* NodeJS
-* Express JS
+* Node.js
+* Express.js
 * Socket.io
 * MongoDB
 * EJS Template
-* Bootstrap.
+* Bootstrap
 
 ## Installation
 
