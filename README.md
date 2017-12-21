@@ -4,11 +4,6 @@
 Tinder-like app made by 42 Students.
 Online dating website made with NodeJS, Express JS, MongoDB, EJS Template and Bootstrap.
 
-
-
-#### Commands to import Users - Database
-
-
 ## Installation
 
 ### Install dependencies
@@ -17,7 +12,7 @@ Before installing make sure you have [downloaded and installed Node.js](https://
 $ npm install
 ```
 
-### Import database using MongoDB
+### Import users into database using MongoDB
 Before entering all the commands below, make sure you have [installed MongoDB](https://www.mongodb.com/download-center?ct=atlasheader#community)
 ``` shell
 $ /usr/local/mongodb/mongoimport --db matcha --collection users --drop --file /mnt/c/42/matcha/public/dump/users.json --jsonArray
