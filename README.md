@@ -20,12 +20,12 @@ $ npm install
 ### Import users into database using MongoDB
 Before entering all the commands below, make sure [MongoDB](https://www.mongodb.com/download-center?ct=atlasheader#community) is installed
 ``` shell
-$ /usr/local/mongodb/mongoimport --db matcha --collection users --drop --file /mnt/c/42/matcha/public/dump/users.json --jsonArray
-$ /usr/local/mongodb/mongo
-$ /usr/local/mongodb/bin/mongod --dbpath ~/42/matcha/
-$ /usr/local/mongodb/bin/mongoimport --db matcha --collection users --drop --file /*PROJECT_PATH*/public/dump/users.json
-$ /usr/local/mongodb/bin/mongoimport --db matcha --collection views --drop --file /*PROJECT_PATH*/public/dump/views.json
-$ /usr/local/mongodb/bin/mongo
+$ mkdir /*PROJECT_PATH*/database | ./mongod --dbpath /*PROJECT_PATH*/database/
+
+Another Shell Window
+$ ./mongoimport --db matcha --collection users --drop --file /*PROJECT_PATH*/public/dump/users.json
+$ ./mongoimport --db matcha --collection views --drop --file /*PROJECT_PATH*/public/dump/views.json
+$ ./mongo
 $ use matcha
 $ db.users.createIndex({location: "2dsphere"})
 ```
