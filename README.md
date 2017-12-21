@@ -20,7 +20,7 @@ $ npm install
 ### Import users into database using MongoDB
 Before entering all the commands below, make sure [MongoDB](https://www.mongodb.com/download-center?ct=atlasheader#community) is installed
 ``` shell
-$ mkdir /*PROJECT_PATH*/database | ./mongod --dbpath /*PROJECT_PATH*/database/
+$ mkdir /*PROJECT_PATH*/database && ./mongod --dbpath /*PROJECT_PATH*/database/
 
 Another Shell Window
 $ ./mongoimport --db matcha --collection users --drop --file /*PROJECT_PATH*/public/dump/users.json
