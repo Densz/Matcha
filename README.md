@@ -1,19 +1,25 @@
 # Matcha
 
 ## Introduction
-Tinder-like app made by 42 Students.
-Online dating website made with NodeJS, Express JS, MongoDB, EJS Template and Bootstrap.
+Tinder-like Web Application .<br />
+Dating Website made by 42 Students using: <br/>
+* NodeJS
+* Express JS
+* Socket.io
+* MongoDB
+* EJS Template
+* Bootstrap.
 
 ## Installation
 
 ### Install dependencies
-Before installing make sure you have [downloaded and installed Node.js](https://nodejs.org/en/).
+Before installing make sure you have installed [Node.js](https://nodejs.org/en/).
 ``` shell
 $ npm install
 ```
 
 ### Import users into database using MongoDB
-Before entering all the commands below, make sure you have [installed MongoDB](https://www.mongodb.com/download-center?ct=atlasheader#community)
+Before entering all the commands below, make sure [MongoDB](https://www.mongodb.com/download-center?ct=atlasheader#community) is installed
 ``` shell
 $ /usr/local/mongodb/mongoimport --db matcha --collection users --drop --file /mnt/c/42/matcha/public/dump/users.json --jsonArray
 $ /usr/local/mongodb/mongo
@@ -22,7 +28,7 @@ $ /usr/local/mongodb/bin/mongoimport --db matcha --collection users --drop --fil
 $ /usr/local/mongodb/bin/mongoimport --db matcha --collection views --drop --file /*PROJECT_PATH*/public/dump/views.json
 $ /usr/local/mongodb/bin/mongo
 $ use matcha
-$ db.users.createIndex({location: "2dsphere"});
+$ db.users.createIndex({location: "2dsphere"})
 ```
 ### Start 
 ``` shell
