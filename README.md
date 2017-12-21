@@ -1,34 +1,35 @@
 # Matcha
-Tinder-like app made by 42 Students
+
+## Introduction
+Tinder-like app made by 42 Students.
+Online dating website made with NodeJS, Express JS, MongoDB, EJS Template and Bootstrap.
+
+
 
 #### Commands to import Users - Database
-* mongoimport --db matcha --collection users --drop --file /mnt/c/42/matcha/public/dump/users.json --jsonArray
-* mongo
 
-#### At 42
-* npm install --save
-* /usr/local/mongodb/bin/mongod --dbpath ~/42/matcha/
-* /usr/local/mongodb/bin/mongoimport --db matcha --collection users --drop --file /tmp/dzheng/public/dump/users.json
-* /usr/local/mongodb/bin/mongoimport --db matcha --collection views --drop --file /tmp/dzheng/public/dump/views.json
-* /usr/local/mongodb/bin/mongo
-* use matcha
-* db.users.createIndex({location: "2dsphere"});
-* db.users.getIndexes()
-* [
-        {
-                "v" : 1,
-                "key" : {
-                        "_id" : 1
-                },
-                "ns" : "matcha.users",
-                "name" : "_id_"
-        },
-        {
-                "v" : 1,
-                "key" : {
-                        "location" : "2dsphere"
-                },
-                "ns" : "matcha.users",
-                "name" : "location_2dsphere"
-        }
-]
+
+## Installation
+
+### Install dependencies
+Before installing make sure you have [downloaded and installed Node.js](https://nodejs.org/en/).
+``` shell
+$ npm install
+```
+
+### Import database using MongoDB
+Before entering all the commands below, make sure you have [installed MongoDB](https://www.mongodb.com/download-center?ct=atlasheader#community)
+``` shell
+$ /usr/local/mongodb/mongoimport --db matcha --collection users --drop --file /mnt/c/42/matcha/public/dump/users.json --jsonArray
+$ /usr/local/mongodb/mongo
+$ /usr/local/mongodb/bin/mongod --dbpath ~/42/matcha/
+$ /usr/local/mongodb/bin/mongoimport --db matcha --collection users --drop --file /*PROJECT_PATH*/public/dump/users.json
+$ /usr/local/mongodb/bin/mongoimport --db matcha --collection views --drop --file /*PROJECT_PATH*/public/dump/views.json
+$ /usr/local/mongodb/bin/mongo
+$ use matcha
+$ db.users.createIndex({location: "2dsphere"});
+```
+### Start 
+``` shell
+$ npm start
+```
