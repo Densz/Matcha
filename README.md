@@ -33,3 +33,14 @@ $ db.users.createIndex({location: "2dsphere"})
 ``` shell
 $ npm start
 ```
+
+## Screenshots
+### Homepage 
+<p align="center">
+  <img src="./public/screenshots/Home_page_screenshot.png" width="1000"/>
+</p>
+
+### Profile Page
+<p>
+  <img src="./public/screenshots/Profile_page_screenshot.png" width="1000"/>
+</p>
